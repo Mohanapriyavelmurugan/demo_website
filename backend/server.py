@@ -37,10 +37,35 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+class ContactSubmission(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: str
+    organization: str = ""
+    message: str
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class ContactCreate(BaseModel):
+    name: str
+    email: str
+    organization: str = ""
+    message: str
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
     return {"message": "Hello World"}
+
+@api_router.post("/contact", response_model=ContactSubmission)
+async def create_contact(input: ContactCreate):
+    submission = ContactSubmission(**input.model_dump())
+    doc = submission.model_dump()
+    doc['created_at'] = doc['created_at'].isoformat()
+    await db.contact_submissions.insert_one(doc)
+    logger.info(f"New contact submission from {submission.email}")
+    return submission
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):

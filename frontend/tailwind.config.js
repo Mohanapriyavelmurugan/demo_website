@@ -20,13 +20,19 @@ module.exports = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         navy: {
-          deep: '#040A18',
-          card: '#0A1326',
-          light: '#122038',
+          void: '#03060D',
+          deep: '#04081A',
+          card: '#0A1128',
+          light: '#111A35',
         },
         teal: {
           glow: '#14B8A6',
         },
+        champagne: {
+          DEFAULT: '#DCCBA1',
+          glow: '#F0DFB5',
+        },
+        ivory: '#F5F2EA',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'

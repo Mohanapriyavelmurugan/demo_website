@@ -1,30 +1,33 @@
-// @ts-nocheck
 import React from "react";
-import { motion } from "framer-motion";
-import { Shield, Pill, FileText, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { Shield, Pill, FileText, Calendar, ArrowRight, ShieldCheck } from "lucide-react";
+import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
 
 const features = [
   {
     icon: FileText,
+    span: "lg:col-span-7",
     title: "Clinical reasoning, grounded in guideline hierarchy",
     description:
       "ClinoveAI generates a structured consultation report — diagnosis, risk assessment, medication plan, and follow-up — built from RSSDI, ADA, EASD, and IDF guidelines, applied in that priority order for every patient.",
   },
   {
     icon: Shield,
+    span: "lg:col-span-5",
     title: "Medication safety intelligence",
     description:
-      "Every prescription ClinoveAI proposes — new or existing — is screened through a dedicated safety layer before it reaches the physician. This includes cross-checking for interactions across a patient's full medication list, evaluating drug suitability against organ function and comorbidities, and flagging anything that requires physician attention before a report is finalized. This safety layer runs independently of the clinical reasoning itself — a second, deliberate check, not a single point of failure.",
+      "Every prescription — new or existing — is screened through a dedicated safety layer before it reaches the physician: cross-checking interactions across a patient's full medication list, evaluating suitability against organ function and comorbidities, and flagging anything that needs attention. This layer runs independently of the clinical reasoning — a second, deliberate check, not a single point of failure.",
   },
   {
     icon: Pill,
+    span: "lg:col-span-5",
     title: "Personalized diagnostic guidance",
     description:
-      "Rather than defaulting to a generic test panel, ClinoveAI recommends lab investigations based on each patient's specific vitals, history, and risk indicators — helping physicians order the right tests for the right reasons, and avoid both over-testing and missed diagnoses.",
+      "Rather than defaulting to a generic test panel, ClinoveAI recommends lab investigations based on each patient's specific vitals, history, and risk indicators — helping physicians avoid both over-testing and missed diagnoses.",
   },
   {
     icon: Calendar,
+    span: "lg:col-span-7",
     title: "Built-in follow-up planning",
     description:
       "Every consultation includes a follow-up plan tailored to the patient's actual lab values and risk profile — not generic advice, but guidance grounded in their specific clinical picture.",
@@ -33,132 +36,91 @@ const features = [
 
 export function Product() {
   return (
-    <div className="min-h-screen py-24">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-16"
-        >
-          {/* Header */}
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#0F1E2B] via-[#1F3B4D] to-[#2E7D6E] dark:from-white dark:to-teal-300"
-              style={{ fontFamily: "'Fraunces', serif" }}
-            >
-              ClinoveAI
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-2xl text-muted-foreground"
-            >
-              A structured clinical reasoning layer for every diabetology consultation.
-            </motion.p>
+    <div className="overflow-hidden">
+      <PageHero
+        label="The product · ClinoveAI"
+        title={
+          <>
+            A structured <span className="italic text-champagne">reasoning layer</span> for every consultation.
+          </>
+        }
+        subtitle="ClinoveAI brings specialist-grade guideline discipline to outpatient diabetology — surfaced at the point of care, always under the physician's control."
+      />
+
+      <section className="relative py-8 md:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+            <Reveal className="lg:col-span-4">
+              <Eyebrow>The problem</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.15} className="lg:col-span-8">
+              <p className="font-display text-2xl font-light leading-snug text-ivory md:text-3xl">
+                Managing diabetes well means holding a lot at once — glycemic trend, renal function,
+                interactions across every medication, and the right guideline for each patient's risk
+                profile. ClinoveAI is built so nothing gets missed.
+              </p>
+            </Reveal>
           </div>
+        </div>
+      </section>
 
-          {/* Problem Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative backdrop-blur-xl bg-background/60 border border-border/40 rounded-3xl p-10 shadow-2xl"
-          >
-            <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: "'Fraunces', serif" }}>
-              The Problem
-            </h2>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              Managing diabetes well requires holding a lot at once: current glycemic
-              trend, renal function before certain drug classes, interactions across every
-              medication a patient is already on, and the correct guideline for that
-              patient's specific risk profile. A single oversight can mean a drug
-              interaction that damages a kidney, or a treatment plan that's technically
-              defensible but incomplete. ClinoveAI is built to make sure nothing gets
-              missed — and to make sure every decision a physician makes is backed by the
-              same rigor a specialist would apply.
-            </p>
-          </motion.div>
-
-          {/* Features Grid */}
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-4xl font-bold mb-12 text-center"
-              style={{ fontFamily: "'Fraunces', serif" }}
-            >
+      <section className="relative py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <h2 className="mb-12 font-display text-4xl font-normal tracking-tight text-ivory md:text-5xl">
               How it works
-            </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {features.map((feature, index) => {
-                const Icon = feature.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                    className="relative group"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#1F3B4D]/5 to-[#2E7D6E]/5 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
-                    <div className="relative backdrop-blur-xl bg-background/60 border border-border/40 rounded-2xl p-8 hover:shadow-lg hover:shadow-teal-500/10 transition-all duration-300 hover:-translate-y-1 h-full">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0">
-                          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#1F3B4D] to-[#2E7D6E] flex items-center justify-center">
-                            <Icon className="h-7 w-7 text-white" />
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            {feature.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+            {features.map((f, i) => (
+              <Reveal key={f.title} delay={i * 0.1} className={f.span}>
+                <div className="glass group h-full p-8 transition-transform duration-300 hover:-translate-y-1.5">
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-glow/12 text-teal-glow ring-1 ring-teal-glow/20">
+                    <f.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-display text-2xl text-ivory">{f.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/60">{f.description}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* Physician Oversight */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative backdrop-blur-xl bg-gradient-to-br from-[#1F3B4D]/10 to-[#2E7D6E]/10 border-2 border-[#2E7D6E]/30 rounded-3xl p-10 shadow-2xl text-center"
-          >
-            <p className="text-xl leading-relaxed font-medium">
-              Every ClinoveAI report is a draft for physician review, never a final
-              decision. The treating physician reviews, edits, or rejects each report
-              before it reaches a patient. This is a decision-support system designed to
-              operate under direct physician oversight at every step.
-            </p>
-          </motion.div>
+      <section className="relative py-8 md:py-16">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <Reveal>
+            <LayeredCard className="p-10 text-center md:p-14">
+              <ShieldCheck className="mx-auto mb-6 h-10 w-10 text-champagne" />
+              <p className="mx-auto max-w-3xl text-xl font-light leading-relaxed text-ivory">
+                Every ClinoveAI report is a draft for physician review, never a final decision. The
+                treating physician reviews, edits, or rejects each report before it reaches a patient
+                — a decision-support system designed to operate under direct physician oversight at
+                every step.
+              </p>
+            </LayeredCard>
+          </Reveal>
+        </div>
+      </section>
 
-          {/* Footer Note */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-center"
-          >
-            <p className="text-sm text-muted-foreground italic">
-              This page describes what ClinoveAI does and why it can be trusted — not the
-              technical implementation, which remains confidential pending completed IP
-              protection.
+      <section className="relative py-16 md:py-24">
+        <div className="mx-auto max-w-5xl px-6 text-center lg:px-8">
+          <Reveal>
+            <p className="mx-auto mb-8 max-w-2xl text-sm italic text-white/40">
+              This page describes what ClinoveAI does and why it can be trusted — not the technical
+              implementation, which remains confidential pending completed IP protection.
             </p>
-          </motion.div>
-        </motion.div>
-      </div>
+            <Link
+              to="/validation"
+              data-testid="product-validation-cta"
+              className="group inline-flex items-center gap-2 rounded-full bg-teal-glow px-7 py-4 font-medium text-navy-deep transition-all hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(20,184,166,0.5)]"
+            >
+              See it validated in a real clinic
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

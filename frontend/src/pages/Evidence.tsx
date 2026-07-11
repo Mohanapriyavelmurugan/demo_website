@@ -1,131 +1,93 @@
-// @ts-nocheck
 import React from "react";
-import { motion } from "framer-motion";
 import { FileCheck, Shield, CheckCircle2 } from "lucide-react";
+import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
 
 const pillars = [
   {
     icon: FileCheck,
+    no: "01",
     title: "Guideline-grounded reasoning",
     description:
-      "ClinoveAI's clinical reasoning draws exclusively from four established diabetes management frameworks — RSSDI, ADA, EASD, and IDF — applied in a defined priority order suited to Indian patients. This is a deliberate constraint, not a limitation: it means every recommendation the system produces can be traced back to a recognized clinical standard, not inferred from an unconstrained model.",
+      "ClinoveAI's clinical reasoning draws exclusively from four established diabetes management frameworks — RSSDI, ADA, EASD, and IDF — applied in a defined priority order suited to Indian patients. A deliberate constraint, not a limitation: every recommendation can be traced back to a recognized clinical standard.",
   },
   {
     icon: Shield,
+    no: "02",
     title: "Independent safety layer",
     description:
       "That reasoning is reinforced by a dedicated safety layer that operates independently of the clinical recommendations themselves — cross-checking prescriptions against a patient's full medication history and organ function, and flagging anything requiring physician attention before a report is ever finalized.",
   },
   {
     icon: CheckCircle2,
+    no: "03",
     title: "Continuous physician validation",
     description:
-      "Every report that passes through this pipeline is then reviewed by a practicing physician — approved, edited, or rejected — before it is used. That structured review, applied to every single case, is what makes ClinoveAI's evidence base different from a model tested once against a static dataset: it is validated continuously, against real clinical judgment, in a live practice.",
+      "Every report that passes through this pipeline is then reviewed by a practicing physician — approved, edited, or rejected — before it is used. That structured review, applied to every single case, is what makes the evidence base different from a model tested once against a static dataset: it is validated continuously, against real clinical judgment, in a live practice.",
   },
 ];
 
 export function Evidence() {
   return (
-    <div className="min-h-screen py-24">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-12"
-        >
-          {/* Header */}
-          <div className="text-center">
-            <h1
-              className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#0F1E2B] via-[#1F3B4D] to-[#2E7D6E] dark:from-white dark:to-teal-300"
-              style={{ fontFamily: "'Fraunces', serif" }}
-            >
-              Evidence
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Built on established guidelines. Verified through structured physician
-              review. Reinforced by independent safety checks.
-            </p>
-          </div>
+    <div className="overflow-hidden">
+      <PageHero
+        label="Evidence"
+        title={
+          <>
+            Built on guidelines. Verified through <span className="italic text-champagne">review</span>.
+          </>
+        }
+        subtitle="Reinforced by independent safety checks — not inferred from an unconstrained model."
+      />
 
-          {/* Intro */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative backdrop-blur-xl bg-background/60 border border-border/40 rounded-3xl p-10 shadow-2xl"
-          >
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              ClinoveAI's clinical reasoning draws exclusively from four established
-              diabetes management frameworks — RSSDI, ADA, EASD, and IDF — applied in a
-              defined priority order suited to Indian patients. This is a deliberate
-              constraint, not a limitation: it means every recommendation the system
-              produces can be traced back to a recognized clinical standard, not inferred
-              from an unconstrained model.
-            </p>
-          </motion.div>
-
-          {/* Three Pillars */}
-          <div className="grid grid-cols-1 gap-8">
-            {pillars.map((pillar, index) => {
-              const Icon = pillar.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.15 }}
-                  className="relative group"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1F3B4D]/5 to-[#2E7D6E]/5 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
-                  <div className="relative backdrop-blur-xl bg-background/60 border border-border/40 rounded-2xl p-8 hover:shadow-lg hover:shadow-teal-500/10 transition-all duration-300 hover:-translate-y-1">
-                    <div className="flex items-start gap-6">
-                      <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#1F3B4D] to-[#2E7D6E] flex items-center justify-center">
-                          <Icon className="h-8 w-8 text-white" />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-bold mb-3">{pillar.title}</h3>
-                        <p className="text-base text-muted-foreground leading-relaxed">
-                          {pillar.description}
-                        </p>
+      <section className="relative py-8 md:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="space-y-6">
+            {pillars.map((p, i) => (
+              <Reveal key={p.no} delay={i * 0.1}>
+                <LayeredCard className="p-8 md:p-10">
+                  <div className="flex flex-col gap-6 md:flex-row md:items-start">
+                    <div className="flex items-center gap-4 md:w-48 md:flex-col md:items-start">
+                      <span className="font-display text-5xl font-light italic text-champagne/70">
+                        {p.no}
+                      </span>
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-glow/12 text-teal-glow ring-1 ring-teal-glow/20">
+                        <p.icon className="h-6 w-6" />
                       </div>
                     </div>
+                    <div className="flex-1">
+                      <h3 className="font-display text-2xl text-ivory md:text-3xl">{p.title}</h3>
+                      <p className="mt-3 text-base leading-relaxed text-white/60">{p.description}</p>
+                    </div>
                   </div>
-                </motion.div>
-              );
-            })}
+                </LayeredCard>
+              </Reveal>
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* Diagnostic Testing */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="relative backdrop-blur-xl bg-background/60 border border-border/40 rounded-3xl p-10 shadow-2xl"
-          >
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              Diagnostic test suggestions follow the same principle: each is generated
-              based on the individual patient's data, not a fixed template, so that
-              recommendations stay clinically justified on a case-by-case basis.
-            </p>
-          </motion.div>
-
-          {/* Future Publication */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="relative backdrop-blur-xl bg-gradient-to-br from-[#1F3B4D]/10 to-[#2E7D6E]/10 border-2 border-[#2E7D6E]/30 rounded-3xl p-10 shadow-2xl text-center"
-          >
-            <p className="text-xl leading-relaxed font-medium">
-              As this pilot dataset grows, it will support both the system's continued
-              development and future academic publication.
-            </p>
-          </motion.div>
-        </motion.div>
-      </div>
+      <section className="relative py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 lg:grid-cols-2 lg:px-8">
+          <Reveal>
+            <div className="glass h-full p-8 md:p-10">
+              <Eyebrow>Diagnostics</Eyebrow>
+              <p className="mt-5 text-lg font-light leading-relaxed text-white/70">
+                Diagnostic test suggestions follow the same principle: each is generated based on the
+                individual patient's data, not a fixed template, so recommendations stay clinically
+                justified on a case-by-case basis.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="glass-strong flex h-full flex-col justify-center p-8 md:p-10">
+              <p className="font-display text-2xl font-light leading-snug text-ivory">
+                As this pilot dataset grows, it will support both the system's continued development
+                and future academic publication.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,99 +1,72 @@
-// @ts-nocheck
 import React from "react";
-import { motion } from "framer-motion";
 import { MapPin, GraduationCap } from "lucide-react";
+import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
 
 export function Validation() {
   return (
-    <div className="min-h-screen py-24">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-12"
-        >
-          {/* Header */}
-          <div className="text-center">
-            <h1
-              className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#0F1E2B] via-[#1F3B4D] to-[#2E7D6E] dark:from-white dark:to-teal-300"
-              style={{ fontFamily: "'Fraunces', serif" }}
-            >
-              Clinical Validation
-            </h1>
-            <p className="text-2xl text-muted-foreground">
-              Tested where it matters — in a real clinic, on real patients, under a
-              physician's direct review.
-            </p>
+    <div className="overflow-hidden">
+      <PageHero
+        label="Clinical validation"
+        title={
+          <>
+            Tested where it matters — in a <span className="italic text-champagne">real clinic</span>.
+          </>
+        }
+        subtitle="On real patients, under a practicing physician's direct review — not benchmarked against textbook cases alone."
+      />
+
+      <section className="relative py-8 md:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+            <Reveal className="lg:col-span-4">
+              <Eyebrow>Continuous review</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.15} className="lg:col-span-8">
+              <LayeredCard className="space-y-6 p-8 md:p-10">
+                <p className="text-lg font-light leading-relaxed text-white/70">
+                  ClinoveAI is in active clinical pilot with Dr. Ashwin Mukundan, Co-Founder and
+                  Clinical Lead. Every report the system generates is reviewed against his own
+                  clinical judgment before it is ever used — he can approve it as written, edit it, or
+                  reject it outright.
+                </p>
+                <p className="text-lg font-light leading-relaxed text-white/70">
+                  This is not a one-time evaluation. It is a continuous, structured review process,
+                  and every approval, edit, and rejection is captured as part of it. That means
+                  ClinoveAI is being shaped by the day-to-day decisions of a practicing diabetologist
+                  — and it is the foundation of the clinical evidence base Alyvn is building toward
+                  publication and wider deployment.
+                </p>
+              </LayeredCard>
+            </Reveal>
           </div>
+        </div>
+      </section>
 
-          {/* Main Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative backdrop-blur-xl bg-background/60 border border-border/40 rounded-3xl p-10 shadow-2xl space-y-6"
-          >
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              ClinoveAI is in active clinical pilot with Dr. Ashwin Mukundan, Co-Founder
-              and Clinical Lead, at Dr. Ashwin's Advanced Diabetes Centre, First Floor, 2,
-              Opposite Bhima Gold, Above Bata Showroom, Thana, Kannur, Kerala 670002. Every
-              report the system generates is reviewed against his own clinical judgment
-              before it is ever used — he can approve it as written, edit it, or reject it
-              outright.
-            </p>
-
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              This is not a one-time evaluation. It is a continuous, structured review
-              process, and every approval, edit, and rejection is captured as part of it.
-              That means ClinoveAI is being shaped by the day-to-day decisions of a
-              practicing diabetologist — not benchmarked against textbook cases alone. It is
-              also the foundation of the clinical evidence base Alyvn is building toward
-              publication and wider deployment.
-            </p>
-          </motion.div>
-
-          {/* Doctor Profile Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative group"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1F3B4D]/5 to-[#2E7D6E]/5 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
-            <div className="relative backdrop-blur-xl bg-background/60 border border-border/40 rounded-2xl p-8 hover:shadow-lg hover:shadow-teal-500/10 transition-all duration-300">
-              <div className="flex flex-col md:flex-row gap-6 items-start">
-                {/* Avatar */}
-                <div className="flex-shrink-0">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#1F3B4D] to-[#2E7D6E] flex items-center justify-center text-white text-3xl font-bold shadow-xl"
-                    style={{ fontFamily: "'Fraunces', serif" }}
-                  >
-                    AM
-                  </div>
+      <section className="relative py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="glass p-8 md:p-10">
+              <div className="flex flex-col items-start gap-8 md:flex-row">
+                <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-glow/25 to-champagne/15 font-display text-4xl text-ivory ring-1 ring-white/10">
+                  AM
                 </div>
-
-                {/* Info */}
-                <div className="flex-1 space-y-4">
+                <div className="flex-1 space-y-5">
                   <div>
-                    <h3 className="text-2xl font-bold mb-2">Dr. Ashwin Mukundan</h3>
-                    <p className="text-sm text-muted-foreground font-medium">
-                      Co-Founder & Clinical Lead
-                    </p>
+                    <h3 className="font-display text-3xl text-ivory">Dr. Ashwin Mukundan</h3>
+                    <p className="mt-1 text-sm font-medium text-champagne">Co-Founder & Clinical Lead</p>
                   </div>
-
-                  <div className="space-y-2">
-                    <div className="flex items-start gap-2">
-                      <GraduationCap className="h-5 w-5 text-[#2E7D6E] flex-shrink-0 mt-0.5" />
-                      <div className="text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-white/60">
+                    <div className="flex items-start gap-3">
+                      <GraduationCap className="mt-0.5 h-5 w-5 shrink-0 text-teal-glow" />
+                      <div>
                         <p>MBBS, MD (Internal Medicine, University First Rank)</p>
                         <p>PG Dip. (Diabetes and Renal Management)</p>
                         <p>PG Dip. (Advanced Diabetes Care)</p>
                       </div>
                     </div>
-
-                    <div className="flex items-start gap-2">
-                      <MapPin className="h-5 w-5 text-[#2E7D6E] flex-shrink-0 mt-0.5" />
-                      <p className="text-sm text-muted-foreground">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-teal-glow" />
+                      <p>
                         Dr. Ashwin's Advanced Diabetes Centre<br />
                         First Floor, 2, Opposite Bhima Gold, Above Bata Showroom<br />
                         Thana, Kannur, Kerala 670002
@@ -103,9 +76,9 @@ export function Validation() {
                 </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
-      </div>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

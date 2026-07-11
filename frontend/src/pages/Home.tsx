@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Stethoscope, ShieldCheck, LineChart } from "lucide-react";
-import { AuroraBackground } from "@/components/AuroraBackground";
+import { NeuroHero } from "@/components/home/NeuroHero";
 import { HeroPanels } from "@/components/home/HeroPanels";
 import { CountUp } from "@/components/CountUp";
 import {
@@ -34,16 +34,16 @@ export function Home() {
   return (
     <div className="overflow-hidden bg-navy-deep">
       {/* ================= HERO ================= */}
-      <AuroraBackground className="min-h-screen">
+      <NeuroHero className="min-h-screen">
         <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-12 px-6 pt-32 pb-20 lg:grid-cols-2 lg:px-8">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-teal-glow backdrop-blur-md"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-champagne backdrop-blur-md"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-teal-glow" />
+              <span className="h-1.5 w-1.5 rounded-full bg-champagne" />
               Clinical intelligence for diabetes care
             </motion.div>
 
@@ -117,13 +117,13 @@ export function Home() {
 
           <HeroPanels />
         </div>
-      </AuroraBackground>
+      </NeuroHero>
 
       {/* ================= STATS COUNT-UP ================= */}
       <section className="relative py-24 md:py-32" data-testid="stats-section">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div {...reveal} className="mb-16 max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
               The scale of the problem
             </p>
             <h2 className="mt-3 font-display text-4xl font-normal tracking-tight text-white md:text-5xl">
