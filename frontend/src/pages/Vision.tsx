@@ -1,22 +1,23 @@
 import React from "react";
-import { Target, Compass, Heart } from "lucide-react";
+import { ScrollText, Stethoscope, MapPin } from "lucide-react";
 import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
+import { useSEO } from "@/hooks/useSEO";
 
 const values = [
   {
-    icon: Target,
+    icon: ScrollText,
     title: "Guideline-first, without exception",
     description:
       "Every recommendation ClinoveAI produces is grounded in established clinical guidelines — RSSDI, ADA, EASD, and IDF — applied in a defined priority order. No inference beyond recognized standards.",
   },
   {
-    icon: Compass,
+    icon: Stethoscope,
     title: "Physician-in-the-loop, non-negotiable",
     description:
       "ClinoveAI is a decision-support tool, not a decision-maker. Every report is reviewed, edited, or approved by the treating physician before it reaches a patient. The physician remains the final authority.",
   },
   {
-    icon: Heart,
+    icon: MapPin,
     title: "Built for where the need is greatest",
     description:
       "We start with diabetology in India — where the burden is massive, the care gap is measurable, and the opportunity to make a difference is immediate. We build for real clinics, not hypothetical ones.",
@@ -37,6 +38,7 @@ const statements = [
 ];
 
 export function Vision() {
+  useSEO({ title: "Vision & Mission — Alyvn", description: "The same standard of guideline-grounded diabetes care for every physician in India, with the physician always in the loop." });
   return (
     <div className="overflow-hidden">
       <PageHero
@@ -54,7 +56,7 @@ export function Vision() {
             <div key={s.no} className="grid grid-cols-1 gap-8 lg:grid-cols-12">
               <Reveal className="lg:col-span-4">
                 <div className="flex items-baseline gap-4">
-                  <span className="font-display text-7xl font-light italic text-white/12">{s.no}</span>
+                  <span className="font-display text-7xl font-light italic text-foreground/12">{s.no}</span>
                   <div className="h-px flex-1 bg-gradient-to-r from-champagne/40 to-transparent" />
                 </div>
                 <h2 className="mt-4 font-display text-4xl font-normal tracking-tight text-ivory md:text-5xl">
@@ -63,7 +65,7 @@ export function Vision() {
               </Reveal>
               <Reveal delay={0.15} className="lg:col-span-8">
                 <LayeredCard className="p-8 md:p-10">
-                  <p className="text-lg font-light leading-relaxed text-white/70">{s.body}</p>
+                  <p className="text-lg font-light leading-relaxed text-foreground/70">{s.body}</p>
                 </LayeredCard>
               </Reveal>
             </div>
@@ -87,7 +89,7 @@ export function Vision() {
                     <v.icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-display text-2xl text-ivory">{v.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/60">{v.description}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-foreground/60">{v.description}</p>
                 </div>
               </Reveal>
             ))}

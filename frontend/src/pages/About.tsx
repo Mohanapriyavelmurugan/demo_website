@@ -1,6 +1,7 @@
 import React from "react";
 import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
 import { CountUp } from "@/components/CountUp";
+import { useSEO } from "@/hooks/useSEO";
 
 const metrics = [
   { end: 90, suffix: "M", label: "People living with diabetes in India today" },
@@ -9,6 +10,7 @@ const metrics = [
 ];
 
 export function About() {
+  useSEO({ title: "About — Alyvn", description: "Alyvn closes India's diabetes care gap with clinical decision support that keeps the physician in control." });
   return (
     <div className="overflow-hidden">
       <PageHero
@@ -34,7 +36,7 @@ export function About() {
 
           <Reveal delay={0.15} className="lg:col-span-8">
             <LayeredCard className="space-y-6 p-8 md:p-10">
-              <p className="text-lg font-light leading-relaxed text-white/70">
+              <p className="text-lg font-light leading-relaxed text-foreground/70">
                 With close to 90 million people living with diabetes — a number projected to exceed
                 134 million by 2045 — nearly four in ten patients are treated by physicians without
                 adequate training in the disease. Specialist positions in community health centres
@@ -42,7 +44,7 @@ export function About() {
                 cardiovascular events, and complications that earlier, guideline-consistent
                 intervention could have avoided.
               </p>
-              <p className="text-lg font-light leading-relaxed text-white/70">
+              <p className="text-lg font-light leading-relaxed text-foreground/70">
                 Alyvn was founded to close that gap — building clinical decision support that brings
                 specialist-level guideline discipline into any outpatient practice, while keeping the
                 treating physician as the sole clinical authority on every case.
@@ -64,7 +66,7 @@ export function About() {
                 <div className="font-display text-6xl text-gradient-teal">
                   <CountUp end={m.end} suffix={m.suffix} />
                 </div>
-                <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/55">{m.label}</p>
+                <p className="mt-3 max-w-xs text-sm leading-relaxed text-foreground/55">{m.label}</p>
               </Reveal>
             ))}
           </div>

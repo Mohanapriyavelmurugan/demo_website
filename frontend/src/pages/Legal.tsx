@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { PageHero, Eyebrow } from "@/components/site/primitives";
+import { useSEO } from "@/hooks/useSEO";
 import { cn } from "@/lib/utils";
 
 type Section = { heading: string; body?: string; list?: string[] };
@@ -26,6 +27,7 @@ const terms: Section[] = [
 export function Legal() {
   const location = useLocation();
   const [tab, setTab] = useState<"privacy" | "terms">("privacy");
+  useSEO({ title: "Legal — Alyvn", description: "Privacy Policy and Terms of Use for Alyvn and ClinoveAI." });
 
   useEffect(() => {
     const hash = location.hash.replace("#", "");
@@ -51,14 +53,14 @@ export function Legal() {
                     data-testid={`legal-tab-${t}`}
                     className={cn(
                       "rounded-xl px-4 py-3 text-left text-sm font-medium transition-colors",
-                      tab === t ? "bg-teal-glow/10 text-teal-glow" : "text-white/50 hover:bg-white/[0.04] hover:text-white"
+                      tab === t ? "bg-teal-glow/10 text-teal-glow" : "text-foreground/50 hover:bg-foreground/[0.04] hover:text-foreground"
                     )}
                   >
                     {t === "privacy" ? "Privacy Policy" : "Terms of Use"}
                   </button>
                 ))}
               </nav>
-              <p className="mt-6 px-4 text-xs italic text-white/35">
+              <p className="mt-6 px-4 text-xs italic text-foreground/35">
                 This is a template requiring final legal review.
               </p>
             </div>
@@ -79,11 +81,11 @@ export function Legal() {
                     <h2 className={cn("font-display text-ivory", i === 0 ? "text-3xl md:text-4xl" : "text-xl md:text-2xl")}>
                       {s.heading}
                     </h2>
-                    {s.body && <p className="mt-4 text-base font-light leading-relaxed text-white/60">{s.body}</p>}
+                    {s.body && <p className="mt-4 text-base font-light leading-relaxed text-foreground/60">{s.body}</p>}
                     {s.list && (
                       <ul className="mt-4 space-y-2">
                         {s.list.map((li) => (
-                          <li key={li} className="flex items-start gap-3 text-base font-light text-white/60">
+                          <li key={li} className="flex items-start gap-3 text-base font-light text-foreground/60">
                             <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-champagne" />
                             {li}
                           </li>

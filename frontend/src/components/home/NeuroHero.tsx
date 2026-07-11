@@ -16,7 +16,7 @@ export const NeuroHero: React.FC<NeuroHeroProps> = ({
   childrenClassName,
 }) => {
   return (
-    <div className={cn("relative overflow-hidden bg-navy-deep", className)}>
+    <div className={cn("dark relative overflow-hidden bg-navy-deep", className)}>
       <NeuroNoise
         colorFront="#14B8A6"
         colorMid="#0B6B65"

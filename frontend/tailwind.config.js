@@ -29,10 +29,10 @@ module.exports = {
           glow: '#14B8A6',
         },
         champagne: {
-          DEFAULT: '#DCCBA1',
+          DEFAULT: 'hsl(var(--warm))',
           glow: '#F0DFB5',
         },
-        ivory: '#F5F2EA',
+        ivory: 'hsl(var(--foreground))',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'

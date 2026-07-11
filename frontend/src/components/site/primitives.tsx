@@ -54,7 +54,7 @@ export const PageHero: React.FC<{
         <Reveal delay={0.2}>
           <p
             className={cn(
-              "mt-8 max-w-2xl text-lg font-light leading-relaxed text-white/60",
+              "mt-8 max-w-2xl text-lg font-light leading-relaxed text-foreground/60",
               align === "center" && "mx-auto"
             )}
           >
@@ -72,7 +72,7 @@ export const LayeredCard: React.FC<{ children: React.ReactNode; className?: stri
   className,
 }) => (
   <div className="relative">
-    <div className="absolute -right-2.5 -top-2.5 hidden h-full w-full rounded-2xl border border-white/[0.05] bg-white/[0.015] md:block" />
+    <div className="absolute -right-2.5 -top-2.5 hidden h-full w-full rounded-2xl border border-foreground/[0.05] bg-foreground/[0.015] md:block" />
     <div className={cn("glass-strong relative", className)}>{children}</div>
   </div>
 );

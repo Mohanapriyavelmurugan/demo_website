@@ -18,19 +18,19 @@ const legalLinks = [
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-navy-deep">
+    <footer className="dark relative overflow-hidden border-t border-foreground/[0.06] bg-navy-deep">
       <div className="aurora-orb h-[40vw] w-[40vw] bg-teal-glow/10 left-1/4 -bottom-1/2" />
       <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <h3 className="font-display text-3xl font-semibold text-white">Alyvn</h3>
+              <h3 className="font-display text-3xl font-semibold text-foreground">Alyvn</h3>
               <span className="h-1.5 w-1.5 rounded-full bg-teal-glow shadow-[0_0_10px_rgba(20,184,166,0.8)]" />
             </div>
-            <p className="max-w-xs text-sm italic text-white/50">
+            <p className="max-w-xs text-sm italic text-foreground/50">
               Built with clinicians, for clinicians.
             </p>
-            <p className="text-sm text-white/40">
+            <p className="text-sm text-foreground/40">
               Clinical decision support that keeps the physician in control.
             </p>
           </div>
@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
+                    className="text-sm text-foreground/60 transition-colors hover:text-foreground"
                   >
                     {link.name}
                   </Link>
@@ -62,7 +62,7 @@ export const Footer: React.FC = () => {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
+                    className="text-sm text-foreground/60 transition-colors hover:text-foreground"
                   >
                     {link.name}
                   </Link>
@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-14 border-t border-white/[0.06] pt-8 text-center text-sm text-white/40"
+          className="mt-14 border-t border-foreground/[0.06] pt-8 text-center text-sm text-foreground/40"
         >
           <p>&copy; {new Date().getFullYear()} Alyvn. All rights reserved.</p>
         </motion.div>

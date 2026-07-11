@@ -64,7 +64,7 @@ export const HeroPanels: React.FC = () => {
               </span>
             ))}
           </div>
-          <p className="mt-4 text-xs leading-relaxed text-white/50">
+          <p className="mt-4 text-xs leading-relaxed text-foreground/50">
             Every recommendation traced to a guideline source
           </p>
         </div>
@@ -93,7 +93,7 @@ export const HeroPanels: React.FC = () => {
               strokeDasharray="2 5"
             />
           </svg>
-          <p className="mt-1 text-xs leading-relaxed text-white/50">
+          <p className="mt-1 text-xs leading-relaxed text-foreground/50">
             Applied in priority order for every patient
           </p>
         </div>
@@ -103,7 +103,7 @@ export const HeroPanels: React.FC = () => {
       <Panel mx={mx} my={my} depth={40} className="bottom-4 right-14 z-10">
         <div className="glass w-72 p-5">
           <span className="eyebrow">Safety checks</span>
-          <ul className="mt-4 space-y-2.5 text-sm text-white/75">
+          <ul className="mt-4 space-y-2.5 text-sm text-foreground/75">
             {[
               "Dosing checked against guideline limits",
               "Renal function reviewed before certain drugs",
@@ -124,7 +124,7 @@ export const HeroPanels: React.FC = () => {
           <ShieldCheck className="h-6 w-6 text-teal-glow" />
           <div>
             <p className="text-sm font-medium text-ivory">Physician approved</p>
-            <p className="text-xs text-white/50">Reviewed before every patient</p>
+            <p className="text-xs text-foreground/50">Reviewed before every patient</p>
           </div>
         </div>
       </Panel>

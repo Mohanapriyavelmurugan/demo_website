@@ -5,11 +5,9 @@ import { ArrowRight, Stethoscope, ShieldCheck, LineChart } from "lucide-react";
 import { NeuroHero } from "@/components/home/NeuroHero";
 import { HeroPanels } from "@/components/home/HeroPanels";
 import { CountUp } from "@/components/CountUp";
-import {
-  DiabetesBurdenChart,
-  UndiagnosedChart,
-  ProjectionChart,
-} from "@/components/home/DiabetesCharts";
+import { DiabetesBurdenChart, UndiagnosedChart, ProjectionChart } from "@/components/home/DiabetesCharts";
+import { liquidGlassClass } from "@/components/ui/liquid-glass-button";
+import { useSEO } from "@/hooks/useSEO";
 
 const headlineLines = [
   "India carries the world's",
@@ -31,8 +29,9 @@ const reveal = {
 };
 
 export function Home() {
+  useSEO({ title: "Alyvn — Clinical intelligence for diabetes care", description: "ClinoveAI brings specialist-grade guideline discipline to every outpatient diabetology consultation — with the physician fully in control." });
   return (
-    <div className="overflow-hidden bg-navy-deep">
+    <div className="overflow-hidden">
       {/* ================= HERO ================= */}
       <NeuroHero className="min-h-screen">
         <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-12 px-6 pt-32 pb-20 lg:grid-cols-2 lg:px-8">
@@ -41,13 +40,13 @@ export function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-champagne backdrop-blur-md"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/[0.03] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-champagne backdrop-blur-md"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-champagne" />
               Clinical intelligence for diabetes care
             </motion.div>
 
-            <h1 className="font-display text-5xl font-light leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
+            <h1 className="font-display text-5xl font-light leading-[1.05] tracking-tight text-foreground md:text-6xl lg:text-7xl">
               {headlineLines.map((line, i) => (
                 <span key={line} className="block overflow-hidden">
                   <motion.span
@@ -76,7 +75,7 @@ export function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-8 max-w-xl text-lg font-light leading-relaxed text-white/70"
+              className="mt-8 max-w-xl text-lg font-light leading-relaxed text-foreground/70"
             >
               Alyvn builds clinical decision support that helps physicians close that gap. Our first
               product, ClinoveAI, brings specialist-grade guideline discipline to every outpatient
@@ -92,7 +91,7 @@ export function Home() {
               <Link
                 to="/product"
                 data-testid="hero-primary-cta"
-                className="group flex items-center gap-2 rounded-full bg-teal-glow px-7 py-4 font-medium text-navy-deep transition-all hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(20,184,166,0.5)]"
+                className={liquidGlassClass("primary", "group text-base")}
               >
                 See how ClinoveAI works
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -100,7 +99,7 @@ export function Home() {
               <Link
                 to="/contact"
                 data-testid="hero-secondary-cta"
-                className="rounded-full border border-white/10 bg-white/[0.03] px-7 py-4 font-medium text-white backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/[0.06]"
+                className={liquidGlassClass("secondary", "text-base")}
               >
                 Talk to our team
               </Link>
@@ -109,7 +108,7 @@ export function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="mt-8 text-sm italic text-white/40"
+              className="mt-8 text-sm italic text-foreground/40"
             >
               Built with clinicians, for clinicians.
             </motion.p>
@@ -126,7 +125,7 @@ export function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
               The scale of the problem
             </p>
-            <h2 className="mt-3 font-display text-4xl font-normal tracking-tight text-white md:text-5xl">
+            <h2 className="mt-3 font-display text-4xl font-normal tracking-tight text-foreground md:text-5xl">
               A crisis measured in millions
             </h2>
           </motion.div>
@@ -150,7 +149,7 @@ export function Home() {
                     suffix={stat.suffix}
                   />
                 </div>
-                <p className="mt-4 text-sm leading-relaxed text-white/60">{stat.label}</p>
+                <p className="mt-4 text-sm leading-relaxed text-foreground/60">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -188,10 +187,10 @@ export function Home() {
           <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
             <motion.div {...reveal} className="lg:col-span-4">
               <div className="flex items-center gap-4">
-                <span className="font-display text-6xl text-white/15">01</span>
+                <span className="font-display text-6xl text-foreground/15">01</span>
                 <div className="h-px flex-1 bg-gradient-to-r from-teal-glow/50 to-transparent" />
               </div>
-              <h2 className="mt-4 font-display text-4xl font-normal tracking-tight text-white md:text-5xl">
+              <h2 className="mt-4 font-display text-4xl font-normal tracking-tight text-foreground md:text-5xl">
                 Why this happens
               </h2>
             </motion.div>
@@ -201,9 +200,9 @@ export function Home() {
               className="relative lg:col-span-8"
             >
               {/* layered stacked glass */}
-              <div className="absolute -right-3 -top-3 hidden h-full w-full rounded-2xl border border-white/[0.04] bg-white/[0.01] md:block" />
+              <div className="absolute -right-3 -top-3 hidden h-full w-full rounded-2xl border border-foreground/[0.04] bg-foreground/[0.01] md:block" />
               <div className="glass-strong relative p-10">
-                <p className="text-lg font-light leading-relaxed text-white/75">
+                <p className="text-lg font-light leading-relaxed text-foreground/75">
                   Diabetes management isn't simple. It means tracking HbA1c trends, adjusting drug
                   classes as kidney function changes, catching interactions between five or six
                   concurrent medications, and following guidelines that shift as new evidence emerges.
@@ -223,10 +222,10 @@ export function Home() {
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <motion.div {...reveal} className="mb-12">
             <div className="flex items-center gap-4">
-              <span className="font-display text-6xl text-white/15">02</span>
+              <span className="font-display text-6xl text-foreground/15">02</span>
               <div className="h-px flex-1 bg-gradient-to-r from-teal-glow/50 to-transparent" />
             </div>
-            <h2 className="mt-4 max-w-2xl font-display text-4xl font-normal tracking-tight text-white md:text-5xl">
+            <h2 className="mt-4 max-w-2xl font-display text-4xl font-normal tracking-tight text-foreground md:text-5xl">
               What Alyvn does about it
             </h2>
           </motion.div>
@@ -260,8 +259,8 @@ export function Home() {
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-glow/12 text-teal-glow ring-1 ring-teal-glow/20">
                   <item.icon className="h-6 w-6" />
                 </div>
-                <h3 className="font-display text-2xl text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/60">{item.body}</p>
+                <h3 className="font-display text-2xl text-foreground">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/60">{item.body}</p>
               </motion.div>
             ))}
           </div>
@@ -286,16 +285,16 @@ export function Home() {
             <div className="aurora-orb h-[30vw] w-[30vw] bg-teal-glow/20 -left-10 -top-20 animate-aurora-drift" />
             <div className="aurora-orb h-[30vw] w-[30vw] bg-sky-500/15 -right-10 -bottom-20 animate-aurora-drift" />
             <div className="relative">
-              <h2 className="mx-auto max-w-2xl font-display text-4xl font-normal tracking-tight text-white md:text-5xl">
+              <h2 className="mx-auto max-w-2xl font-display text-4xl font-normal tracking-tight text-foreground md:text-5xl">
                 Ready to transform diabetes care?
               </h2>
-              <p className="mx-auto mt-5 max-w-xl text-lg font-light text-white/60">
+              <p className="mx-auto mt-5 max-w-xl text-lg font-light text-foreground/60">
                 Whether you run a clinic or you're exploring a partnership, we'd like to hear from you.
               </p>
               <Link
                 to="/contact"
                 data-testid="cta-button"
-                className="group mt-10 inline-flex items-center gap-2 rounded-full bg-teal-glow px-8 py-4 font-medium text-navy-deep transition-all hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(20,184,166,0.5)]"
+                className={liquidGlassClass("primary", "group mt-10 text-base")}
               >
                 Get in touch
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />

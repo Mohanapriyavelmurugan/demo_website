@@ -49,7 +49,7 @@ const CustomTooltip: React.FC<TipProps> = ({ active, payload, label, suffix = "M
   if (!active || !payload || !payload.length) return null;
   return (
     <div className="glass-strong rounded-xl px-4 py-3 text-sm">
-      {label && <p className="mb-1 font-semibold text-white">{label}</p>}
+      {label && <p className="mb-1 font-semibold text-foreground">{label}</p>}
       <p className="text-teal-glow">
         {payload[0].name ? `${payload[0].name}: ` : ""}
         <span className="font-display text-lg">{payload[0].value}</span>
@@ -66,7 +66,7 @@ const ChartShell: React.FC<{ title: string; subtitle: string; children: React.Re
 }) => (
   <div className="glass h-full p-6 md:p-8">
     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-glow">{subtitle}</p>
-    <h3 className="mt-2 font-display text-2xl text-white">{title}</h3>
+    <h3 className="mt-2 font-display text-2xl text-foreground">{title}</h3>
     <div className="mt-6 h-[240px] w-full">{children}</div>
   </div>
 );
@@ -81,10 +81,10 @@ export const DiabetesBurdenChart: React.FC = () => (
           dataKey="country"
           axisLine={false}
           tickLine={false}
-          tick={{ fill: "rgba(255,255,255,0.7)", fontSize: 13 }}
+          tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 13 }}
           width={70}
         />
-        <Tooltip cursor={{ fill: "rgba(255,255,255,0.04)" }} content={<CustomTooltip />} />
+        <Tooltip cursor={{ fill: "hsl(var(--foreground) / 0.05)" }} content={<CustomTooltip />} />
         <Bar dataKey="value" radius={[0, 8, 8, 0]} animationDuration={1400}>
           {burdenData.map((entry) => (
             <Cell key={entry.country} fill={entry.country === "India" ? TEAL : "rgba(59,130,246,0.45)"} />
@@ -112,14 +112,14 @@ export const UndiagnosedChart: React.FC = () => (
             stroke="none"
           >
             <Cell fill={TEAL} />
-            <Cell fill="rgba(255,255,255,0.08)" />
+            <Cell fill="hsl(var(--foreground) / 0.1)" />
           </Pie>
           <Tooltip content={<CustomTooltip suffix="%" />} />
         </PieChart>
       </ResponsiveContainer>
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-display text-4xl text-white">57%</span>
-        <span className="text-xs uppercase tracking-widest text-white/60">undiagnosed</span>
+        <span className="font-display text-4xl text-foreground">57%</span>
+        <span className="text-xs uppercase tracking-widest text-foreground/60">undiagnosed</span>
       </div>
     </div>
   </ChartShell>
@@ -135,19 +135,19 @@ export const ProjectionChart: React.FC = () => (
             <stop offset="100%" stopColor={INDIGO} stopOpacity={0} />
           </linearGradient>
         </defs>
-        <CartesianGrid vertical={false} stroke="rgba(255,255,255,0.06)" />
+        <CartesianGrid vertical={false} stroke="hsl(var(--foreground) / 0.08)" />
         <XAxis
           dataKey="year"
           axisLine={false}
           tickLine={false}
-          tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
+          tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
         />
         <YAxis
           axisLine={false}
           tickLine={false}
-          tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 12 }}
+          tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
         />
-        <Tooltip cursor={{ stroke: "rgba(255,255,255,0.15)" }} content={<CustomTooltip />} />
+        <Tooltip cursor={{ stroke: "hsl(var(--foreground) / 0.2)" }} content={<CustomTooltip />} />
         <Area
           type="monotone"
           dataKey="value"

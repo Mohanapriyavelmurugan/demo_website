@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Shield, Pill, FileText, Calendar, ArrowRight, ShieldCheck } from "lucide-react";
 import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
+import { liquidGlassClass } from "@/components/ui/liquid-glass-button";
+import { useSEO } from "@/hooks/useSEO";
 
 const features = [
   {
@@ -35,6 +37,7 @@ const features = [
 ];
 
 export function Product() {
+  useSEO({ title: "ClinoveAI — Alyvn", description: "A structured clinical reasoning layer for every diabetology consultation — guideline-grounded, safety-checked, and physician-approved." });
   return (
     <div className="overflow-hidden">
       <PageHero
@@ -79,7 +82,7 @@ export function Product() {
                     <f.icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-display text-2xl text-ivory">{f.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/60">{f.description}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-foreground/60">{f.description}</p>
                 </div>
               </Reveal>
             ))}
@@ -106,14 +109,14 @@ export function Product() {
       <section className="relative py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-6 text-center lg:px-8">
           <Reveal>
-            <p className="mx-auto mb-8 max-w-2xl text-sm italic text-white/40">
+            <p className="mx-auto mb-8 max-w-2xl text-sm italic text-foreground/40">
               This page describes what ClinoveAI does and why it can be trusted — not the technical
               implementation, which remains confidential pending completed IP protection.
             </p>
             <Link
               to="/validation"
               data-testid="product-validation-cta"
-              className="group inline-flex items-center gap-2 rounded-full bg-teal-glow px-7 py-4 font-medium text-navy-deep transition-all hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(20,184,166,0.5)]"
+              className={liquidGlassClass("primary", "group text-base")}
             >
               See it validated in a real clinic
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />

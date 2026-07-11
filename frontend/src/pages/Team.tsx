@@ -1,5 +1,6 @@
 import React from "react";
 import { PageHero, Reveal } from "@/components/site/primitives";
+import { useSEO } from "@/hooks/useSEO";
 
 const team = [
   { initials: "TVK", name: "Telukuntla Vinay Koushik", role: "Co-Founder & Lead Developer", credentials: [] as string[] },
@@ -24,6 +25,7 @@ const team = [
 ];
 
 export function Team() {
+  useSEO({ title: "Team — Alyvn", description: "Clinicians, engineers and researchers building ClinoveAI to close India's diabetes care gap." });
   return (
     <div className="overflow-hidden">
       <PageHero
@@ -42,7 +44,7 @@ export function Team() {
             {team.map((m, i) => (
               <Reveal key={m.name} delay={i * 0.08}>
                 <div className="glass group flex h-full flex-col p-8 transition-transform duration-300 hover:-translate-y-1.5">
-                  <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-glow/25 to-champagne/15 font-display text-2xl text-ivory ring-1 ring-white/10">
+                  <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-glow/25 to-champagne/15 font-display text-2xl text-ivory ring-1 ring-foreground/10">
                     {m.initials}
                   </div>
                   <h3 className="font-display text-2xl text-ivory">{m.name}</h3>
@@ -51,7 +53,7 @@ export function Team() {
                     <div className="mt-auto space-y-1 pt-6">
                       <div className="hairline pt-4">
                         {m.credentials.map((c) => (
-                          <p key={c} className="text-xs text-white/45">
+                          <p key={c} className="text-xs text-foreground/45">
                             {c}
                           </p>
                         ))}
@@ -63,7 +65,7 @@ export function Team() {
             ))}
           </div>
           <Reveal delay={0.2}>
-            <p className="mt-16 text-center text-lg italic text-white/40">
+            <p className="mt-16 text-center text-lg italic text-foreground/40">
               Built with clinicians, for clinicians.
             </p>
           </Reveal>

@@ -1,22 +1,51 @@
-// @ts-nocheck
 import React from "react";
-import { Moon, Sun } from "lucide-react";
+import { motion } from "framer-motion";
+import { Sun, Moon } from "lucide-react";
 import { useTheme } from "./theme-provider";
-import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
-export function ThemeToggle() {
+export const ThemeToggle: React.FC<{ className?: string }> = ({ className }) => {
   const { theme, setTheme } = useTheme();
+  const isDark = theme !== "light";
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="relative h-10 w-10 rounded-full"
+    <button
+      type="button"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Toggle theme"
+      data-testid="theme-toggle"
+      className={cn(
+        "relative h-9 w-[66px] rounded-full border backdrop-blur-xl",
+        "border-[color:var(--glass-border)] bg-[color:hsl(var(--foreground)/0.06)]",
+        "shadow-[inset_0_1px_0_hsl(var(--foreground)/0.15)]",
+        className
+      )}
     >
-      <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-    </Button>
+      {/* track icons */}
+      <Sun
+        className="pointer-events-none absolute left-2 top-1/2 h-3.5 w-3.5 -translate-y-1/2"
+        style={{ color: "hsl(var(--warm))", opacity: isDark ? 0.35 : 0 }}
+      />
+      <Moon
+        className="pointer-events-none absolute right-2 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-teal-glow"
+        style={{ opacity: isDark ? 0 : 0.35 }}
+      />
+      {/* sliding liquid thumb */}
+      <motion.span
+        animate={{ x: isDark ? 32 : 0 }}
+        transition={{ type: "spring", stiffness: 480, damping: 30 }}
+        className="absolute left-1 top-1 flex h-7 w-7 items-center justify-center rounded-full"
+        style={{
+          background: "linear-gradient(160deg, rgba(20,184,166,0.98), rgba(11,107,101,0.88))",
+          boxShadow: "0 4px 14px rgba(20,184,166,0.5), inset 0 1px 0 rgba(255,255,255,0.55)",
+        }}
+      >
+        {isDark ? (
+          <Moon className="h-3.5 w-3.5 text-[#04081A]" />
+        ) : (
+          <Sun className="h-3.5 w-3.5 text-[#04081A]" />
+        )}
+      </motion.span>
+    </button>
   );
-}
+};

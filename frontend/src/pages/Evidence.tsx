@@ -1,6 +1,7 @@
 import React from "react";
 import { FileCheck, Shield, CheckCircle2 } from "lucide-react";
 import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
+import { useSEO } from "@/hooks/useSEO";
 
 const pillars = [
   {
@@ -27,6 +28,7 @@ const pillars = [
 ];
 
 export function Evidence() {
+  useSEO({ title: "Evidence — Alyvn", description: "Built on established guidelines, verified through structured physician review, reinforced by independent safety checks." });
   return (
     <div className="overflow-hidden">
       <PageHero
@@ -56,7 +58,7 @@ export function Evidence() {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-display text-2xl text-ivory md:text-3xl">{p.title}</h3>
-                      <p className="mt-3 text-base leading-relaxed text-white/60">{p.description}</p>
+                      <p className="mt-3 text-base leading-relaxed text-foreground/60">{p.description}</p>
                     </div>
                   </div>
                 </LayeredCard>
@@ -71,7 +73,7 @@ export function Evidence() {
           <Reveal>
             <div className="glass h-full p-8 md:p-10">
               <Eyebrow>Diagnostics</Eyebrow>
-              <p className="mt-5 text-lg font-light leading-relaxed text-white/70">
+              <p className="mt-5 text-lg font-light leading-relaxed text-foreground/70">
                 Diagnostic test suggestions follow the same principle: each is generated based on the
                 individual patient's data, not a fixed template, so recommendations stay clinically
                 justified on a case-by-case basis.

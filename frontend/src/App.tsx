@@ -4,6 +4,7 @@ import { ThemeProvider } from "./components/theme-provider";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { FallingBackdrop } from "./components/FallingBackdrop";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Vision } from "./pages/Vision";
@@ -21,20 +22,23 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="alyvn-theme">
       <SmoothScroll>
         <BrowserRouter>
-          <div className="App min-h-screen bg-navy-deep">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/vision" element={<Vision />} />
-              <Route path="/product" element={<Product />} />
-              <Route path="/validation" element={<Validation />} />
-              <Route path="/evidence" element={<Evidence />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/legal" element={<Legal />} />
-            </Routes>
-            <Footer />
+          <div className="App relative min-h-screen bg-background">
+            <FallingBackdrop />
+            <div className="relative z-10">
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/vision" element={<Vision />} />
+                <Route path="/product" element={<Product />} />
+                <Route path="/validation" element={<Validation />} />
+                <Route path="/evidence" element={<Evidence />} />
+                <Route path="/team" element={<Team />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/legal" element={<Legal />} />
+              </Routes>
+              <Footer />
+            </div>
             <Toaster />
           </div>
         </BrowserRouter>
