@@ -1,111 +1,95 @@
 {
+  "project_name": "Alyvn - ClinoveAI",
   "theme": "dark",
+  "general_ui_ux_guidelines": "Premium, Awwwards-level marketing site. Avoid generic, symmetrical 'PPT/AI slop' layouts. Rely on asymmetry, editorial layout patterns, high-contrast typography, layered textures (grain/noise + liquid glass), and refined motion. The design must feel crafted, elite, and deeply human (emphasizing the 'physician-in-the-loop'), not just another AI startup.",
+  "colors": {
+    "base": {
+      "void": "#03060D",
+      "deep_navy": "#060B19",
+      "dark_navy": "#0A1128",
+      "surface_navy": "#111A35",
+      "surface_elevated": "#1A2542"
+    },
+    "accents": {
+      "teal_dark": "#063B39",
+      "teal_primary": "#0B6B65",
+      "teal_glow": "#14B8A6",
+      "warm_counter_accent": "#DCCBA1",
+      "warm_accent_glow": "#F0DFB5"
+    },
+    "text": {
+      "primary": "#F5F2EA",
+      "secondary": "#A1ABC0",
+      "tertiary": "#687693",
+      "label": "#DCCBA1"
+    },
+    "gradients": {
+      "mesh_background": "radial-gradient(circle at 20% 30%, rgba(11, 107, 101, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(220, 203, 161, 0.05) 0%, transparent 40%)",
+      "text_gradient": "linear-gradient(135deg, #F5F2EA 0%, #A1ABC0 100%)",
+      "glass_overlay": "linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%)"
+    }
+  },
   "typography": {
-    "font_families": {
+    "fonts": {
       "display": "'Fraunces', serif",
       "body": "'Inter', sans-serif"
     },
-    "scale": {
-      "h1": "text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-tight",
-      "h2": "text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-snug",
-      "h3": "text-2xl md:text-3xl font-medium tracking-tight",
-      "body_lg": "text-lg md:text-xl font-light leading-relaxed text-white/80",
-      "body": "text-base md:text-lg font-light leading-relaxed text-white/70",
-      "label": "text-xs font-semibold uppercase tracking-[0.2em] text-teal-400"
+    "editorial_patterns": {
+      "hero_h1": "text-5xl md:text-7xl lg:text-8xl font-serif tracking-tighter leading-[0.95]",
+      "section_h2": "text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight leading-none",
+      "mixed_weights": "Use <span class='font-light'>Regular</span> alongside <span class='font-bold italic'>Italic/Bold</span> in the same heading to create editorial tension.",
+      "marginalia_labels": "text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-label/80",
+      "editorial_numbers": "text-lg font-serif italic text-teal_glow/70"
     }
   },
-  "colors": {
-    "css_variables": {
-      "--background": "222 47% 4%", 
-      "--foreground": "210 40% 98%",
-      "--card": "222 47% 6%",
-      "--card-foreground": "210 40% 98%",
-      "--popover": "222 47% 6%",
-      "--popover-foreground": "210 40% 98%",
-      "--primary": "175 70% 41%",
-      "--primary-foreground": "222 47% 4%",
-      "--secondary": "217 32% 17%",
-      "--secondary-foreground": "210 40% 98%",
-      "--muted": "217 32% 17%",
-      "--muted-foreground": "215 20.2% 65.1%",
-      "--accent": "175 70% 41%",
-      "--accent-foreground": "210 40% 98%",
-      "--border": "217 32% 17%",
-      "--input": "217 32% 17%",
-      "--ring": "175 70% 41%",
-      "--radius": "1rem"
-    },
-    "custom_palette": {
-      "navy_deep": "#040A18",
-      "navy_card": "#0A1326",
-      "teal_glow": "#14B8A6",
-      "ice_blue": "#E0F2FE",
-      "glass_border": "rgba(255,255,255,0.08)",
-      "glass_bg": "rgba(10, 19, 38, 0.4)"
-    }
+  "textures_and_depth": {
+    "liquid_glass": "bg-white/[0.02] backdrop-blur-2xl border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_20px_40px_-10px_rgba(0,0,0,0.5)]",
+    "noise_grain": "A subtle global SVG filter or background image pattern (opacity 3-5%) layered over the background to break digital flatness.",
+    "hairline_rules": "border-t border-white/[0.08] (use these aggressively for section dividers instead of just padding to create a 'magazine' feel)."
   },
-  "visual_enhancers": {
-    "glassmorphism": {
-      "container": "backdrop-blur-2xl bg-white/[0.02] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4)] rounded-2xl",
-      "panel": "backdrop-blur-xl bg-gradient-to-b from-white/[0.05] to-transparent border border-white/[0.05] rounded-xl"
-    },
-    "aurora_background": {
-      "description": "Animated CSS gradient orbs positioned absolutely behind the main content in the hero section to simulate an aurora borealis effect.",
-      "classes": "absolute inset-0 overflow-hidden blur-[120px] opacity-40 mix-blend-screen pointer-events-none",
-      "elements": [
-        "bg-teal-500/30 rounded-full w-[40vw] h-[40vw] top-[-10%] left-[-10%] animate-pulse",
-        "bg-blue-600/20 rounded-full w-[50vw] h-[50vw] bottom-[-20%] right-[-10%] animate-pulse delay-700"
-      ]
-    }
+  "layouts_and_grids": {
+    "asymmetry": "Avoid 6-col / 6-col splits. Use 4-col (Marginalia/Labels) + 8-col (Content/Images) on a 12-col grid.",
+    "overlapping_elements": "Images and floating glass cards should break out of their containers using negative margins (-mt-10) or absolute positioning.",
+    "bento_editorial": "When using grids for features, make one item col-span-2 row-span-2, and others smaller. Never symmetrical."
   },
-  "motion": {
-    "lenis": "Mandatory integration of @studio-freight/lenis for smooth scrolling.",
-    "framer_motion": {
-      "hero_3d_cards": "Use useScroll and useTransform for parallax. Use onMouseMove with useSpring for 3D tilt effects on glass panels.",
-      "staggered_reveal": "initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, staggerChildren: 0.2 }} viewport={{ once: true, margin: '-100px' }}"
-    }
+  "motion_and_interactions": {
+    "smooth_scroll": "Lenis is mandatory for momentum scrolling.",
+    "parallax_glass": "Hero and feature sections should have floating glass panels that react slightly to mouse movement (rotateX/rotateY mapped to cursor) using Framer Motion.",
+    "reveal_animations": "Use custom easing. transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }. Elements should drift up (y: 40) and fade in smoothly.",
+    "magnetic_buttons": "CTAs should have subtle magnetic pull on hover (framer-motion or custom JS)."
   },
   "components": {
-    "buttons": {
-      "primary": "rounded-full bg-teal-500 text-navy-deep px-8 py-4 font-medium transition-all hover:bg-teal-400 hover:shadow-[0_0_20px_rgba(20,184,166,0.4)] hover:-translate-y-1",
-      "secondary": "rounded-full bg-white/[0.05] border border-white/[0.1] text-white px-8 py-4 font-medium backdrop-blur-md transition-all hover:bg-white/[0.1] hover:border-white/[0.2]"
-    },
-    "navigation": "Fixed top, w-full, z-50. Starts transparent, becomes backdrop-blur-xl bg-[#040A18]/80 border-b border-white/[0.05] on scroll.",
-    "charts": "Recharts integration. Use CustomTooltip. Colors: Teal (#14B8A6), Blue (#3B82F6), Indigo (#6366F1). Animate on mount. No pure white backgrounds for charts, use transparent or navy_card."
+    "hero": "Full viewport height. Abstract dark fluid mesh background. Massive Fraunces typography mixed with italic words. Floating liquid glass panels showing abstract data charts (Recharts) with deep teal glowing lines.",
+    "data_charts": "Use Recharts with dark themes. Hide generic grids, use dashed faint lines (stroke='#ffffff' opacity=0.05). Line color: #14B8A6, with a gradient area underneath.",
+    "cards": "Layered. Bottom layer is solid dark navy. Top layer is liquid glass shifted right by 10px and up by 10px. Don't use standard Shadcn cards without heavily stripping default borders and adding the liquid glass recipe.",
+    "navigation": "Crystal Glass style. backdrop-blur-xl bg-deep_navy/50 border-b border-white/[0.05]."
   },
-  "layouts": {
-    "hero": "Min-h-screen, center aligned content logically but visually offset with 3D floating glass panels on the right/background. Generous pt-32 pb-20.",
-    "bento_grid": "grid-cols-1 md:grid-cols-12 gap-6. Spans: 8, 4, 6, 6.",
-    "spacing": "Use py-24 md:py-32 for section spacing to ensure premium 'breathing room'."
-  },
-  "instructions_to_main_agent": [
-    "Strictly follow the Dark Navy and Teal theme. Do NOT use generic slate or gray backgrounds.",
-    "Use Fraunces for headings, Inter for body text. Install the fonts properly in index.css.",
-    "DO NOT mention 'AI models', 'LLMs', or 'Neural Networks'. Focus entirely on 'Physician-in-the-loop', 'Clinical Intelligence', 'Augmented Care'.",
-    "Build the interactive Aurora background using CSS gradients and framer-motion.",
-    "Create a Hero section featuring floating 3D glass panels reacting to mouse movements.",
-    "Implement an interactive Diabetes statistics section using Recharts with animated count-ups and distinct Recharts charts (bar/donut/line).",
-    "DO NOT use a transparent background for dropdowns or the sticky header. Always use a backdrop blur with semi-solid color.",
-    "Include standard data-testid attributes for all interactive elements.",
-    "Ensure all sections seamlessly blend. Avoid hard lines; use gradient masks or spacious padding."
-  ],
-  "UNIVERSAL GUIDELINES FOR MAIN AGENT": "Focus on high-end, Awwwards-winning execution. Prioritize visual tension, generous padding, and micro-interactions. Avoid centered, boring Bootstrap-like grids. Layer elements. Create depth through layered design elements with z-index hierarchy. Never use AI emojis.",
   "image_urls": {
     "hero_abstract": {
-      "url": "https://images.pexels.com/photos/6203473/pexels-photo-6203473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "description": "ECG graph on grid - Use as background texture or inside a floating glass panel."
+      "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77",
+      "description": "Dark blue and black fluid art for hero background meshes and parallax elements."
     },
-    "physician_1": {
-      "url": "https://images.pexels.com/photos/37476745/pexels-photo-37476745.jpeg",
-      "description": "Confident female doctor in blue scrubs - Use in the 'Validation' or 'Physician-in-the-loop' section."
+    "team_physician": {
+      "url": "https://images.unsplash.com/photo-1764546373114-2d7a87221733",
+      "description": "Modern physician portrait on dark background for Team or About section."
     },
-    "physician_2": {
-      "url": "https://images.pexels.com/photos/5407249/pexels-photo-5407249.jpeg",
-      "description": "Doctor using tablet - Use in 'What Alyvn does' narrative section."
-    },
-    "data_abstract": {
-      "url": "https://images.pexels.com/photos/30547574/pexels-photo-30547574.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "description": "Futuristic digital cubes - Use for product capabilities or evidence section."
+    "clinical_lab": {
+      "url": "https://images.unsplash.com/photo-1758206523826-a65d4cf070aa",
+      "description": "Scientist looking through a microscope in a laboratory, used for Clinical Validation or Evidence sections."
     }
+  },
+  "instructions_to_main_agent": [
+    "You are building 9 pages: Home, About, Vision & Mission, Product, Clinical Validation, Evidence, Team, Contact, Legal.",
+    "Use react-router-dom for navigation.",
+    "Ensure all interactive elements have data-testid attributes.",
+    "Avoid the generic 'AI startup' look. Emphasize the warm counter-accent (#DCCBA1) in labels and numbers to bring a 'human/editorial' feel.",
+    "Use Framer Motion extensively for reveal animations, parallax scrolling, and mouse-reactive 3D glass cards.",
+    "Apply the noise grain texture globally.",
+    "Use Recharts in the Product/Evidence sections to show data, styling it with custom teal gradients and minimal axes.",
+    "For the legal page, use an editorial index layout: a sticky sidebar for navigation and clean, beautifully spaced typography for the text."
+  ],
+  "accessibility": {
+    "contrast": "Ensure primary text and warm accents maintain at least 4.5:1 against the dark navy base.",
+    "reduced_motion": "Respect prefers-reduced-motion media query to disable heavy parallax or 3D rotations."
   }
 }
