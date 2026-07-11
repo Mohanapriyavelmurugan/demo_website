@@ -18,10 +18,10 @@ import "./App.css";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="alyvn-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="alyvn-theme">
       <SmoothScroll>
         <BrowserRouter>
-          <div className="App min-h-screen">
+          <div className="App min-h-screen bg-navy-deep">
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
