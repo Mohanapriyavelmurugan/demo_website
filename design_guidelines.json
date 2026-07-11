@@ -1,0 +1,111 @@
+{
+  "theme": "dark",
+  "typography": {
+    "font_families": {
+      "display": "'Fraunces', serif",
+      "body": "'Inter', sans-serif"
+    },
+    "scale": {
+      "h1": "text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-tight",
+      "h2": "text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-snug",
+      "h3": "text-2xl md:text-3xl font-medium tracking-tight",
+      "body_lg": "text-lg md:text-xl font-light leading-relaxed text-white/80",
+      "body": "text-base md:text-lg font-light leading-relaxed text-white/70",
+      "label": "text-xs font-semibold uppercase tracking-[0.2em] text-teal-400"
+    }
+  },
+  "colors": {
+    "css_variables": {
+      "--background": "222 47% 4%", 
+      "--foreground": "210 40% 98%",
+      "--card": "222 47% 6%",
+      "--card-foreground": "210 40% 98%",
+      "--popover": "222 47% 6%",
+      "--popover-foreground": "210 40% 98%",
+      "--primary": "175 70% 41%",
+      "--primary-foreground": "222 47% 4%",
+      "--secondary": "217 32% 17%",
+      "--secondary-foreground": "210 40% 98%",
+      "--muted": "217 32% 17%",
+      "--muted-foreground": "215 20.2% 65.1%",
+      "--accent": "175 70% 41%",
+      "--accent-foreground": "210 40% 98%",
+      "--border": "217 32% 17%",
+      "--input": "217 32% 17%",
+      "--ring": "175 70% 41%",
+      "--radius": "1rem"
+    },
+    "custom_palette": {
+      "navy_deep": "#040A18",
+      "navy_card": "#0A1326",
+      "teal_glow": "#14B8A6",
+      "ice_blue": "#E0F2FE",
+      "glass_border": "rgba(255,255,255,0.08)",
+      "glass_bg": "rgba(10, 19, 38, 0.4)"
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": {
+      "container": "backdrop-blur-2xl bg-white/[0.02] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4)] rounded-2xl",
+      "panel": "backdrop-blur-xl bg-gradient-to-b from-white/[0.05] to-transparent border border-white/[0.05] rounded-xl"
+    },
+    "aurora_background": {
+      "description": "Animated CSS gradient orbs positioned absolutely behind the main content in the hero section to simulate an aurora borealis effect.",
+      "classes": "absolute inset-0 overflow-hidden blur-[120px] opacity-40 mix-blend-screen pointer-events-none",
+      "elements": [
+        "bg-teal-500/30 rounded-full w-[40vw] h-[40vw] top-[-10%] left-[-10%] animate-pulse",
+        "bg-blue-600/20 rounded-full w-[50vw] h-[50vw] bottom-[-20%] right-[-10%] animate-pulse delay-700"
+      ]
+    }
+  },
+  "motion": {
+    "lenis": "Mandatory integration of @studio-freight/lenis for smooth scrolling.",
+    "framer_motion": {
+      "hero_3d_cards": "Use useScroll and useTransform for parallax. Use onMouseMove with useSpring for 3D tilt effects on glass panels.",
+      "staggered_reveal": "initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, staggerChildren: 0.2 }} viewport={{ once: true, margin: '-100px' }}"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "rounded-full bg-teal-500 text-navy-deep px-8 py-4 font-medium transition-all hover:bg-teal-400 hover:shadow-[0_0_20px_rgba(20,184,166,0.4)] hover:-translate-y-1",
+      "secondary": "rounded-full bg-white/[0.05] border border-white/[0.1] text-white px-8 py-4 font-medium backdrop-blur-md transition-all hover:bg-white/[0.1] hover:border-white/[0.2]"
+    },
+    "navigation": "Fixed top, w-full, z-50. Starts transparent, becomes backdrop-blur-xl bg-[#040A18]/80 border-b border-white/[0.05] on scroll.",
+    "charts": "Recharts integration. Use CustomTooltip. Colors: Teal (#14B8A6), Blue (#3B82F6), Indigo (#6366F1). Animate on mount. No pure white backgrounds for charts, use transparent or navy_card."
+  },
+  "layouts": {
+    "hero": "Min-h-screen, center aligned content logically but visually offset with 3D floating glass panels on the right/background. Generous pt-32 pb-20.",
+    "bento_grid": "grid-cols-1 md:grid-cols-12 gap-6. Spans: 8, 4, 6, 6.",
+    "spacing": "Use py-24 md:py-32 for section spacing to ensure premium 'breathing room'."
+  },
+  "instructions_to_main_agent": [
+    "Strictly follow the Dark Navy and Teal theme. Do NOT use generic slate or gray backgrounds.",
+    "Use Fraunces for headings, Inter for body text. Install the fonts properly in index.css.",
+    "DO NOT mention 'AI models', 'LLMs', or 'Neural Networks'. Focus entirely on 'Physician-in-the-loop', 'Clinical Intelligence', 'Augmented Care'.",
+    "Build the interactive Aurora background using CSS gradients and framer-motion.",
+    "Create a Hero section featuring floating 3D glass panels reacting to mouse movements.",
+    "Implement an interactive Diabetes statistics section using Recharts with animated count-ups and distinct Recharts charts (bar/donut/line).",
+    "DO NOT use a transparent background for dropdowns or the sticky header. Always use a backdrop blur with semi-solid color.",
+    "Include standard data-testid attributes for all interactive elements.",
+    "Ensure all sections seamlessly blend. Avoid hard lines; use gradient masks or spacious padding."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": "Focus on high-end, Awwwards-winning execution. Prioritize visual tension, generous padding, and micro-interactions. Avoid centered, boring Bootstrap-like grids. Layer elements. Create depth through layered design elements with z-index hierarchy. Never use AI emojis.",
+  "image_urls": {
+    "hero_abstract": {
+      "url": "https://images.pexels.com/photos/6203473/pexels-photo-6203473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "ECG graph on grid - Use as background texture or inside a floating glass panel."
+    },
+    "physician_1": {
+      "url": "https://images.pexels.com/photos/37476745/pexels-photo-37476745.jpeg",
+      "description": "Confident female doctor in blue scrubs - Use in the 'Validation' or 'Physician-in-the-loop' section."
+    },
+    "physician_2": {
+      "url": "https://images.pexels.com/photos/5407249/pexels-photo-5407249.jpeg",
+      "description": "Doctor using tablet - Use in 'What Alyvn does' narrative section."
+    },
+    "data_abstract": {
+      "url": "https://images.pexels.com/photos/30547574/pexels-photo-30547574.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Futuristic digital cubes - Use for product capabilities or evidence section."
+    }
+  }
+}
