@@ -2,43 +2,47 @@
 
 ## Original Problem Statement
 Premium, Awwwards-level marketing website for a healthcare AI company **Alyvn** (product: **ClinoveAI**).
-Stack: React + TypeScript + Tailwind CSS. Palette: deep navy/blue + teal.
-9 pages. Requirements: animated aurora hero, liquid glass-morphism, layered/stacked cards,
+Stack: React + TypeScript + Tailwind CSS. Palette: deep navy/blue + teal. 9 pages.
+Requirements: distinctive (non-generic) design, liquid glass-morphism, layered/stacked cards,
 3D/parallax moments, visual graphs, Lenis smooth scroll, Framer Motion micro-interactions.
 Constraints: no generic templates, **no mention of AI models**, all medical claims emphasize
 **physician-in-the-loop**. Fonts: Fraunces (display) + Inter (body).
 
 ## User Choices (confirmed)
 - Dark navy premium theme (locked, no toggle)
-- Hero: interactive 3D floating glass panels reacting to mouse (Framer Motion)
+- Hero: **NeuroNoise WebGL shader** background (replaced the aurora) + interactive 3D floating glass panels reacting to mouse
 - Full animated interactive charts (Recharts)
-- Home page perfected first, then roll style to remaining 8 pages
-- Clean TypeScript (no @ts-nocheck)
+- Warm **champagne (#DCCBA1)** counter-accent + ivory text to avoid the "AI/PPT" generic look
+- Clean TypeScript (no @ts-nocheck on any touched file)
 
-## Design System (in /app/design_guidelines.json + index.css)
-- CSS vars: dark navy bg (222 55% 4%), teal primary (172 66% 45%). Locked in :root.
-- Utilities: `.glass`, `.glass-strong`, `.text-gradient-teal`, `.font-display`, `.aurora-orb`, `.grain`
-- Tailwind: navy.{deep,card,light}, teal.glow, float/aurora-drift animations
-- Reusable: `CountUp.tsx`, `TiltCard.tsx`, `AuroraBackground.tsx`
+## Design System (/app/design_guidelines.json + index.css + tailwind.config.js)
+- CSS vars: navy bg (226 55% 5%), ivory fg (43 38% 94%), teal primary, champagne chart-3.
+- Colors: navy.{void,deep,card,light}, teal.glow #14B8A6, champagne #DCCBA1/glow, ivory #F5F2EA
+- Utilities/components: `.glass`, `.glass-strong`, `.text-gradient-teal`, `.text-champagne`, `.eyebrow`, `.hairline`, `.aurora-orb`, `.grain`, global body grain + mesh gradient bg
+- Reusable primitives (src/components/site/primitives.tsx): `PageHero`, `Reveal`, `Eyebrow`, `LayeredCard`
+- Reusable: `CountUp.tsx`, `TiltCard.tsx`, `home/HeroPanels.tsx`, `home/NeuroHero.tsx`, `home/DiabetesCharts.tsx`
 
-## Implemented (2026-06-11)
-- Dark navy design system, tailwind config, index.css glass utilities
-- Navbar (dark glass, scroll-aware, typed, testids), Footer (dark, typed)
-- AuroraBackground tuned for dark theme + vignette for contrast
-- **Home.tsx** fully redesigned: 3D hero (HeroPanels), count-up stats,
-  interactive Recharts (DiabetesCharts: bar/donut/area), layered glass narrative sections, CTA
-- All touched files typed (no @ts-nocheck). Compiles clean.
+## Implemented
+### 2026-06-11
+- Dark navy design system, Navbar/Footer (dark glass, typed), Home redesign (3D hero, count-up, Recharts).
+### 2026-06-11 (batch 2)
+- **Hero swapped to NeuroNoise WebGL shader** (`@paper-design/shaders-react@0.0.77`), themed navy/teal, vignette+grain overlays for contrast.
+- Elevated palette with **champagne counter-accent** + ivory text; editorial layouts (asymmetric 4/8 & 12-col grids, hairline dividers, italic Fraunces accent words, marginalia eyebrows, layered offset cards), global grain texture.
+- **Hero cards content fixed** per clinical-safety requirements: Card1 "Guideline Coverage" (badge, no metrics), Card2 "Guideline Priority Logic" (ranked list + abstract decorative line), Card3 "Physician approved" (kept), Card4 "Safety checks" (reworded, non-case-specific).
+- **All 8 inner pages redesigned**: About, Vision, Product (asymmetric bento), Validation, Evidence, Team, Contact, Legal (editorial sticky sidebar).
+- **Contact form wired** to backend `POST /api/contact` (axios + sonner toast); backend stores to `db.contact_submissions` (server.py: ContactSubmission model + route).
+- Verified via testing_agent iteration_1.json: **100% backend + frontend, zero issues.**
 
-## Backlog / Remaining (P0 = next)
-- P0: Roll dark-navy premium style to the other 8 pages: About, Vision, Product,
-  Validation, Evidence, Team, Contact, Legal (still old flat/light layouts + @ts-nocheck)
-- P0: Product & Vision — layered/stacked depth-staggered card compositions
-- P1: Contact form functional UI + wire to backend `/api/contact` (backend route not built yet)
-- P2: Remove @ts-nocheck from remaining pages + shadcn/ui components; full typing
-- Note: removed fixed navbar spacer — remaining pages need top padding when redesigned
+## Notes / Tech debt
+- `AuroraBackground.tsx` and `ThemeToggle.tsx` are now unused (kept, not imported). Can be deleted later.
+- shadcn/ui components still contain `@ts-nocheck` (not touched); page/components code is clean.
+- Minor (non-bug) from review: server.py logging config defined after routes (works at runtime); consider EmailStr validation + tightening CORS for production.
+
+## Backlog (P1/P2)
+- P1: Optional — email the team on contact submit (e.g. Resend) + a "book a demo" scheduling capture.
+- P2: Remove `@ts-nocheck` from shadcn/ui components; delete unused AuroraBackground/ThemeToggle.
+- P2: SEO metadata / OG tags per page.
 
 ## Architecture
-- Frontend: React 19 + TS (CRA/craco), React Router 7, Tailwind, Framer Motion 12, Lenis, Recharts 3.6
-- src/components/ (Navbar, Footer, AuroraBackground, SmoothScroll, CountUp, TiltCard, home/*)
-- src/pages/ (9 pages), src/components/ui (shadcn)
-- Backend: FastAPI + MongoDB (not yet used for this site)
+- Frontend: React 19 + TS (craco), React Router 7, Tailwind 3.4, Framer Motion 12, Lenis, Recharts 3.6, @paper-design/shaders-react
+- Backend: FastAPI + MongoDB (motor). Routes: /api/, /api/status, /api/contact
