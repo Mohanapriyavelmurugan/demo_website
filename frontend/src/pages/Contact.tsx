@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { Send, CheckCircle2, Mail, MapPin } from "lucide-react";
-import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
-import { liquidGlassClass } from "@/components/ui/liquid-glass-button";
+import { PageHero, Reveal } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
@@ -19,14 +16,17 @@ interface FormState {
 const empty: FormState = { name: "", email: "", organization: "", message: "" };
 
 export function Contact() {
-  useSEO({ title: "Contact — Alyvn", description: "Talk to the Alyvn team about ClinoveAI demos and partnerships." });
+  useSEO({
+    title: "Contact - Valtraq",
+    description:
+      "Request a pilot evaluation, discuss clinical collaboration, or explore partnership opportunities with Valtraq Health Care Pvt. Ltd.",
+  });
+
   const [formData, setFormData] = useState<FormState>(empty);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -37,100 +37,108 @@ export function Contact() {
       await axios.post(`${API}/contact`, formData);
       setSubmitted(true);
       setFormData(empty);
-      toast.success("Message sent — we'll be in touch soon.");
+      toast.success("Inquiry received.");
       setTimeout(() => setSubmitted(false), 6000);
-    } catch (err) {
-      toast.error("Something went wrong. Please try again.");
+    } catch {
+      toast.error("Unable to submit inquiry at this time.");
     } finally {
       setLoading(false);
     }
   };
 
   const inputClass =
-    "w-full rounded-xl border border-foreground/10 bg-foreground/[0.03] px-4 py-3 text-ivory placeholder:text-foreground/30 outline-none transition-colors focus:border-teal-glow/50 focus:bg-foreground/[0.05]";
+    "w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary";
 
   return (
-    <div className="overflow-hidden">
+    <div>
       <PageHero
-        label="Get in touch"
-        title={
-          <>
-            Let's talk about <span className="italic text-champagne">better care</span>.
-          </>
-        }
-        subtitle="Whether you run a clinic and want to see ClinoveAI in action, or you're exploring a partnership with Alyvn, we'd like to hear from you."
+        label="Contact"
+        title={<>Contact our team.</>}
+        subtitle="Request a pilot evaluation, discuss clinical collaboration, or explore partnership opportunities with Valtraq Health Care Pvt. Ltd."
       />
 
-      <section className="relative py-8 md:py-16">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:px-8">
-          <Reveal className="lg:col-span-4">
-            <Eyebrow>Reach us</Eyebrow>
-            <div className="mt-8 space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-glow/12 text-teal-glow ring-1 ring-teal-glow/20">
-                  <Mail className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-ivory">Partnerships & demos</p>
-                  <p className="text-sm text-foreground/50">Use the form and we'll route your note.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-champagne/12 text-champagne ring-1 ring-champagne/20">
-                  <MapPin className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-ivory">Clinical pilot</p>
-                  <p className="text-sm text-foreground/50">
-                    Dr. Ashwin's Advanced Diabetes Centre, Kannur, Kerala
+      <section className="section-block">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <Reveal>
+            <div className="surface p-6 md:p-8" data-testid="contact-form-card">
+              {submitted ? (
+                <div className="py-10" data-testid="contact-success">
+                  <p className="text-sm text-primary">Inquiry received</p>
+                  <h2 className="mt-2 font-display text-3xl text-foreground">Thank you.</h2>
+                  <p className="copy-compact mt-3">
+                    Our team will respond using the contact details you provided.
                   </p>
                 </div>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.15} className="lg:col-span-8">
-            <div className="glass-strong p-8 md:p-10" data-testid="contact-form-card">
-              {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="py-14 text-center"
-                  data-testid="contact-success"
-                >
-                  <CheckCircle2 className="mx-auto mb-5 h-16 w-16 text-teal-glow" />
-                  <h3 className="font-display text-3xl text-ivory">Thank you for reaching out</h3>
-                  <p className="mt-2 text-foreground/55">We've received your message and will get back to you soon.</p>
-                </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6" data-testid="contact-form">
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm text-foreground/60">Name *</label>
-                      <input id="name" name="name" required value={formData.name} onChange={handleChange} className={inputClass} data-testid="contact-name" />
+                      <label htmlFor="name" className="text-sm text-foreground">
+                        Name
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={inputClass}
+                        data-testid="contact-name"
+                      />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm text-foreground/60">Email *</label>
-                      <input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} className={inputClass} data-testid="contact-email" />
+                      <label htmlFor="email" className="text-sm text-foreground">
+                        Email
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={inputClass}
+                        data-testid="contact-email"
+                      />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="organization" className="text-sm text-foreground/60">Organization</label>
-                    <input id="organization" name="organization" value={formData.organization} onChange={handleChange} className={inputClass} data-testid="contact-organization" />
+                    <label htmlFor="organization" className="text-sm text-foreground">
+                      Organization
+                    </label>
+                    <input
+                      id="organization"
+                      name="organization"
+                      value={formData.organization}
+                      onChange={handleChange}
+                      className={inputClass}
+                      data-testid="contact-organization"
+                      placeholder="Hospital, clinic, research institution, or partner organization"
+                    />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm text-foreground/60">Message *</label>
-                    <textarea id="message" name="message" required rows={6} value={formData.message} onChange={handleChange} className={`${inputClass} resize-none`} data-testid="contact-message" />
+                    <label htmlFor="message" className="text-sm text-foreground">
+                      Inquiry
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className={`${inputClass} resize-none`}
+                      data-testid="contact-message"
+                      placeholder="Pilot evaluation, clinical collaboration, or partnership inquiry"
+                    />
                   </div>
                   <button
                     type="submit"
                     disabled={loading}
                     data-testid="contact-submit"
-                    className={liquidGlassClass("primary", "group w-full")}
+                    className="inline-flex items-center justify-center rounded-full border border-primary bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/95 disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    {loading ? "Sending..." : (<>
-                      <Send className="h-5 w-5" /> Send message
-                    </>)}
+                    {loading ? "Submitting..." : "Submit inquiry"}
                   </button>
                 </form>
               )}

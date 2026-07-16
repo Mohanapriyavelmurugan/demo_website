@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/theme-provider";
 import { SmoothScroll } from "./components/SmoothScroll";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
-import { FallingBackdrop } from "./components/FallingBackdrop";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Vision } from "./pages/Vision";
@@ -19,13 +19,13 @@ import "./App.css";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="alyvn-theme">
+    <ThemeProvider defaultTheme="light" storageKey="valtraq-theme">
       <SmoothScroll>
         <BrowserRouter>
-          <div className="App relative min-h-screen bg-background">
-            <FallingBackdrop />
-            <div className="relative z-10">
-              <Navbar />
+          <ScrollToTop />
+          <div className="App min-h-screen bg-background text-foreground">
+            <Navbar />
+            <main>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
@@ -37,8 +37,8 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/legal" element={<Legal />} />
               </Routes>
-              <Footer />
-            </div>
+            </main>
+            <Footer />
             <Toaster />
           </div>
         </BrowserRouter>

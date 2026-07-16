@@ -1,75 +1,71 @@
 import React from "react";
-import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
-import { CountUp } from "@/components/CountUp";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
-const metrics = [
-  { end: 90, suffix: "M", label: "People living with diabetes in India today" },
-  { end: 134, suffix: "M", label: "Projected cases by 2045" },
-  { end: 39, suffix: "%", label: "Treated by physicians without adequate diabetes training" },
+const facts = [
+  ["Legal entity", "Valtraq Health Care Pvt. Ltd."],
+  ["Focus", "Clinical intelligence systems for outpatient care"],
+  ["First platform", "ClinoveAI - outpatient diabetes care"],
+  ["Operating model", "Physician-centered decision support"],
 ];
 
 export function About() {
-  useSEO({ title: "About — Alyvn", description: "Alyvn closes India's diabetes care gap with clinical decision support that keeps the physician in control." });
+  useSEO({
+    title: "Company - Valtraq",
+    description:
+      "Valtraq Health Care Pvt. Ltd. is an Indian clinical intelligence company building physician-centered decision support systems for guideline-based outpatient care.",
+  });
+
   return (
-    <div className="overflow-hidden">
+    <div>
       <PageHero
-        label="About the company"
-        title={
-          <>
-            Closing the distance between <span className="italic text-champagne">care needed</span>{" "}
-            and care received.
-          </>
-        }
-        subtitle="Alyvn exists to close India's largest healthcare gap — the distance between how many people need guideline-based diabetes care, and how many currently receive it."
+        label="Company"
+        title={<>Valtraq</>}
+        subtitle="An Indian clinical intelligence company building physician-centered decision support systems that improve consistency, safety, and guideline-based outpatient care."
       />
 
-      <section className="relative py-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:px-8">
-          <Reveal className="lg:col-span-4">
-            <Eyebrow>The gap</Eyebrow>
-            <p className="mt-6 font-display text-2xl font-light leading-snug text-ivory md:text-3xl">
-              India's challenge has never been a shortage of cases. It is a shortage of consistent,
-              specialist-quality care reaching those cases.
+      <section className="section-block">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="max-w-3xl table-shell">
+              <table>
+                <tbody>
+                  {facts.map(([label, value]) => (
+                    <tr key={label}>
+                      <th>{label}</th>
+                      <td>{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <Eyebrow className="mt-12">Mission</Eyebrow>
+            <p className="copy-compact mt-4">
+              Strengthen outpatient clinical decision making through guideline-grounded intelligence
+              systems that preserve physician authority and improve care consistency at scale.
             </p>
           </Reveal>
 
-          <Reveal delay={0.15} className="lg:col-span-8">
-            <LayeredCard className="space-y-6 p-8 md:p-10">
-              <p className="text-lg font-light leading-relaxed text-foreground/70">
-                With close to 90 million people living with diabetes — a number projected to exceed
-                134 million by 2045 — nearly four in ten patients are treated by physicians without
-                adequate training in the disease. Specialist positions in community health centres
-                remain vacant at scale. The consequence is measured in preventable kidney damage,
-                cardiovascular events, and complications that earlier, guideline-consistent
-                intervention could have avoided.
-              </p>
-              <p className="text-lg font-light leading-relaxed text-foreground/70">
-                Alyvn was founded to close that gap — building clinical decision support that brings
-                specialist-level guideline discipline into any outpatient practice, while keeping the
-                treating physician as the sole clinical authority on every case.
-              </p>
-              <p className="text-base italic text-champagne/90">
-                Our first product, ClinoveAI, is in active clinical pilot today, in real use with a
-                practicing diabetologist.
-              </p>
-            </LayeredCard>
+          <Reveal delay={0.12}>
+            <Eyebrow className="mt-10">Long-term platform strategy</Eyebrow>
+            <p className="copy-compact mt-4">
+              ClinoveAI establishes Valtraq&apos;s clinical intelligence foundation in diabetology.
+              The longer-term strategy extends structured reasoning, evidence synthesis, and
+              physician-reviewed workflow support across additional chronic-care specialties - always
+              under clinical supervision.
+            </p>
+            <Link
+              to="/vision"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+            >
+              Vision and operating principles <ArrowRight className="h-4 w-4" />
+            </Link>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="relative py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="hairline grid grid-cols-1 gap-8 pt-14 md:grid-cols-3">
-            {metrics.map((m, i) => (
-              <Reveal key={m.label} delay={i * 0.12}>
-                <div className="font-display text-6xl text-gradient-teal">
-                  <CountUp end={m.end} suffix={m.suffix} />
-                </div>
-                <p className="mt-3 max-w-xs text-sm leading-relaxed text-foreground/55">{m.label}</p>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
     </div>

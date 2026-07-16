@@ -94,6 +94,14 @@ module.exports = {
           '33%': { transform: 'translate(6%, -4%) scale(1.1)' },
           '66%': { transform: 'translate(-5%, 5%) scale(0.95)' },
           '100%': { transform: 'translate(0, 0) scale(1)' }
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - 1.5rem))' }
+        },
+        'marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - 1.5rem))' }
         }
       },
       animation: {
@@ -101,7 +109,9 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'float-slow': 'float-slow 9s ease-in-out infinite',
         'float-medium': 'float-medium 6s ease-in-out infinite',
-        'aurora-drift': 'aurora-drift 18s ease-in-out infinite'
+        'aurora-drift': 'aurora-drift 18s ease-in-out infinite',
+        marquee: 'marquee var(--duration) infinite linear',
+        'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
       }
     }
   },

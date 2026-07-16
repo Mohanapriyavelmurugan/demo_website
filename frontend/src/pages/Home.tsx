@@ -1,306 +1,208 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Stethoscope, ShieldCheck, LineChart } from "lucide-react";
-import { NeuroHero } from "@/components/home/NeuroHero";
-import { HeroPanels } from "@/components/home/HeroPanels";
+import { ArrowRight } from "lucide-react";
 import { CountUp } from "@/components/CountUp";
-import { DiabetesBurdenChart, UndiagnosedChart, ProjectionChart } from "@/components/home/DiabetesCharts";
-import { liquidGlassClass } from "@/components/ui/liquid-glass-button";
+import { DiabetesTrendChart } from "@/components/home/DiabetesTrendChart";
+import { ClinoveMiniDemo } from "@/components/home/ClinoveMiniDemo";
+import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
+import { CompanyHeroVisual } from "@/components/home/CompanyHeroVisual";
+import RevealText from "@/components/ui/reveal-text";
+import { Eyebrow, Reveal } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
-const headlineLines = [
-  "India carries the world's",
-  "second-largest diabetes burden.",
+const metrics = [
+  { label: "Adults living with diabetes in India (2024)", value: 89.8, suffix: " million", decimals: 1 },
+  { label: "Undiagnosed", value: 57, suffix: "%" },
+  { label: "On treatment achieving glycemic control", prefix: "<", value: 25, suffix: "%" },
+  { label: "Treated by physicians without adequate disease-specific training", value: 39, suffix: "%" },
 ];
 
-const statCards = [
-  { end: 89.8, decimals: 1, suffix: "M", label: "Indian adults living with diabetes in 2024" },
-  { end: 57, suffix: "%", label: "Of adults with diabetes remain undiagnosed" },
-  { end: 25, prefix: "< ", suffix: "%", label: "On treatment achieve real glycemic control" },
-  { end: 39, suffix: "%", label: "Treated by doctors not adequately trained in diabetes" },
+const structuralGaps = [
+  {
+    no: "01",
+    title: "Variation in clinical decision making",
+    body:
+      "Outpatient diabetes care often varies by clinician experience and local practice patterns, even when patients present with comparable clinical profiles. Standardization of guideline application remains incomplete across settings.",
+  },
+  {
+    no: "02",
+    title: "Specialist capacity constraints",
+    body:
+      "Demand for diabetology expertise exceeds specialist availability. A substantial share of diabetes management occurs in general outpatient settings with limited disease-specific training bandwidth.",
+  },
+  {
+    no: "03",
+    title: "Guideline adherence under workload pressure",
+    body:
+      "Clinical guidelines evolve continuously. High patient volume and fragmented documentation reduce consistent synthesis of evidence into day-to-day therapeutic decisions.",
+  },
+  {
+    no: "04",
+    title: "Chronic disease delivery at scale",
+    body:
+      "India's diabetes burden requires scalable physician support systems that improve consistency and safety without displacing clinical accountability.",
+  },
 ];
-
-const reveal = {
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
-};
 
 export function Home() {
-  useSEO({ title: "Alyvn — Clinical intelligence for diabetes care", description: "ClinoveAI brings specialist-grade guideline discipline to every outpatient diabetology consultation — with the physician fully in control." });
+  useSEO({
+    title: "Valtraq - Clinical Intelligence",
+    description:
+      "Valtraq is an Indian clinical intelligence company building physician-centered decision support systems for guideline-based outpatient care.",
+  });
+
   return (
-    <div className="overflow-hidden">
-      {/* ================= HERO ================= */}
-      <NeuroHero className="min-h-screen">
-        <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-12 px-6 pt-32 pb-20 lg:grid-cols-2 lg:px-8">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/[0.03] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-champagne backdrop-blur-md"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-champagne" />
-              Clinical intelligence for diabetes care
-            </motion.div>
-
-            <h1 className="font-display text-5xl font-light leading-[1.05] tracking-tight text-foreground md:text-6xl lg:text-7xl">
-              {headlineLines.map((line, i) => (
-                <span key={line} className="block overflow-hidden">
-                  <motion.span
-                    initial={{ y: "110%" }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 0.9, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                    className="block"
-                  >
-                    {line}
-                  </motion.span>
-                </span>
-              ))}
-              <span className="block overflow-hidden">
-                <motion.span
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="block text-gradient-teal"
-                >
-                  More than half undiagnosed.
-                </motion.span>
-              </span>
+    <div>
+      <section className="relative overflow-hidden border-b border-border">
+        <AnimatedGradientBackground />
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-12 lg:gap-10 lg:px-8 md:py-24">
+          <div className="lg:col-span-7">
+            <Reveal>
+              <Eyebrow>Valtraq Health Care Pvt. Ltd.</Eyebrow>
+            </Reveal>
+            <h1 className="mt-5 max-w-3xl font-display text-4xl font-normal leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
+              <RevealText delay={80} direction="up" className="block">
+                Valtraq
+              </RevealText>
+              <RevealText delay={220} direction="up" className="mt-2 block text-primary md:mt-3">
+                Physician-centered clinical intelligence.
+              </RevealText>
             </h1>
+            <Reveal delay={0.28}>
+              <p className="mt-6 max-w-xl text-sm leading-7 text-muted-foreground md:text-[15px]">
+                Valtraq develops clinical intelligence systems that strengthen guideline-based decision
+                making in outpatient care across India. We build physician-centered platforms that
+                improve consistency, safety, and clinical accountability at scale.
+              </p>
+            </Reveal>
+            <Reveal delay={0.36}>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 rounded-full border border-primary bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/95"
+                >
+                  About Valtraq <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary"
+                >
+                  Contact our team
+                </Link>
+              </div>
+            </Reveal>
+          </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-8 max-w-xl text-lg font-light leading-relaxed text-foreground/70"
-            >
-              Alyvn builds clinical decision support that helps physicians close that gap. Our first
-              product, ClinoveAI, brings specialist-grade guideline discipline to every outpatient
-              diabetology consultation — with the physician fully in control.
-            </motion.p>
+          <Reveal delay={0.2} className="lg:col-span-5">
+            <CompanyHeroVisual />
+          </Reveal>
+        </div>
+      </section>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-10 flex flex-wrap items-center gap-4"
-            >
+      <section className="section-block">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <Eyebrow>Public health context</Eyebrow>
+            <h2 className="mt-4 max-w-3xl font-display text-3xl text-foreground md:text-4xl">
+              Disease burden that requires scalable physician support.
+            </h2>
+            <p className="copy-compact mt-4">
+              Diabetes represents a sustained healthcare delivery challenge in India. Population-scale
+              prevalence, incomplete diagnosis, and uneven treatment outcomes increase the need for
+              clinical systems that improve consistency under physician oversight.
+            </p>
+          </Reveal>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-12">
+            <Reveal delay={0.05} className="lg:col-span-7">
+              <DiabetesTrendChart />
+            </Reveal>
+            <Reveal delay={0.1} className="lg:col-span-5">
+              <div className="table-shell h-full">
+                <table>
+                  <tbody>
+                    {metrics.map((metric) => (
+                      <tr key={metric.label}>
+                        <th className="!w-[58%]">{metric.label}</th>
+                        <td className="font-display text-lg text-foreground md:text-xl">
+                          <CountUp
+                            end={metric.value}
+                            decimals={metric.decimals ?? 0}
+                            prefix={metric.prefix}
+                            suffix={metric.suffix}
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3 text-xs text-muted-foreground">
+                Source: International Diabetes Federation, IDF Diabetes Atlas, 11th edition (2024).
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-block">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <Eyebrow>Clinical delivery challenge</Eyebrow>
+            <h2 className="mt-4 max-w-3xl font-display text-3xl text-foreground md:text-4xl">
+              Structural gaps in outpatient chronic care.
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+            {structuralGaps.map((gap, index) => (
+              <Reveal key={gap.no} delay={index * 0.05}>
+                <div className="surface h-full p-6">
+                  <p className="heading-accent">{gap.no}</p>
+                  <h3 className="mt-3 text-lg font-medium text-foreground">{gap.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{gap.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-block" data-testid="demo-section">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <ClinoveMiniDemo />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section-block">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <Eyebrow>Platform</Eyebrow>
+            <h2 className="mt-4 font-display text-3xl text-foreground md:text-4xl">
+              ClinoveAI - clinical intelligence for outpatient diabetes care.
+            </h2>
+            <p className="copy-compact mt-4">
+              ClinoveAI is Valtraq&apos;s first clinical intelligence platform. It supports physicians
+              through structured reasoning, guideline synthesis, risk identification, and documentation
+              assistance - integrated into outpatient workflow with transparent, physician-reviewed
+              outputs.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-4">
               <Link
                 to="/product"
-                data-testid="hero-primary-cta"
-                className={liquidGlassClass("primary", "group text-base")}
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
               >
-                See how ClinoveAI works
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                Know more about the product <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/contact"
-                data-testid="hero-secondary-cta"
-                className={liquidGlassClass("secondary", "text-base")}
+                className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary"
               >
-                Talk to our team
-              </Link>
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="mt-8 text-sm italic text-foreground/40"
-            >
-              Built with clinicians, for clinicians.
-            </motion.p>
-          </div>
-
-          <HeroPanels />
-        </div>
-      </NeuroHero>
-
-      {/* ================= STATS COUNT-UP ================= */}
-      <section className="relative py-24 md:py-32" data-testid="stats-section">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <motion.div {...reveal} className="mb-16 max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
-              The scale of the problem
-            </p>
-            <h2 className="mt-3 font-display text-4xl font-normal tracking-tight text-foreground md:text-5xl">
-              A crisis measured in millions
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {statCards.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="glass group p-8 transition-transform duration-300 hover:-translate-y-1.5"
-                data-testid={`stat-card-${i}`}
-              >
-                <div className="font-display text-5xl text-gradient-teal">
-                  <CountUp
-                    end={stat.end}
-                    decimals={stat.decimals ?? 0}
-                    prefix={stat.prefix}
-                    suffix={stat.suffix}
-                  />
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-foreground/60">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= INTERACTIVE CHARTS ================= */}
-      <section className="relative py-12 md:py-20" data-testid="charts-section">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-            <motion.div {...reveal} className="lg:col-span-7">
-              <DiabetesBurdenChart />
-            </motion.div>
-            <motion.div
-              {...reveal}
-              transition={{ ...reveal.transition, delay: 0.15 }}
-              className="lg:col-span-5"
-            >
-              <UndiagnosedChart />
-            </motion.div>
-            <motion.div
-              {...reveal}
-              transition={{ ...reveal.transition, delay: 0.25 }}
-              className="lg:col-span-12"
-            >
-              <ProjectionChart />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= NARRATIVE: WHY ================= */}
-      <section className="relative py-24 md:py-32">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
-            <motion.div {...reveal} className="lg:col-span-4">
-              <div className="flex items-center gap-4">
-                <span className="font-display text-6xl text-foreground/15">01</span>
-                <div className="h-px flex-1 bg-gradient-to-r from-teal-glow/50 to-transparent" />
-              </div>
-              <h2 className="mt-4 font-display text-4xl font-normal tracking-tight text-foreground md:text-5xl">
-                Why this happens
-              </h2>
-            </motion.div>
-            <motion.div
-              {...reveal}
-              transition={{ ...reveal.transition, delay: 0.15 }}
-              className="relative lg:col-span-8"
-            >
-              {/* layered stacked glass */}
-              <div className="absolute -right-3 -top-3 hidden h-full w-full rounded-2xl border border-foreground/[0.04] bg-foreground/[0.01] md:block" />
-              <div className="glass-strong relative p-10">
-                <p className="text-lg font-light leading-relaxed text-foreground/75">
-                  Diabetes management isn't simple. It means tracking HbA1c trends, adjusting drug
-                  classes as kidney function changes, catching interactions between five or six
-                  concurrent medications, and following guidelines that shift as new evidence emerges.
-                  A general physician juggling forty patients a day, without a diabetology fellowship,
-                  is being asked to do specialist-level work with generalist bandwidth. That gap is
-                  where poor glycemic control and preventable complications come from — not from a
-                  lack of effort, but a lack of support.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= NARRATIVE: WHAT ALYVN DOES ================= */}
-      <section className="relative py-24 md:py-32">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <motion.div {...reveal} className="mb-12">
-            <div className="flex items-center gap-4">
-              <span className="font-display text-6xl text-foreground/15">02</span>
-              <div className="h-px flex-1 bg-gradient-to-r from-teal-glow/50 to-transparent" />
-            </div>
-            <h2 className="mt-4 max-w-2xl font-display text-4xl font-normal tracking-tight text-foreground md:text-5xl">
-              What Alyvn does about it
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {[
-              {
-                icon: LineChart,
-                title: "Guideline-grade reasoning",
-                body: "A structured second layer of clinical logic grounded in RSSDI, ADA, EASD and IDF guidelines — surfaced at the point of care.",
-              },
-              {
-                icon: Stethoscope,
-                title: "Specialist logic, any clinic",
-                body: "Every consultation benefits from specialist-level guideline discipline, without needing a specialist physically in the room.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Physician in the loop",
-                body: "Every report is reviewed, editable and approved by the treating physician before it ever reaches a patient.",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="glass group p-8 transition-transform duration-300 hover:-translate-y-1.5"
-              >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-glow/12 text-teal-glow ring-1 ring-teal-glow/20">
-                  <item.icon className="h-6 w-6" />
-                </div>
-                <h3 className="font-display text-2xl text-foreground">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-foreground/60">{item.body}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div {...reveal} className="mt-10">
-            <Link
-              to="/product"
-              data-testid="narrative-product-cta"
-              className="group inline-flex items-center gap-2 text-teal-glow transition-colors hover:text-teal-300"
-            >
-              Learn more about ClinoveAI
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ================= CTA ================= */}
-      <section className="relative py-24 md:py-32" data-testid="cta-section">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8">
-          <motion.div {...reveal} className="glass-strong relative overflow-hidden p-12 text-center md:p-20">
-            <div className="aurora-orb h-[30vw] w-[30vw] bg-teal-glow/20 -left-10 -top-20 animate-aurora-drift" />
-            <div className="aurora-orb h-[30vw] w-[30vw] bg-sky-500/15 -right-10 -bottom-20 animate-aurora-drift" />
-            <div className="relative">
-              <h2 className="mx-auto max-w-2xl font-display text-4xl font-normal tracking-tight text-foreground md:text-5xl">
-                Ready to transform diabetes care?
-              </h2>
-              <p className="mx-auto mt-5 max-w-xl text-lg font-light text-foreground/60">
-                Whether you run a clinic or you're exploring a partnership, we'd like to hear from you.
-              </p>
-              <Link
-                to="/contact"
-                data-testid="cta-button"
-                className={liquidGlassClass("primary", "group mt-10 text-base")}
-              >
-                Get in touch
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                Discuss clinical collaboration
               </Link>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
     </div>

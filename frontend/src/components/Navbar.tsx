@@ -1,157 +1,187 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { buttonVariants } from "@/components/ui/button";
+import { MobileNav } from "@/components/ui/mobile-nav";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "./ThemeToggle";
-import { liquidGlassClass } from "./ui/liquid-glass-button";
 
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Vision", href: "/vision" },
-  { name: "Product", href: "/product" },
-  { name: "Validation", href: "/validation" },
-  { name: "Evidence", href: "/evidence" },
-  { name: "Team", href: "/team" },
+type NavItem = {
+  title: string;
+  description: string;
+  href: string;
+};
+
+const companyItems: NavItem[] = [
+  {
+    title: "Company",
+    description: "Corporate profile and operating focus",
+    href: "/about",
+  },
+  {
+    title: "Vision & Mission",
+    description: "Principles and long-term direction",
+    href: "/vision",
+  },
+  {
+    title: "Team",
+    description: "Clinical, engineering, and research leadership",
+    href: "/team",
+  },
 ];
 
-const EXPAND_THRESHOLD = 80;
+const platformItems: NavItem[] = [
+  {
+    title: "ClinoveAI",
+    description: "Outpatient clinical intelligence platform",
+    href: "/product",
+  },
+  {
+    title: "Clinical Validation",
+    description: "Evaluation under physician supervision",
+    href: "/validation",
+  },
+  {
+    title: "Evidence",
+    description: "Guideline-grounded clinical frameworks",
+    href: "/evidence",
+  },
+];
+
+const mobileNav = [
+  {
+    name: "Home",
+    items: [{ label: "Home", href: "/" }],
+  },
+  {
+    name: "Company",
+    items: companyItems.map((item) => ({ label: item.title, href: item.href })),
+  },
+  {
+    name: "Platform",
+    items: platformItems.map((item) => ({ label: item.title, href: item.href })),
+  },
+  {
+    name: "Contact",
+    items: [{ label: "Contact", href: "/contact" }],
+  },
+];
+
+function NavListItem({ title, description, href }: NavItem) {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link
+          to={href}
+          data-testid={`nav-link-${title.toLowerCase().replace(/[^a-z]+/g, "-")}`}
+          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-secondary hover:text-foreground focus:bg-secondary"
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">{description}</p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  );
+}
 
 export const Navbar: React.FC = () => {
-  const [expanded, setExpanded] = useState(true);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  const { scrollY } = useScroll();
-  const lastY = React.useRef(0);
-  const collapseY = React.useRef(0);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const prev = lastY.current;
-    if (expanded && latest > prev && latest > 160) {
-      setExpanded(false);
-      collapseY.current = latest;
-    } else if (!expanded && latest < prev && collapseY.current - latest > EXPAND_THRESHOLD) {
-      setExpanded(true);
-    }
-    lastY.current = latest;
-  });
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [location]);
+  const homeActive = location.pathname === "/";
 
   return (
-    <>
-      {/* Desktop: centered animated pill */}
-      <div className="fixed left-1/2 top-5 z-50 hidden -translate-x-1/2 lg:block">
-        <motion.nav
-          initial={{ y: -80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1, width: expanded ? "auto" : "3.25rem" }}
-          transition={{ type: "spring", damping: 20, stiffness: 260 }}
-          onClick={() => !expanded && setExpanded(true)}
-          className={cn(
-            "flex h-13 items-center gap-1 overflow-hidden rounded-full border py-2 pl-4 pr-2 backdrop-blur-xl",
-            "border-[color:var(--glass-border)] bg-[color:hsl(var(--background)/0.7)] shadow-[var(--glass-shadow)]",
-            !expanded && "cursor-pointer justify-center px-0"
-          )}
-          style={{ height: "3.25rem" }}
-          data-testid="main-navbar"
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-md">
+      <nav className="relative mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-6 lg:px-8">
+        <div className="flex items-center gap-2">
+          <MobileNav nav={mobileNav} />
+          <Link
+            to="/"
+            className="font-display text-xl font-medium tracking-tight text-foreground"
+            data-testid="nav-logo"
+          >
+            Valtraq
+          </Link>
+        </div>
+
+        <NavigationMenu
+          delayDuration={200}
+          skipDelayDuration={350}
+          className="hidden max-w-none flex-1 justify-center lg:flex"
         >
-          <AnimatePresence initial={false}>
-            {expanded ? (
-              <motion.div
-                key="expanded"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex items-center gap-1"
-              >
-                <Link to="/" className="mr-3 flex items-center gap-2" data-testid="nav-logo">
-                  <span className="font-display text-xl font-semibold text-foreground">Alyvn</span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-teal-glow shadow-[0_0_10px_rgba(20,184,166,0.8)]" />
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  to="/"
+                  data-testid="nav-link-home"
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    homeActive && "bg-secondary text-foreground"
+                  )}
+                >
+                  Home
                 </Link>
-                {navItems.slice(1).map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    data-testid={`nav-link-${item.name.toLowerCase()}`}
-                    className={cn(
-                      "rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
-                      location.pathname === item.href
-                        ? "text-teal-glow"
-                        : "text-foreground/60 hover:text-foreground"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                <ThemeToggle className="ml-2" />
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="h-9 bg-transparent px-3">
+                Company
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[320px] gap-1 p-2">
+                  {companyItems.map((item) => (
+                    <NavListItem key={item.href} {...item} />
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="h-9 bg-transparent px-3">
+                Platform
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[340px] gap-1 p-2">
+                  {platformItems.map((item) => (
+                    <NavListItem key={item.href} {...item} />
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
                 <Link
                   to="/contact"
-                  data-testid="nav-contact-cta"
-                  className={liquidGlassClass("primary", "ml-1 !px-5 !py-2 text-sm")}
+                  data-testid="nav-link-contact"
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    location.pathname === "/contact" && "bg-secondary text-foreground"
+                  )}
                 >
                   Contact
                 </Link>
-              </motion.div>
-            ) : (
-              <motion.div key="collapsed" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <Menu className="h-5 w-5 text-foreground" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.nav>
-      </div>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-      {/* Mobile bar */}
-      <div className="fixed inset-x-0 top-0 z-50 lg:hidden">
-        <div className="flex h-16 items-center justify-between border-b border-[color:var(--glass-border)] bg-[color:hsl(var(--background)/0.8)] px-6 backdrop-blur-xl">
-          <Link to="/" className="flex items-center gap-2" data-testid="nav-logo-mobile">
-            <span className="font-display text-xl font-semibold text-foreground">Alyvn</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-teal-glow" />
+        <div className="flex shrink-0 items-center justify-end">
+          <Link
+            to="/contact"
+            className={cn(buttonVariants({ size: "sm" }), "hidden rounded-full sm:inline-flex")}
+          >
+            Request evaluation
           </Link>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <button
-              onClick={() => setMobileOpen((v) => !v)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-foreground"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              data-testid="mobile-menu-toggle"
-            >
-              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
         </div>
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden border-b border-[color:var(--glass-border)] bg-[color:hsl(var(--background)/0.95)] backdrop-blur-xl"
-            >
-              <div className="space-y-1 px-6 py-4">
-                {[...navItems, { name: "Contact", href: "/contact" }].map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    data-testid={`mobile-nav-link-${item.name.toLowerCase()}`}
-                    className={cn(
-                      "block rounded-xl px-4 py-3 text-base font-medium transition-colors",
-                      location.pathname === item.href
-                        ? "bg-teal-glow/10 text-teal-glow"
-                        : "text-foreground/70 hover:bg-foreground/[0.04]"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </>
+      </nav>
+    </header>
   );
 };

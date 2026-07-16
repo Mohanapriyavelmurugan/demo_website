@@ -1,95 +1,68 @@
 import React from "react";
-import { ScrollText, Stethoscope, MapPin } from "lucide-react";
-import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
+import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
-const values = [
+const principles = [
   {
-    icon: ScrollText,
-    title: "Guideline-first, without exception",
-    description:
-      "Every recommendation ClinoveAI produces is grounded in established clinical guidelines — RSSDI, ADA, EASD, and IDF — applied in a defined priority order. No inference beyond recognized standards.",
+    title: "Guideline-grounded reasoning",
+    body:
+      "Recommendations are constrained to established clinical frameworks, applied in a transparent priority order, and presented for physician interpretation.",
   },
   {
-    icon: Stethoscope,
-    title: "Physician-in-the-loop, non-negotiable",
-    description:
-      "ClinoveAI is a decision-support tool, not a decision-maker. Every report is reviewed, edited, or approved by the treating physician before it reaches a patient. The physician remains the final authority.",
+    title: "Physician oversight by design",
+    body:
+      "Every system output requires clinical review. Accept, modify, or discard controls ensure medical decisions remain under physician supervision.",
   },
   {
-    icon: MapPin,
-    title: "Built for where the need is greatest",
-    description:
-      "We start with diabetology in India — where the burden is massive, the care gap is measurable, and the opportunity to make a difference is immediate. We build for real clinics, not hypothetical ones.",
-  },
-];
-
-const statements = [
-  {
-    no: "01",
-    label: "Vision",
-    body: "A connected clinical ecosystem where every physician in India — whether in a metro specialty clinic or a district government hospital — has access to the same standard of guideline-grounded diagnostic support as a leading endocrinologist. We see this as the starting point for a broader shift: AI-assisted care infrastructure woven into India's public and private healthcare systems, built on Indian clinical data, Indian guidelines, and Indian ownership — not adapted from elsewhere.",
+    title: "Outpatient workflow integration",
+    body:
+      "Systems are designed for high-volume outpatient environments where consistency, documentation quality, and safety screening must coexist with clinical throughput.",
   },
   {
-    no: "02",
-    label: "Mission",
-    body: "Alyvn builds clinical decision support that strengthens physician judgment rather than substituting for it. We begin with ClinoveAI in diabetology, where the need is largest and most measurable, and where a well-defined body of clinical guidelines lets us build responsibly from day one. Every system we develop keeps the physician as the final decision-maker — reviewing, editing, and approving every recommendation before it reaches a patient.",
+    title: "Evidence and safety accountability",
+    body:
+      "Decision transparency, safety assessment, and review logging form the operational basis for clinical collaboration and continuous evaluation.",
   },
 ];
 
 export function Vision() {
-  useSEO({ title: "Vision & Mission — Alyvn", description: "The same standard of guideline-grounded diabetes care for every physician in India, with the physician always in the loop." });
+  useSEO({
+    title: "Vision & Mission - Valtraq",
+    description:
+      "Valtraq builds physician-centered clinical intelligence to improve consistency and safety of guideline-based outpatient care.",
+  });
+
   return (
-    <div className="overflow-hidden">
+    <div>
       <PageHero
-        label="Vision & Mission"
-        title={
-          <>
-            The same standard of care, <span className="italic text-champagne">everywhere</span>.
-          </>
-        }
+        label="Vision"
+        title={<>Guideline-based outpatient care, consistently delivered.</>}
+        subtitle="Valtraq envisions clinical environments where physicians across India can apply the same standard of guideline-grounded decision support - with clinical accountability retained by the treating clinician."
       />
 
-      <section className="relative py-8 md:py-16">
-        <div className="mx-auto max-w-7xl space-y-16 px-6 lg:px-8">
-          {statements.map((s, i) => (
-            <div key={s.no} className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-              <Reveal className="lg:col-span-4">
-                <div className="flex items-baseline gap-4">
-                  <span className="font-display text-7xl font-light italic text-foreground/12">{s.no}</span>
-                  <div className="h-px flex-1 bg-gradient-to-r from-champagne/40 to-transparent" />
-                </div>
-                <h2 className="mt-4 font-display text-4xl font-normal tracking-tight text-ivory md:text-5xl">
-                  {s.label}
-                </h2>
-              </Reveal>
-              <Reveal delay={0.15} className="lg:col-span-8">
-                <LayeredCard className="p-8 md:p-10">
-                  <p className="text-lg font-light leading-relaxed text-foreground/70">{s.body}</p>
-                </LayeredCard>
-              </Reveal>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="relative py-16 md:py-24">
+      <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <Eyebrow>What we hold to</Eyebrow>
-            <h2 className="mt-5 font-display text-4xl font-normal tracking-tight text-ivory md:text-5xl">
-              Values
+            <Eyebrow>Mission</Eyebrow>
+            <h2 className="mt-4 font-display text-3xl text-foreground md:text-4xl">
+              Strengthen physician decision making at scale.
             </h2>
+            <p className="copy-compact mt-4">
+              Valtraq develops physician-centered clinical intelligence systems that improve
+              consistency of care, support guideline-based reasoning, and integrate into clinical
+              workflows while ensuring that all medical decisions remain under physician supervision.
+            </p>
           </Reveal>
-          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {values.map((v, i) => (
-              <Reveal key={v.title} delay={i * 0.12}>
-                <div className="glass group h-full p-8 transition-transform duration-300 hover:-translate-y-1.5">
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-champagne/12 text-champagne ring-1 ring-champagne/20">
-                    <v.icon className="h-6 w-6" />
+
+          <div className="mt-10 space-y-4">
+            {principles.map((item, index) => (
+              <Reveal key={item.title} delay={index * 0.05}>
+                <div className="surface grid gap-4 p-5 md:grid-cols-[72px_1fr] md:items-start">
+                  <p className="heading-accent">0{index + 1}</p>
+                  <div>
+                    <h3 className="text-base font-medium text-foreground">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.body}</p>
                   </div>
-                  <h3 className="font-display text-2xl text-ivory">{v.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground/60">{v.description}</p>
                 </div>
               </Reveal>
             ))}

@@ -1,85 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 const footerLinks = [
-  { name: "About", href: "/about" },
-  { name: "Vision & Mission", href: "/vision" },
+  { name: "Company", href: "/about" },
+  { name: "Vision", href: "/vision" },
   { name: "Product", href: "/product" },
   { name: "Clinical Validation", href: "/validation" },
   { name: "Evidence", href: "/evidence" },
   { name: "Team", href: "/team" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const legalLinks = [
-  { name: "Privacy Policy", href: "/legal#privacy" },
-  { name: "Terms of Use", href: "/legal#terms" },
+  { name: "Privacy", href: "/legal#privacy" },
+  { name: "Terms", href: "/legal#terms" },
 ];
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="dark relative overflow-hidden border-t border-foreground/[0.06] bg-navy-deep">
-      <div className="aurora-orb h-[40vw] w-[40vw] bg-teal-glow/10 left-1/4 -bottom-1/2" />
-      <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+    <footer className="border-t border-border bg-background">
+      <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.4fr_2fr]">
+          <div className="space-y-3">
+            <p className="font-display text-2xl text-foreground">Valtraq</p>
+            <p className="max-w-sm text-sm leading-6 text-muted-foreground">
+              Physician-centered clinical intelligence systems for guideline-based outpatient care.
+            </p>
+          </div>
+
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <h3 className="font-display text-3xl font-semibold text-foreground">Alyvn</h3>
-              <span className="h-1.5 w-1.5 rounded-full bg-teal-glow shadow-[0_0_10px_rgba(20,184,166,0.8)]" />
-            </div>
-            <p className="max-w-xs text-sm italic text-foreground/50">
-              Built with clinicians, for clinicians.
-            </p>
-            <p className="text-sm text-foreground/40">
-              Clinical decision support that keeps the physician in control.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-teal-glow">
-              Navigate
-            </h4>
-            <ul className="space-y-3">
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
               {footerLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-foreground/60 transition-colors hover:text-foreground"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
+                <Link key={link.name} to={link.href} className="transition-colors hover:text-foreground">
+                  {link.name}
+                </Link>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-teal-glow">
-              Legal
-            </h4>
-            <ul className="space-y-3">
               {legalLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-foreground/60 transition-colors hover:text-foreground"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
+                <Link key={link.name} to={link.href} className="transition-colors hover:text-foreground">
+                  {link.name}
+                </Link>
               ))}
-            </ul>
+            </div>
+            <div className="flex flex-col gap-1 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+              <p>Valtraq Health Care Pvt. Ltd.</p>
+              <p>&copy; {new Date().getFullYear()} Valtraq. All rights reserved.</p>
+            </div>
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-14 border-t border-foreground/[0.06] pt-8 text-center text-sm text-foreground/40"
-        >
-          <p>&copy; {new Date().getFullYear()} Alyvn. All rights reserved.</p>
-        </motion.div>
       </div>
     </footer>
   );

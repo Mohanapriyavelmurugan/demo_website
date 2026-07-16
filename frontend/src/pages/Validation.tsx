@@ -1,83 +1,97 @@
 import React from "react";
-import { MapPin, GraduationCap } from "lucide-react";
-import { PageHero, Reveal, Eyebrow, LayeredCard } from "@/components/site/primitives";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
+const validationFacts = [
+  ["Clinical collaboration lead", "Dr. Ashwin Mukundan, MBBS, MD (Internal Medicine)"],
+  ["Credentials", "PG Dip. Diabetes & Renal Management / PG Dip. Advanced Diabetes Care"],
+  ["Evaluation site", "Dr. Ashwin's Advanced Diabetes Centre, Kannur, Kerala"],
+  ["Methodology", "Physician review of every report (accept / modify / discard), logged"],
+  ["Current status", "Currently under pilot evaluation"],
+];
+
+const pillars = [
+  {
+    title: "Prospective clinical collaboration",
+    body:
+      "ClinoveAI outputs are evaluated in active outpatient practice against physician judgment, forming a real-world evidence base for iterative improvement.",
+  },
+  {
+    title: "Safety assessment",
+    body:
+      "Recommendations are screened for organ-function and medication considerations before physician review, with residual risk adjudication retained by the clinician.",
+  },
+  {
+    title: "Performance benchmarking",
+    body:
+      "Review outcomes - accepted, modified, or discarded - are captured to benchmark decision support utility and identify areas for clinical refinement.",
+  },
+  {
+    title: "Physician feedback loop",
+    body:
+      "Structured clinician feedback informs guideline prioritization, documentation quality, and workflow fit across successive evaluation cycles.",
+  },
+];
+
 export function Validation() {
-  useSEO({ title: "Clinical Validation — Alyvn", description: "ClinoveAI is validated continuously in a real clinic, under a practicing diabetologist's direct review." });
+  useSEO({
+    title: "Clinical Validation - Valtraq",
+    description:
+      "ClinoveAI is currently under pilot evaluation with clinical collaborators. Every report is reviewed under physician supervision.",
+  });
+
   return (
-    <div className="overflow-hidden">
+    <div>
       <PageHero
         label="Clinical validation"
-        title={
-          <>
-            Tested where it matters — in a <span className="italic text-champagne">real clinic</span>.
-          </>
-        }
-        subtitle="On real patients, under a practicing physician's direct review — not benchmarked against textbook cases alone."
+        title={<>Real-world evaluation under physician supervision.</>}
+        subtitle="ClinoveAI is currently under pilot evaluation in collaboration with Dr. Ashwin Mukundan at Dr. Ashwin's Advanced Diabetes Centre, Kannur, Kerala. Validation emphasizes clinical utility, safety review, and physician feedback."
       />
 
-      <section className="relative py-8 md:py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-            <Reveal className="lg:col-span-4">
-              <Eyebrow>Continuous review</Eyebrow>
-            </Reveal>
-            <Reveal delay={0.15} className="lg:col-span-8">
-              <LayeredCard className="space-y-6 p-8 md:p-10">
-                <p className="text-lg font-light leading-relaxed text-foreground/70">
-                  ClinoveAI is in active clinical pilot with Dr. Ashwin Mukundan, Co-Founder and
-                  Clinical Lead. Every report the system generates is reviewed against his own
-                  clinical judgment before it is ever used — he can approve it as written, edit it, or
-                  reject it outright.
-                </p>
-                <p className="text-lg font-light leading-relaxed text-foreground/70">
-                  This is not a one-time evaluation. It is a continuous, structured review process,
-                  and every approval, edit, and rejection is captured as part of it. That means
-                  ClinoveAI is being shaped by the day-to-day decisions of a practicing diabetologist
-                  — and it is the foundation of the clinical evidence base Alyvn is building toward
-                  publication and wider deployment.
-                </p>
-              </LayeredCard>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative py-16 md:py-24">
+      <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <div className="glass p-8 md:p-10">
-              <div className="flex flex-col items-start gap-8 md:flex-row">
-                <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-glow/25 to-champagne/15 font-display text-4xl text-ivory ring-1 ring-foreground/10">
-                  AM
-                </div>
-                <div className="flex-1 space-y-5">
-                  <div>
-                    <h3 className="font-display text-3xl text-ivory">Dr. Ashwin Mukundan</h3>
-                    <p className="mt-1 text-sm font-medium text-champagne">Co-Founder & Clinical Lead</p>
-                  </div>
-                  <div className="space-y-3 text-sm text-foreground/60">
-                    <div className="flex items-start gap-3">
-                      <GraduationCap className="mt-0.5 h-5 w-5 shrink-0 text-teal-glow" />
-                      <div>
-                        <p>MBBS, MD (Internal Medicine, University First Rank)</p>
-                        <p>PG Dip. (Diabetes and Renal Management)</p>
-                        <p>PG Dip. (Advanced Diabetes Care)</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-teal-glow" />
-                      <p>
-                        Dr. Ashwin's Advanced Diabetes Centre<br />
-                        First Floor, 2, Opposite Bhima Gold, Above Bata Showroom<br />
-                        Thana, Kannur, Kerala 670002
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="max-w-5xl table-shell">
+              <table>
+                <tbody>
+                  {validationFacts.map(([label, value]) => (
+                    <tr key={label}>
+                      <th>{label}</th>
+                      <td>{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <Eyebrow className="mt-12">Evaluation framework</Eyebrow>
+          </Reveal>
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            {pillars.map((item, index) => (
+              <Reveal key={item.title} delay={0.05 + index * 0.04}>
+                <div className="surface h-full p-6">
+                  <h3 className="text-lg font-medium text-foreground">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2}>
+            <p className="copy-compact mt-10">
+              Pilot evaluation does not constitute regulatory approval. ClinoveAI remains a
+              physician-supervised decision support system throughout clinical collaboration.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+            >
+              Discuss clinical collaboration <ArrowRight className="h-4 w-4" />
+            </Link>
           </Reveal>
         </div>
       </section>
