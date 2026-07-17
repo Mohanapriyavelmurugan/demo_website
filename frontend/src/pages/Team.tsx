@@ -27,10 +27,11 @@ const teamMembers: TeamMember[] = [
   },
   {
     initials: "AM",
-    name: "Dr. Ashwin Mukundan",
+    name: "Dr. Aswin Mukundan",
     role: "Co-Founder, Clinical Leadership",
     bio: [
-      "Practicing diabetologist directing clinical collaboration and physician review standards for ClinoveAI evaluation.",
+      "Practicing diabetologist at Dr. Aswin's Advanced Diabetes Centre, Kannur.",
+      "Leads clinical collaboration, physician review standards, and pilot evaluation for ClinoveAI.",
     ],
   },
   {
@@ -54,7 +55,7 @@ const teamMembers: TeamMember[] = [
   {
     initials: "DU",
     name: "Dr. Udendhran",
-    role: "Co-Founder, Technical Advisory",
+    role: "Technical Advisor",
     bio: [
       "Assistant Professor, Computational Intelligence, SRM University. Advises computational methods and technical direction.",
     ],

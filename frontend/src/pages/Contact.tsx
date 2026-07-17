@@ -53,7 +53,7 @@ export function Contact() {
     <div>
       <PageHero
         label="Contact"
-        title={<>Contact our team.</>}
+        title={<>Request a pilot walkthrough or partnership conversation.</>}
         subtitle="Request a pilot evaluation, discuss clinical collaboration, or explore partnership opportunities with Valtraq Health Care Pvt. Ltd."
       />
 

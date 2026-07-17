@@ -5,10 +5,13 @@ import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
 const validationFacts = [
-  ["Clinical collaboration lead", "Dr. Ashwin Mukundan, MBBS, MD (Internal Medicine)"],
+  ["Clinical collaboration lead", "Dr. Aswin Mukundan, MBBS, MD (Internal Medicine)"],
   ["Credentials", "PG Dip. Diabetes & Renal Management / PG Dip. Advanced Diabetes Care"],
-  ["Evaluation site", "Dr. Ashwin's Advanced Diabetes Centre, Kannur, Kerala"],
-  ["Methodology", "Physician review of every report (accept / modify / discard), logged"],
+  ["Evaluation site", "Dr. Aswin's Advanced Diabetes Centre, Kannur, Kerala"],
+  [
+    "Methodology",
+    "Every report is reviewed by the treating physician—accepted, modified, or discarded—with outcomes recorded for evaluation",
+  ],
   ["Current status", "Currently under pilot evaluation"],
 ];
 
@@ -16,7 +19,7 @@ const pillars = [
   {
     title: "Prospective clinical collaboration",
     body:
-      "ClinoveAI outputs are evaluated in active outpatient practice against physician judgment, forming a real-world evidence base for iterative improvement.",
+      "ClinoveAI outputs are evaluated in active outpatient practice against physician judgment, building structured pilot observations to inform iterative refinement.",
   },
   {
     title: "Safety assessment",
@@ -46,8 +49,8 @@ export function Validation() {
     <div>
       <PageHero
         label="Clinical validation"
-        title={<>Real-world evaluation under physician supervision.</>}
-        subtitle="ClinoveAI is currently under pilot evaluation in collaboration with Dr. Ashwin Mukundan at Dr. Ashwin's Advanced Diabetes Centre, Kannur, Kerala. Validation emphasizes clinical utility, safety review, and physician feedback."
+        title={<>Ongoing pilot evaluation under physician supervision.</>}
+        subtitle="ClinoveAI is currently under pilot evaluation in collaboration with Dr. Aswin Mukundan at Dr. Aswin's Advanced Diabetes Centre, Kannur, Kerala. Validation emphasizes clinical utility, safety review, and physician feedback."
       />
 
       <section className="section-block">

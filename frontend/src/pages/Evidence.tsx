@@ -9,7 +9,7 @@ const blocks = [
       "Reasoning is constrained to established diabetes frameworks - RSSDI, ADA, EASD, and IDF - applied in a fixed priority order to support consistent outpatient decision support.",
   },
   {
-    title: "Evidence hierarchy",
+    title: "Guideline priority",
     body:
       "Guideline recommendations are prioritized over unconstrained inference. Where frameworks differ, priority ranking and physician review govern how conflicting guidance is presented.",
   },
@@ -21,7 +21,7 @@ const blocks = [
   {
     title: "Clinical reasoning framework",
     body:
-      "Patient context, diagnostic findings, and safety considerations are assembled into structured recommendations that support documentation quality and care consistency.",
+      "Patient context, diagnostic findings, and safety considerations are assembled into structured considerations for physician review—not autonomous prescriptions.",
   },
   {
     title: "Medical literature grounding",
@@ -29,7 +29,7 @@ const blocks = [
       "Public-health and specialty references inform product context and evaluation design. Literature citation on this site does not imply regulatory clearance.",
   },
   {
-    title: "Physician verification",
+    title: "Physician review",
     body:
       "System outputs require clinician review. Acceptance, modification, and discard decisions remain under physician supervision before any patient-facing use.",
   },
@@ -45,17 +45,17 @@ const sources = [
 
 export function Evidence() {
   useSEO({
-    title: "Evidence - Valtraq",
+    title: "Guideline basis - Valtraq",
     description:
-      "Guideline-grounded evidence structure for ClinoveAI: clinical guidelines, evidence hierarchy, and physician-verified decision support.",
+      "Guideline-grounded clinical framework for ClinoveAI: RSSDI, ADA, EASD, and IDF applied under physician review.",
   });
 
   return (
     <div>
       <PageHero
-        label="Evidence"
-        title={<>Guideline-grounded. Physician-verified.</>}
-        subtitle="ClinoveAI organizes clinical guidelines and patient context into transparent decision support for physician review. Guideline synthesis informs clinical judgment; it does not substitute for it."
+        label="Guideline basis"
+        title={<>Guideline-grounded. Physician-reviewed.</>}
+        subtitle="ClinoveAI organizes clinical guidelines and patient context into transparent decision support for physician review. This page describes the guideline framework—not completed product-level clinical evidence."
       />
 
       <section className="section-block">

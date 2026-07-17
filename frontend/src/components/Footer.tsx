@@ -6,7 +6,7 @@ const footerLinks = [
   { name: "Vision", href: "/vision" },
   { name: "Product", href: "/product" },
   { name: "Clinical Validation", href: "/validation" },
-  { name: "Evidence", href: "/evidence" },
+  { name: "Guideline basis", href: "/evidence" },
   { name: "Team", href: "/team" },
   { name: "Contact", href: "/contact" },
 ];
@@ -41,6 +41,10 @@ export const Footer: React.FC = () => {
                 </Link>
               ))}
             </div>
+            <p className="text-xs leading-5 text-muted-foreground">
+              ClinoveAI is clinical decision support only—not medical advice. All outputs require
+              physician review.
+            </p>
             <div className="flex flex-col gap-1 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
               <p>Valtraq Health Care Pvt. Ltd.</p>
               <p>&copy; {new Date().getFullYear()} Valtraq. All rights reserved.</p>

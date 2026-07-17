@@ -6,8 +6,10 @@ import { useSEO } from "@/hooks/useSEO";
 
 const facts = [
   ["Legal entity", "Valtraq Health Care Pvt. Ltd."],
+  ["Headquarters", "Kannur, Kerala, India"],
+  ["Stage", "Pilot evaluation underway"],
   ["Focus", "Clinical intelligence systems for outpatient care"],
-  ["First platform", "ClinoveAI - outpatient diabetes care"],
+  ["First platform", "ClinoveAI — outpatient diabetes care"],
   ["Operating model", "Physician-centered decision support"],
 ];
 
@@ -55,7 +57,7 @@ export function About() {
             <Eyebrow className="mt-10">Long-term platform strategy</Eyebrow>
             <p className="copy-compact mt-4">
               ClinoveAI establishes Valtraq&apos;s clinical intelligence foundation in diabetology.
-              The longer-term strategy extends structured reasoning, evidence synthesis, and
+              The longer-term strategy extends structured reasoning, guideline synthesis, and
               physician-reviewed workflow support across additional chronic-care specialties - always
               under clinical supervision.
             </p>

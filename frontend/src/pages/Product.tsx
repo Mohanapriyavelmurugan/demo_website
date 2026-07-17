@@ -5,47 +5,31 @@ import { ClinoveFullDemo } from "@/components/home/ClinoveFullDemo";
 import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
-const capabilityRows = [
-  ["Clinical workflow", "Vitals acquisition, diagnostic curation, context assembly, consultation documentation"],
-  ["Evidence layer", "Guideline synthesis across RSSDI, ADA, EASD, and IDF frameworks"],
-  ["Decision support", "Structured reasoning, risk stratification, and safety assessment"],
-  ["Governance", "Physician review required before clinical use of any system output"],
-];
-
-const modules = [
+const outcomes = [
   {
     no: "01",
-    title: "Guideline synthesis",
+    title: "Guideline-aware support",
     body:
-      "ClinoveAI organizes relevant guideline pathways into a transparent reasoning trail, supporting consistent application of evidence in outpatient diabetology.",
+      "Relevant clinical considerations are surfaced in context, helping physicians apply current guidance without interrupting the consultation.",
   },
   {
     no: "02",
-    title: "Structured clinical reasoning",
+    title: "Consultation efficiency",
     body:
-      "Patient vitals and laboratory context are assembled into structured assessments that support physician review rather than unconstrained generative output.",
+      "ClinoveAI organizes relevant information and supports documentation, helping physicians use consultation time more effectively.",
   },
   {
     no: "03",
-    title: "Risk identification & safety layer",
+    title: "Physician-controlled output",
     body:
-      "Organ-function considerations, interaction notes, and risk flags are surfaced for physician verification before therapy decisions are finalized.",
-  },
-  {
-    no: "04",
-    title: "Documentation support",
-    body:
-      "Consultation documentation - including pharmacotherapy notes, nutrition guidance, and activity plans - is prepared for clinician acceptance, modification, or discard.",
+      "Every output is reviewable. The treating physician remains responsible for accepting, changing, or rejecting what the system presents.",
   },
 ];
 
-const workflow = [
-  { no: "01", title: "Patient Data Acquisition", body: "Capture outpatient vitals and relevant clinical history within the consultation workflow." },
-  { no: "02", title: "Clinical Context Assembly", body: "Combine vitals with laboratory results into a unified patient context for evaluation." },
-  { no: "03", title: "Guideline-Based Evidence Evaluation", body: "Apply priority-ranked clinical guidelines to the assembled context." },
-  { no: "04", title: "Safety Assessment", body: "Surface medication and organ-function considerations for physician attention." },
-  { no: "05", title: "Physician Review", body: "Accept, modify, or discard system recommendations. Clinical authority remains with the treating physician." },
-  { no: "06", title: "Final Consultation Documentation", body: "Finalize physician-approved documentation for the clinical record." },
+const enterpriseReadiness = [
+  ["Integration", "Designed for phased integration with outpatient and digital-health workflows (under evaluation)."],
+  ["Governance", "Human review, traceability, and controlled clinical use are central to deployment."],
+  ["Evaluation", "Current validation focuses on usability, clinical relevance, safety, and time impact."],
 ];
 
 export function Product() {
@@ -64,42 +48,23 @@ export function Product() {
             ClinoveAI
             <br />
             <span className="text-primary text-[0.72em]">
-              Clinical intelligence for outpatient diabetes care.
+              Guideline-grounded decision support for outpatient diabetes care in India.
             </span>
           </>
         }
-        subtitle="ClinoveAI is Valtraq's first clinical intelligence platform. It supports physicians with guideline synthesis, structured reasoning, risk identification, and documentation assistance - without replacing clinical judgment."
+        subtitle="ClinoveAI helps physicians apply clinical guidance consistently, identify relevant risks, and complete consultations more efficiently—while retaining full clinical control."
       />
 
       <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <div className="max-w-4xl table-shell">
-              <table>
-                <tbody>
-                  {capabilityRows.map(([label, value]) => (
-                    <tr key={label}>
-                      <th>{label}</th>
-                      <td>{value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section-block">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <Eyebrow>Platform capabilities</Eyebrow>
+            <Eyebrow>Core capabilities</Eyebrow>
             <h2 className="mt-4 max-w-2xl font-display text-3xl text-foreground md:text-4xl">
-              Built for clinical workflow integration.
+              Practical support throughout the consultation.
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {modules.map((item, index) => (
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {outcomes.map((item, index) => (
               <Reveal key={item.no} delay={index * 0.05}>
                 <div className="surface h-full p-6">
                   <p className="heading-accent">{item.no}</p>
@@ -115,35 +80,38 @@ export function Product() {
       <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <Eyebrow>Clinical workflow</Eyebrow>
-            <h2 className="mt-4 font-display text-3xl text-foreground md:text-4xl">
-              From acquisition to physician-approved documentation.
+            <Eyebrow>ClinoveAI in practice</Eyebrow>
+            <h2 className="mt-4 mb-8 font-display text-3xl text-foreground md:text-4xl">
+              Clear, relevant support at the point of care.
             </h2>
           </Reveal>
-          <div className="mt-10 space-y-3">
-            {workflow.map((item, index) => (
-              <Reveal key={item.no} delay={index * 0.04}>
-                <div className="surface grid gap-3 p-5 md:grid-cols-[72px_220px_1fr] md:items-start">
-                  <p className="heading-accent">{item.no}</p>
-                  <h3 className="text-sm font-medium text-foreground md:text-base">{item.title}</h3>
-                  <p className="text-sm leading-6 text-muted-foreground">{item.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={0.08}>
+            <ClinoveFullDemo />
+          </Reveal>
         </div>
       </section>
 
       <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <Eyebrow>Full demonstration</Eyebrow>
-            <h2 className="mt-4 mb-8 font-display text-3xl text-foreground md:text-4xl">
-              End-to-end consultation support under physician review.
+            <Eyebrow>Enterprise readiness</Eyebrow>
+            <h2 className="mt-4 max-w-2xl font-display text-3xl text-foreground md:text-4xl">
+              Designed for pilot evaluation and phased integration.
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <ClinoveFullDemo />
+            <div className="mt-8 max-w-4xl table-shell">
+              <table>
+                <tbody>
+                  {enterpriseReadiness.map(([label, value]) => (
+                    <tr key={label}>
+                      <th>{label}</th>
+                      <td>{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -158,9 +126,9 @@ export function Product() {
               supports physicians; it does not replace them.
             </p>
             <p className="mt-8 text-xs text-muted-foreground">
-              This page describes product capabilities for clinical and enterprise evaluation.
-              Implementation architecture details are withheld pending completed intellectual property
-              protection.
+              Product demonstrations are illustrative and do not constitute medical advice or a claim
+              of completed clinical validation. Implementation architecture and proprietary decision
+              pathways are disclosed only during controlled enterprise evaluation.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link to="/validation" className="inline-flex items-center gap-2 text-sm text-primary hover:underline">

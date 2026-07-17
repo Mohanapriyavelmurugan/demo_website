@@ -49,7 +49,7 @@ const platformItems: NavItem[] = [
     href: "/validation",
   },
   {
-    title: "Evidence",
+    title: "Guideline basis",
     description: "Guideline-grounded clinical frameworks",
     href: "/evidence",
   },
@@ -70,7 +70,10 @@ const mobileNav = [
   },
   {
     name: "Contact",
-    items: [{ label: "Contact", href: "/contact" }],
+    items: [
+      { label: "Contact", href: "/contact" },
+      { label: "Request evaluation", href: "/contact" },
+    ],
   },
 ];
 

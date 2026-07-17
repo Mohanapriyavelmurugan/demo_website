@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 
 const companyFacts = [
   ["Entity", "Valtraq Health Care Pvt. Ltd."],
-  ["Domain", "Clinical intelligence systems"],
+  ["First product", "ClinoveAI"],
+  ["Stage", "Pilot evaluation"],
   ["Market", "Indian outpatient healthcare"],
   ["Operating principle", "Physician-centered by design"],
 ];

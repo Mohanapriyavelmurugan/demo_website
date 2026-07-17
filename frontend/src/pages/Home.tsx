@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { CountUp } from "@/components/CountUp";
 import { DiabetesTrendChart } from "@/components/home/DiabetesTrendChart";
-import { ClinoveMiniDemo } from "@/components/home/ClinoveMiniDemo";
+import { ClinicImpactModel } from "@/components/home/ClinicImpactModel";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 import { CompanyHeroVisual } from "@/components/home/CompanyHeroVisual";
 import RevealText from "@/components/ui/reveal-text";
@@ -34,7 +34,7 @@ const structuralGaps = [
     no: "03",
     title: "Guideline adherence under workload pressure",
     body:
-      "Clinical guidelines evolve continuously. High patient volume and fragmented documentation reduce consistent synthesis of evidence into day-to-day therapeutic decisions.",
+      "Clinical guidelines evolve continuously. High patient volume and fragmented documentation reduce consistent application of guideline recommendations under physician oversight.",
   },
   {
     no: "04",
@@ -167,10 +167,10 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section-block" data-testid="demo-section">
+      <section className="section-block" data-testid="clinic-impact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <ClinoveMiniDemo />
+            <ClinicImpactModel />
           </Reveal>
         </div>
       </section>
@@ -183,17 +183,16 @@ export function Home() {
               ClinoveAI - clinical intelligence for outpatient diabetes care.
             </h2>
             <p className="copy-compact mt-4">
-              ClinoveAI is Valtraq&apos;s first clinical intelligence platform. It supports physicians
-              through structured reasoning, guideline synthesis, risk identification, and documentation
-              assistance - integrated into outpatient workflow with transparent, physician-reviewed
-              outputs.
+              Valtraq&apos;s first platform helps outpatient physicians work with greater consistency
+              and less repetitive effort. It is designed for clinical workflow integration, transparent
+              support, and physician control.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link
                 to="/product"
                 className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
               >
-                Know more about the product <ArrowRight className="h-4 w-4" />
+                See how ClinoveAI works in a consultation <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/contact"

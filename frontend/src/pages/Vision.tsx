@@ -19,7 +19,7 @@ const principles = [
       "Systems are designed for high-volume outpatient environments where consistency, documentation quality, and safety screening must coexist with clinical throughput.",
   },
   {
-    title: "Evidence and safety accountability",
+    title: "Guideline traceability and safety accountability",
     body:
       "Decision transparency, safety assessment, and review logging form the operational basis for clinical collaboration and continuous evaluation.",
   },
