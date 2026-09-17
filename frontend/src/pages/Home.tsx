@@ -4,7 +4,7 @@ import { ArrowRight, ClipboardCheck, FileSearch, ShieldCheck, UserRoundCheck } f
 import { CountUp } from "@/components/CountUp";
 import { DiabetesTrendChart } from "@/components/home/DiabetesTrendChart";
 import { ClinicImpactModel } from "@/components/home/ClinicImpactModel";
-import { CompanyHeroVisual } from "@/components/home/CompanyHeroVisual";
+import { HeroConsole } from "@/components/home/HeroConsole";
 import { HeroSection } from "@/components/site/HeroSection";
 import { ServiceCards } from "@/components/site/ServiceCards";
 import { LeadershipGrid } from "@/components/site/LeadershipGrid";
@@ -59,7 +59,9 @@ export function Home() {
         description="Valtraq delivers guideline-grounded clinical decision support to outpatient physicians and care networks across India, helping clinicians apply the right guidance consistently while retaining full clinical control."
         primaryCta={{ label: "Explore our services", href: "/services" }}
         secondaryCta={{ label: "Talk to us", href: "/contact" }}
-        visual={<CompanyHeroVisual />}
+        visual={<HeroConsole />}
+        proofLabel="Grounded in the guidelines physicians already follow"
+        proofItems={["RSSDI", "ADA", "EASD", "IDF", "Physician-reviewed"]}
       />
 
       <section className="section-block">
