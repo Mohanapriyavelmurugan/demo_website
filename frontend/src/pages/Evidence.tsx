@@ -1,4 +1,5 @@
 import React from "react";
+import { useReducedMotion } from "framer-motion";
 import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
@@ -44,6 +45,20 @@ const sources = [
 ];
 
 export function Evidence() {
+  const reduceMotion = useReducedMotion();
+
+  const revealBlock = (children: React.ReactNode, delay = 0, className?: string) => {
+    if (reduceMotion) {
+      return <div className={className}>{children}</div>;
+    }
+
+    return (
+      <Reveal delay={delay} className={className}>
+        {children}
+      </Reveal>
+    );
+  };
+
   useSEO({
     title: "Guideline Basis | Valtraq Healthcare",
     description:
@@ -60,14 +75,32 @@ export function Evidence() {
 
       <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {revealBlock(
+            <div>
+              <Eyebrow>Framework</Eyebrow>
+              <h2 className="mt-4 max-w-3xl font-display text-3xl text-foreground md:text-4xl">
+                How guideline evidence is translated into reviewable clinical reasoning.
+              </h2>
+            </div>,
+            0
+          )}
+
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
             {blocks.map((block, index) => (
-              <Reveal key={block.title} delay={index * 0.04}>
-                <div className="surface h-full p-6">
-                  <h2 className="text-lg font-medium text-foreground">{block.title}</h2>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{block.body}</p>
-                </div>
-              </Reveal>
+              <div key={block.title}>
+                {revealBlock(
+                  <article className={`surface h-full p-6 ${index % 2 === 0 ? "bg-card" : "bg-secondary/40"}`}>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                      0{index + 1}
+                    </p>
+                    <h3 className="mt-3 font-display text-2xl leading-tight text-foreground md:text-[29px]">
+                      {block.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">{block.body}</p>
+                  </article>,
+                  0.05 + index * 0.04
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -75,20 +108,39 @@ export function Evidence() {
 
       <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <Eyebrow>Reference sources</Eyebrow>
-            <div className="surface mt-6 max-w-4xl p-6 md:p-8">
-              <ul className="space-y-2 text-sm leading-6 text-muted-foreground">
-                {sources.map((source) => (
-                  <li key={source}>- {source}</li>
-                ))}
-              </ul>
-              <p className="mt-6 text-xs text-muted-foreground">
-                Citation of guidelines and public-health references does not imply endorsement by those
-                organizations or regulatory approval of Valtraq CDSS.
-              </p>
+          {revealBlock(
+            <div className="max-w-5xl">
+              <Eyebrow>Reference sources</Eyebrow>
+              <div className="surface mt-6 overflow-hidden">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-secondary/45 px-6 py-4">
+                  <h2 className="font-display text-2xl text-foreground md:text-[30px]">
+                    Clinical guideline bodies
+                  </h2>
+                  <span className="pill-badge border-primary/25 bg-primary/[0.06] text-primary">
+                    RSSDI, ADA, EASD, IDF
+                  </span>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse">
+                    <tbody>
+                      {sources.map((source, index) => (
+                        <tr key={source} className="border-b border-border last:border-b-0">
+                          <th className="w-24 px-6 py-4 text-left text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground md:w-28">
+                            Source {index + 1}
+                          </th>
+                          <td className="px-6 py-4 text-sm leading-6 text-foreground">{source}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="border-t border-border px-6 py-4 text-xs text-muted-foreground">
+                  Citation of guidelines and public-health references does not imply endorsement by
+                  those organizations or regulatory approval of Valtraq CDSS.
+                </p>
+              </div>
             </div>
-          </Reveal>
+          )}
         </div>
       </section>
     </div>

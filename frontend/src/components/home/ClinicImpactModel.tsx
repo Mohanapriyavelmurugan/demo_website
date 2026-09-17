@@ -18,8 +18,8 @@ export function ClinicImpactModel() {
   const networkAnnualValue = annualCapacityValue * 50;
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
-      <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+    <div className="surface p-6 md:p-8" data-testid="clinic-impact-model">
+      <div className="grid gap-8 lg:grid-cols-[0.84fr_1.16fr] lg:items-start">
         <div>
           <Eyebrow>Clinic economics</Eyebrow>
           <h2 className="mt-4 max-w-xl font-display text-3xl text-foreground md:text-4xl">
@@ -33,19 +33,31 @@ export function ClinicImpactModel() {
         </div>
 
         <div>
-          <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
-            <Metric
-              value="15–20%"
-              label="lower documentation time"
-              note="Published ambient-AI studies"
-            />
-            <Metric value="30%" label="less after-hours work" note="Published ambient-AI studies" />
-            <Metric
-              value="2.8%"
-              label="higher encounter capacity"
-              note="Published ambient-AI studies"
-              accent
-            />
+          <div className="overflow-hidden rounded-2xl border border-border bg-background">
+            <div className="flex items-center justify-between border-b border-border px-4 py-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                Benchmark inputs
+              </p>
+              <span className="text-[11px] text-muted-foreground">Documentation-focused studies</span>
+            </div>
+            <dl className="grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              <BenchmarkCard
+                value="15–20%"
+                label="lower documentation time"
+                note="Published ambient-AI studies"
+              />
+              <BenchmarkCard
+                value="30%"
+                label="less after-hours work"
+                note="Published ambient-AI studies"
+              />
+              <BenchmarkCard
+                value="2.8%"
+                label="higher encounter capacity"
+                note="Published ambient-AI studies"
+                accent
+              />
+            </dl>
           </div>
           <p className="mt-3 text-xs leading-5 text-muted-foreground">
             <span className="font-medium text-foreground">Independent benchmarks.</span> Benchmarks
@@ -56,22 +68,27 @@ export function ClinicImpactModel() {
       </div>
 
       <div className="mt-8 border-t border-border pt-7">
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
+        <div className="rounded-2xl border border-border bg-background p-4 md:p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
               Baseline clinic model
             </p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              One physician · {visitsPerDay} visits/day · {workingDays} days/month ·{" "}
-              {formatCurrency(averageRealisation)} average revenue/visit (illustrative)
-            </p>
+            <span className="pill-badge border-border text-muted-foreground">Scenario only</span>
           </div>
-          <span className="rounded-full border border-border px-3 py-1 text-[11px] text-muted-foreground">
-            Scenario only
-          </span>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            One physician · {visitsPerDay} visits/day · {workingDays} days/month ·{" "}
+            {formatCurrency(averageRealisation)} average revenue/visit (illustrative)
+          </p>
         </div>
 
-        <div className="mt-5 grid gap-3 md:grid-cols-3">
+        <div className="mt-6 flex items-end justify-between gap-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+            Computed scenario outputs
+          </p>
+          <p className="text-[11px] text-muted-foreground">Illustrative economics exhibit</p>
+        </div>
+
+        <div className="mt-3 grid gap-3 md:grid-cols-3">
           <ValueCard
             value={`${Math.round(additionalVisits)}`}
             label="additional visits per month"
@@ -90,7 +107,7 @@ export function ClinicImpactModel() {
           />
         </div>
 
-        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11px]">
+        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[11px]">
           <a
             href="https://doi.org/10.1001/jamanetworkopen.2025.53233"
             target="_blank"
@@ -113,7 +130,7 @@ export function ClinicImpactModel() {
   );
 }
 
-function Metric({
+function BenchmarkCard({
   value,
   label,
   note,
@@ -125,10 +142,13 @@ function Metric({
   accent?: boolean;
 }) {
   return (
-    <div className="bg-card p-4">
-      <p className={`font-display text-2xl ${accent ? "text-primary" : "text-foreground"}`}>
+    <div className="bg-card px-4 py-4">
+      <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        Benchmark
+      </dt>
+      <dd className={`mt-1 font-display text-3xl ${accent ? "text-primary" : "text-foreground"}`}>
         {value}
-      </p>
+      </dd>
       <p className="mt-1 text-xs leading-5 text-muted-foreground">{label}</p>
       {note && <p className="mt-1 text-[10px] text-muted-foreground/80">{note}</p>}
     </div>
@@ -147,11 +167,20 @@ function ValueCard({
   accent?: boolean;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-background p-5">
-      <p className={`font-display text-2xl md:text-3xl ${accent ? "text-primary" : "text-foreground"}`}>
+    <div
+      className={`rounded-2xl border p-5 md:p-6 ${
+        accent
+          ? "border-primary/25 bg-primary/[0.04]"
+          : "border-border bg-card"
+      }`}
+    >
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        Scenario output
+      </p>
+      <p className={`mt-2 font-display text-2xl md:text-[2rem] ${accent ? "text-primary" : "text-foreground"}`}>
         {value}
       </p>
-      <p className="mt-2 text-sm font-medium text-foreground">{label}</p>
+      <p className="mt-2 text-sm font-medium leading-6 text-foreground">{label}</p>
       <p className="mt-1 text-xs leading-5 text-muted-foreground">{detail}</p>
     </div>
   );
