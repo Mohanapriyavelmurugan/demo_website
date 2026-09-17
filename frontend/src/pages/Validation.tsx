@@ -4,53 +4,50 @@ import { ArrowRight } from "lucide-react";
 import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
-const validationFacts = [
-  ["Clinical collaboration lead", "Dr. Aswin Mukundan, MBBS, MD (Internal Medicine)"],
+const governanceFacts = [
+  ["Clinical oversight", "Dr. Aswin Mukundan, MBBS, MD (Internal Medicine), Co-Founder & Chief Medical Officer"],
   ["Credentials", "PG Dip. Diabetes & Renal Management / PG Dip. Advanced Diabetes Care"],
-  ["Evaluation site", "Dr. Aswin's Advanced Diabetes Centre, Kannur, Kerala"],
-  [
-    "Methodology",
-    "Every report is reviewed by the treating physician—accepted, modified, or discarded—with outcomes recorded for evaluation",
-  ],
-  ["Current status", "Currently under pilot evaluation"],
+  ["Review model", "Every output is accepted, modified, or discarded by the treating physician"],
+  ["Traceability", "Considerations link to the guideline source they are grounded in"],
+  ["Audit", "Review outcomes are logged for clinical oversight and quality improvement"],
 ];
 
 const pillars = [
   {
-    title: "Prospective clinical collaboration",
+    title: "Physician-in-the-loop review",
     body:
-      "ClinoveAI outputs are evaluated in active outpatient practice against physician judgment, building structured pilot observations to inform iterative refinement.",
+      "Valtraq CDSS never acts autonomously. Each consideration is presented for physician judgment, and nothing reaches a patient without clinical sign-off.",
   },
   {
-    title: "Safety assessment",
+    title: "Safety screening",
     body:
-      "Recommendations are screened for organ-function and medication considerations before physician review, with residual risk adjudication retained by the clinician.",
+      "Considerations are screened for organ-function and medication factors before review, with final risk adjudication retained by the clinician.",
   },
   {
-    title: "Performance benchmarking",
+    title: "Guideline versioning",
     body:
-      "Review outcomes - accepted, modified, or discarded - are captured to benchmark decision support utility and identify areas for clinical refinement.",
+      "Guideline sets are versioned and updated as recommendations change, so the basis of every consideration is known and current.",
   },
   {
-    title: "Physician feedback loop",
+    title: "Continuous quality review",
     body:
-      "Structured clinician feedback informs guideline prioritization, documentation quality, and workflow fit across successive evaluation cycles.",
+      "Accept, modify, and discard outcomes are analysed with clinical leadership to refine guideline prioritization and documentation quality.",
   },
 ];
 
 export function Validation() {
   useSEO({
-    title: "Clinical Validation - Valtraq",
+    title: "Clinical Governance | Valtraq Healthcare",
     description:
-      "ClinoveAI is currently under pilot evaluation with clinical collaborators. Every report is reviewed under physician supervision.",
+      "How Valtraq CDSS is governed in clinical use: physician-in-the-loop review, safety screening, guideline versioning, and audit.",
   });
 
   return (
     <div>
       <PageHero
-        label="Clinical validation"
-        title={<>Ongoing pilot evaluation under physician supervision.</>}
-        subtitle="ClinoveAI is currently under pilot evaluation in collaboration with Dr. Aswin Mukundan at Dr. Aswin's Advanced Diabetes Centre, Kannur, Kerala. Validation emphasizes clinical utility, safety review, and physician feedback."
+        label="Clinical governance"
+        title={<>Physician accountability, built into every output.</>}
+        subtitle="Valtraq CDSS is governed by clinical leadership and designed so that decisions stay with physicians. These are the controls that apply wherever it is deployed."
       />
 
       <section className="section-block">
@@ -59,7 +56,7 @@ export function Validation() {
             <div className="max-w-5xl table-shell">
               <table>
                 <tbody>
-                  {validationFacts.map(([label, value]) => (
+                  {governanceFacts.map(([label, value]) => (
                     <tr key={label}>
                       <th>{label}</th>
                       <td>{value}</td>
@@ -71,7 +68,7 @@ export function Validation() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <Eyebrow className="mt-12">Evaluation framework</Eyebrow>
+            <Eyebrow className="mt-12">Governance framework</Eyebrow>
           </Reveal>
           <div className="mt-6 grid gap-6 md:grid-cols-2">
             {pillars.map((item, index) => (
@@ -86,14 +83,14 @@ export function Validation() {
 
           <Reveal delay={0.2}>
             <p className="copy-compact mt-10">
-              Pilot evaluation does not constitute regulatory approval. ClinoveAI remains a
-              physician-supervised decision support system throughout clinical collaboration.
+              Valtraq CDSS is clinical decision support. It does not replace professional medical
+              judgment, and this page does not describe regulatory approval.
             </p>
             <Link
               to="/contact"
               className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
             >
-              Discuss clinical collaboration <ArrowRight className="h-4 w-4" />
+              Discuss clinical governance with our team <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
         </div>

@@ -16,7 +16,7 @@ const blocks = [
   {
     title: "Guideline harmonization",
     body:
-      "ClinoveAI synthesizes overlapping recommendations into a transparent evaluation trail so clinicians can inspect the basis of each suggestion.",
+      "Valtraq CDSS synthesizes overlapping recommendations into a transparent evaluation trail so clinicians can inspect the basis of each suggestion.",
   },
   {
     title: "Clinical reasoning framework",
@@ -45,9 +45,9 @@ const sources = [
 
 export function Evidence() {
   useSEO({
-    title: "Guideline basis - Valtraq",
+    title: "Guideline Basis | Valtraq Healthcare",
     description:
-      "Guideline-grounded clinical framework for ClinoveAI: RSSDI, ADA, EASD, and IDF applied under physician review.",
+      "The guideline framework behind Valtraq CDSS: RSSDI, ADA, EASD, and IDF applied under physician review.",
   });
 
   return (
@@ -55,7 +55,7 @@ export function Evidence() {
       <PageHero
         label="Guideline basis"
         title={<>Guideline-grounded. Physician-reviewed.</>}
-        subtitle="ClinoveAI organizes clinical guidelines and patient context into transparent decision support for physician review. This page describes the guideline framework—not completed product-level clinical evidence."
+        subtitle="Valtraq CDSS organizes clinical guidelines and patient context into transparent decision support for physician review. This page describes the guideline framework it is built on."
       />
 
       <section className="section-block">
@@ -85,7 +85,7 @@ export function Evidence() {
               </ul>
               <p className="mt-6 text-xs text-muted-foreground">
                 Citation of guidelines and public-health references does not imply endorsement by those
-                organizations or regulatory approval of ClinoveAI.
+                organizations or regulatory approval of Valtraq CDSS.
               </p>
             </div>
           </Reveal>

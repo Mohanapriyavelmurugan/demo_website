@@ -14,7 +14,7 @@ const previewModes = [
     icon: Focus,
     title: "Key care priorities at a glance.",
     description:
-      "ClinoveAI highlights relevant clinical considerations for physician review.",
+      "Valtraq CDSS highlights relevant clinical considerations for physician review.",
     items: [
       "Glycaemic trend marked for review",
       "Cardiometabolic context surfaced",
@@ -51,20 +51,20 @@ const previewModes = [
 
 type PreviewId = (typeof previewModes)[number]["id"];
 
-export function ClinoveFullDemo() {
+export function CdssDemo() {
   const [activeId, setActiveId] = useState<PreviewId>("priorities");
   const active = previewModes.find((mode) => mode.id === activeId) ?? previewModes[0];
   const ActiveIcon = active.icon;
 
   return (
-    <div className="surface overflow-hidden" data-testid="clinove-product-preview">
+    <div className="surface overflow-hidden" data-testid="cdss-product-preview">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-4 md:px-6">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
             Consultation preview
           </p>
           <p className="mt-1 text-sm text-muted-foreground">
-            An illustrative view of ClinoveAI during outpatient care.
+            An illustrative view of Valtraq CDSS during outpatient care.
           </p>
         </div>
         <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.04] px-3 py-1 text-xs text-primary">

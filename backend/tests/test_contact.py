@@ -1,4 +1,4 @@
-"""Backend tests for Alyvn/ClinoveAI marketing site.
+"""Backend tests for the Valtraq Healthcare marketing site.
 
 Covers:
 - GET /api/ health
@@ -33,7 +33,7 @@ def test_contact_submit_success(api):
         "name": f"TEST_User_{uuid.uuid4().hex[:6]}",
         "email": "test.user@example.com",
         "organization": "TEST_Org",
-        "message": "TEST_ Interested in a ClinoveAI demo.",
+        "message": "TEST_ Interested in a Valtraq CDSS demo.",
     }
     r = api.post(f"{BASE_URL}/api/contact", json=payload)
     assert r.status_code == 200, r.text

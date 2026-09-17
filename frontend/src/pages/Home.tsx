@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ClipboardCheck, FileSearch, ShieldCheck, UserRoundCheck } from "lucide-react";
 import { CountUp } from "@/components/CountUp";
 import { DiabetesTrendChart } from "@/components/home/DiabetesTrendChart";
 import { ClinicImpactModel } from "@/components/home/ClinicImpactModel";
-import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 import { CompanyHeroVisual } from "@/components/home/CompanyHeroVisual";
-import RevealText from "@/components/ui/reveal-text";
+import { HeroSection } from "@/components/site/HeroSection";
+import { ServiceCards } from "@/components/site/ServiceCards";
+import { LeadershipGrid } from "@/components/site/LeadershipGrid";
+import { CtaBand } from "@/components/site/CtaBand";
 import { Eyebrow, Reveal } from "@/components/site/primitives";
+import { company, contact, leadership, services } from "@/content/company";
 import { useSEO } from "@/hooks/useSEO";
 
 const metrics = [
@@ -17,99 +20,59 @@ const metrics = [
   { label: "Treated by physicians without adequate disease-specific training", value: 39, suffix: "%" },
 ];
 
-const structuralGaps = [
+const governance = [
   {
-    no: "01",
-    title: "Variation in clinical decision making",
-    body:
-      "Outpatient diabetes care often varies by clinician experience and local practice patterns, even when patients present with comparable clinical profiles. Standardization of guideline application remains incomplete across settings.",
+    icon: UserRoundCheck,
+    title: "Physician in the loop",
+    body: "Every output is accepted, modified, or discarded by the treating physician.",
   },
   {
-    no: "02",
-    title: "Specialist capacity constraints",
-    body:
-      "Demand for diabetology expertise exceeds specialist availability. A substantial share of diabetes management occurs in general outpatient settings with limited disease-specific training bandwidth.",
+    icon: FileSearch,
+    title: "Traceable guidance",
+    body: "Each consideration links back to the guideline it is grounded in.",
   },
   {
-    no: "03",
-    title: "Guideline adherence under workload pressure",
-    body:
-      "Clinical guidelines evolve continuously. High patient volume and fragmented documentation reduce consistent application of guideline recommendations under physician oversight.",
+    icon: ShieldCheck,
+    title: "Safety screening",
+    body: "Organ-function and medication considerations are flagged before review.",
   },
   {
-    no: "04",
-    title: "Chronic disease delivery at scale",
-    body:
-      "India's diabetes burden requires scalable physician support systems that improve consistency and safety without displacing clinical accountability.",
+    icon: ClipboardCheck,
+    title: "Auditable decisions",
+    body: "Review outcomes are logged for clinical oversight and quality improvement.",
   },
 ];
 
 export function Home() {
   useSEO({
-    title: "Valtraq - Clinical Intelligence",
+    title: "Valtraq Healthcare | Clinical Intelligence as a Service",
     description:
-      "Valtraq is an Indian clinical intelligence company building physician-centered decision support systems for guideline-based outpatient care.",
+      "Valtraq Healthcare delivers clinical intelligence as a service. Valtraq CDSS provides guideline-grounded decision support for outpatient physicians in India.",
   });
 
   return (
     <div>
-      <section className="relative overflow-hidden border-b border-border">
-        <AnimatedGradientBackground />
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-12 lg:gap-10 lg:px-8 md:py-24">
-          <div className="lg:col-span-7">
-            <Reveal>
-              <Eyebrow>Valtraq Health Care Pvt. Ltd.</Eyebrow>
-            </Reveal>
-            <h1 className="mt-5 max-w-3xl font-display text-4xl font-normal leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
-              <RevealText delay={80} direction="up" className="block">
-                Valtraq
-              </RevealText>
-              <RevealText delay={220} direction="up" className="mt-2 block text-primary md:mt-3">
-                Physician-centered clinical intelligence.
-              </RevealText>
-            </h1>
-            <Reveal delay={0.28}>
-              <p className="mt-6 max-w-xl text-sm leading-7 text-muted-foreground md:text-[15px]">
-                Valtraq develops clinical intelligence systems that strengthen guideline-based decision
-                making in outpatient care across India. We build physician-centered platforms that
-                improve consistency, safety, and clinical accountability at scale.
-              </p>
-            </Reveal>
-            <Reveal delay={0.36}>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-2 rounded-full border border-primary bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/95"
-                >
-                  About Valtraq <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary"
-                >
-                  Contact our team
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={0.2} className="lg:col-span-5">
-            <CompanyHeroVisual />
-          </Reveal>
-        </div>
-      </section>
+      <HeroSection
+        eyebrow={company.legalName}
+        title="Intelligence as a service"
+        highlight="for clinical decision making."
+        description="Valtraq delivers guideline-grounded clinical decision support to outpatient physicians and care networks across India, helping clinicians apply the right guidance consistently while retaining full clinical control."
+        primaryCta={{ label: "Explore our services", href: "/services" }}
+        secondaryCta={{ label: "Talk to us", href: "/contact" }}
+        visual={<CompanyHeroVisual />}
+      />
 
       <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <Eyebrow>Public health context</Eyebrow>
+            <Eyebrow>The opportunity</Eyebrow>
             <h2 className="mt-4 max-w-3xl font-display text-3xl text-foreground md:text-4xl">
-              Disease burden that requires scalable physician support.
+              Chronic disease at a scale specialists alone cannot reach.
             </h2>
             <p className="copy-compact mt-4">
-              Diabetes represents a sustained healthcare delivery challenge in India. Population-scale
-              prevalence, incomplete diagnosis, and uneven treatment outcomes increase the need for
-              clinical systems that improve consistency under physician oversight.
+              Most diabetes care in India is delivered in general outpatient settings, under heavy
+              patient volume and without consistent access to specialist guidance. Valtraq brings
+              that guidance into every consultation.
             </p>
           </Reveal>
 
@@ -148,21 +111,63 @@ export function Home() {
       <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <Eyebrow>Clinical delivery challenge</Eyebrow>
-            <h2 className="mt-4 max-w-3xl font-display text-3xl text-foreground md:text-4xl">
-              Structural gaps in outpatient chronic care.
-            </h2>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <Eyebrow>Services</Eyebrow>
+                <h2 className="mt-4 max-w-2xl font-display text-3xl text-foreground md:text-4xl">
+                  Clinical intelligence, delivered as a service.
+                </h2>
+              </div>
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                All services <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </Reveal>
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {structuralGaps.map((gap, index) => (
-              <Reveal key={gap.no} delay={index * 0.05}>
-                <div className="surface h-full p-6">
-                  <p className="heading-accent">{gap.no}</p>
-                  <h3 className="mt-3 text-lg font-medium text-foreground">{gap.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{gap.body}</p>
-                </div>
-              </Reveal>
-            ))}
+          <div className="mt-10">
+            <ServiceCards services={services} />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-block">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+            <Reveal className="lg:col-span-5">
+              <Eyebrow>Platform</Eyebrow>
+              <h2 className="mt-4 font-display text-3xl text-foreground md:text-4xl">
+                {company.product}
+              </h2>
+              <p className="copy-compact mt-4">
+                Our clinical decision support system surfaces guideline-grounded considerations,
+                safety flags, and structured documentation during the consultation, without taking
+                a single decision away from the physician.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-4">
+                <Link
+                  to="/product"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                >
+                  See {company.product} in a consultation <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </Reveal>
+            <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+              {governance.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <Reveal key={item.title} delay={index * 0.05}>
+                    <div className="surface h-full p-5">
+                      <Icon className="h-5 w-5 text-primary" />
+                      <h3 className="mt-4 text-base font-medium text-foreground">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.body}</p>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -178,32 +183,35 @@ export function Home() {
       <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <Eyebrow>Platform</Eyebrow>
-            <h2 className="mt-4 font-display text-3xl text-foreground md:text-4xl">
-              ClinoveAI - clinical intelligence for outpatient diabetes care.
-            </h2>
-            <p className="copy-compact mt-4">
-              Valtraq&apos;s first platform helps outpatient physicians work with greater consistency
-              and less repetitive effort. It is designed for clinical workflow integration, transparent
-              support, and physician control.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-4">
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <Eyebrow>Leadership</Eyebrow>
+                <h2 className="mt-4 max-w-2xl font-display text-3xl text-foreground md:text-4xl">
+                  Clinical, scientific, and technology leadership.
+                </h2>
+              </div>
               <Link
-                to="/product"
+                to="/team"
                 className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
               >
-                See how ClinoveAI works in a consultation <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary"
-              >
-                Discuss clinical collaboration
+                Meet the team <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </Reveal>
+          <div className="mt-10">
+            <LeadershipGrid leaders={leadership} />
+          </div>
         </div>
       </section>
+
+      <CtaBand
+        title="Bring clinical intelligence to your care network."
+        description="Talk to us about deploying Valtraq CDSS, partnering with Valtraq Healthcare, or investing in what we are building."
+        ctaLabel="Get in touch"
+        ctaHref="/contact"
+        email={contact.email}
+        phone={contact.phone}
+      />
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Vision } from "./pages/Vision";
+import { Services } from "./pages/Services";
 import { Product } from "./pages/Product";
 import { Validation } from "./pages/Validation";
 import { Evidence } from "./pages/Evidence";
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/vision" element={<Vision />} />
+                <Route path="/services" element={<Services />} />
                 <Route path="/product" element={<Product />} />
                 <Route path="/validation" element={<Validation />} />
                 <Route path="/evidence" element={<Evidence />} />

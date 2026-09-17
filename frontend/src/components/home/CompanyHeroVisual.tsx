@@ -2,9 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const companyFacts = [
-  ["Entity", "Valtraq Health Care Pvt. Ltd."],
-  ["First product", "ClinoveAI"],
-  ["Stage", "Pilot evaluation"],
+  ["Company", "Valtraq Healthcare"],
+  ["Platform", "Valtraq CDSS"],
+  ["Model", "Intelligence as a service"],
   ["Market", "Indian outpatient healthcare"],
   ["Operating principle", "Physician-centered by design"],
 ];

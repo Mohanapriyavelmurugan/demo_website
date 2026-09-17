@@ -31,25 +31,25 @@ const companyItems: NavItem[] = [
     href: "/vision",
   },
   {
-    title: "Team",
-    description: "Clinical, engineering, and research leadership",
+    title: "Leadership",
+    description: "Founders and executive team",
     href: "/team",
   },
 ];
 
 const platformItems: NavItem[] = [
   {
-    title: "ClinoveAI",
-    description: "Outpatient clinical intelligence platform",
+    title: "Valtraq CDSS",
+    description: "Clinical decision support for outpatient care",
     href: "/product",
   },
   {
-    title: "Clinical Validation",
-    description: "Evaluation under physician supervision",
+    title: "Clinical Governance",
+    description: "Physician review, safety, and audit",
     href: "/validation",
   },
   {
-    title: "Guideline basis",
+    title: "Guideline Basis",
     description: "Guideline-grounded clinical frameworks",
     href: "/evidence",
   },
@@ -65,6 +65,10 @@ const mobileNav = [
     items: companyItems.map((item) => ({ label: item.title, href: item.href })),
   },
   {
+    name: "Services",
+    items: [{ label: "Services", href: "/services" }],
+  },
+  {
     name: "Platform",
     items: platformItems.map((item) => ({ label: item.title, href: item.href })),
   },
@@ -72,7 +76,6 @@ const mobileNav = [
     name: "Contact",
     items: [
       { label: "Contact", href: "/contact" },
-      { label: "Request evaluation", href: "/contact" },
     ],
   },
 ];
@@ -147,6 +150,21 @@ export const Navbar: React.FC = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  to="/services"
+                  data-testid="nav-link-services"
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    location.pathname === "/services" && "bg-secondary text-foreground"
+                  )}
+                >
+                  Services
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
               <NavigationMenuTrigger className="h-9 bg-transparent px-3">
                 Platform
               </NavigationMenuTrigger>
@@ -181,7 +199,7 @@ export const Navbar: React.FC = () => {
             to="/contact"
             className={cn(buttonVariants({ size: "sm" }), "hidden rounded-full sm:inline-flex")}
           >
-            Request evaluation
+            Get in touch
           </Link>
         </div>
       </nav>

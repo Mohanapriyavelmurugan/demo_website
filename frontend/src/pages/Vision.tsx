@@ -27,7 +27,7 @@ const principles = [
 
 export function Vision() {
   useSEO({
-    title: "Vision & Mission - Valtraq",
+    title: "Vision & Mission | Valtraq Healthcare",
     description:
       "Valtraq builds physician-centered clinical intelligence to improve consistency and safety of guideline-based outpatient care.",
   });

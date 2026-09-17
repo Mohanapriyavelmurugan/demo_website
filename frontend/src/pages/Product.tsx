@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { ClinoveFullDemo } from "@/components/home/ClinoveFullDemo";
+import { CdssDemo } from "@/components/home/CdssDemo";
+import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
+import { company, contact } from "@/content/company";
 import { useSEO } from "@/hooks/useSEO";
 
 const outcomes = [
@@ -16,7 +18,7 @@ const outcomes = [
     no: "02",
     title: "Consultation efficiency",
     body:
-      "ClinoveAI organizes relevant information and supports documentation, helping physicians use consultation time more effectively.",
+      "Valtraq CDSS organizes relevant information and supports documentation, helping physicians use consultation time more effectively.",
   },
   {
     no: "03",
@@ -27,32 +29,33 @@ const outcomes = [
 ];
 
 const enterpriseReadiness = [
-  ["Integration", "Designed for phased integration with outpatient and digital-health workflows (under evaluation)."],
-  ["Governance", "Human review, traceability, and controlled clinical use are central to deployment."],
-  ["Evaluation", "Current validation focuses on usability, clinical relevance, safety, and time impact."],
+  ["Delivery model", "Provided as a managed service, including configuration, onboarding, and ongoing guideline updates."],
+  ["Integration", "Phased integration with outpatient, EMR, and digital-health workflows."],
+  ["Governance", "Human review, traceability, and audit logging are built into every deployment."],
+  ["Clinical focus", "Outpatient diabetes and cardiometabolic care, with expansion across chronic-care specialties."],
 ];
 
 export function Product() {
   useSEO({
-    title: "ClinoveAI - Valtraq",
+    title: "Valtraq CDSS | Valtraq Healthcare",
     description:
-      "ClinoveAI is Valtraq's first clinical intelligence platform for outpatient diabetes care - guideline-grounded decision support under physician supervision.",
+      "Valtraq CDSS is a clinical decision support system for outpatient care: guideline-grounded, physician-reviewed, and delivered as a service.",
   });
 
   return (
     <div>
       <PageHero
-        label="Product"
+        label="Platform"
         title={
           <>
-            ClinoveAI
+            {company.product}
             <br />
-            <span className="text-primary text-[0.72em]">
-              Guideline-grounded decision support for outpatient diabetes care in India.
+            <span className="text-[0.72em] text-primary">
+              Guideline-grounded decision support for outpatient care.
             </span>
           </>
         }
-        subtitle="ClinoveAI helps physicians apply clinical guidance consistently, identify relevant risks, and complete consultations more efficiently—while retaining full clinical control."
+        subtitle="Valtraq CDSS helps physicians apply clinical guidance consistently, identify relevant risks, and complete consultations more efficiently, while retaining full clinical control."
       />
 
       <section className="section-block">
@@ -80,13 +83,13 @@ export function Product() {
       <section className="section-block">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <Eyebrow>ClinoveAI in practice</Eyebrow>
-            <h2 className="mt-4 mb-8 font-display text-3xl text-foreground md:text-4xl">
+            <Eyebrow>In practice</Eyebrow>
+            <h2 className="mb-8 mt-4 font-display text-3xl text-foreground md:text-4xl">
               Clear, relevant support at the point of care.
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <ClinoveFullDemo />
+            <CdssDemo />
           </Reveal>
         </div>
       </section>
@@ -96,7 +99,7 @@ export function Product() {
           <Reveal>
             <Eyebrow>Enterprise readiness</Eyebrow>
             <h2 className="mt-4 max-w-2xl font-display text-3xl text-foreground md:text-4xl">
-              Designed for pilot evaluation and phased integration.
+              Built to be deployed, governed, and supported.
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
@@ -113,34 +116,30 @@ export function Product() {
               </table>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="section-block">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <Eyebrow>Clinical responsibility</Eyebrow>
-            <p className="copy-compact mt-4">
-              Every ClinoveAI output is subject to physician supervision. The treating physician
-              accepts, modifies, or discards each recommendation before it is used with a patient. ClinoveAI
-              supports physicians; it does not replace them.
+          <Reveal delay={0.12}>
+            <p className="mt-8 max-w-3xl text-xs leading-5 text-muted-foreground">
+              Product views are illustrative and do not constitute medical advice. Every Valtraq CDSS
+              output is subject to physician review; the treating physician accepts, modifies, or
+              discards each consideration before it is used with a patient.
             </p>
-            <p className="mt-8 text-xs text-muted-foreground">
-              Product demonstrations are illustrative and do not constitute medical advice or a claim
-              of completed clinical validation. Implementation architecture and proprietary decision
-              pathways are disclosed only during controlled enterprise evaluation.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-4">
-              <Link to="/validation" className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
-                Clinical validation <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/contact" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
-                Request a pilot evaluation
-              </Link>
-            </div>
+            <Link
+              to="/validation"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+            >
+              How we govern clinical use <ArrowRight className="h-4 w-4" />
+            </Link>
           </Reveal>
         </div>
       </section>
+
+      <CtaBand
+        title="See Valtraq CDSS with your clinical team."
+        description="Request a walkthrough tailored to your care setting and workflows."
+        ctaLabel="Request a walkthrough"
+        ctaHref="/contact"
+        email={contact.email}
+        phone={contact.phone}
+      />
     </div>
   );
 }

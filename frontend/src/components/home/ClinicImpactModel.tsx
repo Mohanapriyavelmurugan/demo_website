@@ -26,7 +26,7 @@ export function ClinicImpactModel() {
             Illustrative value scenario for outpatient clinics.
           </h2>
           <p className="mt-4 max-w-lg text-sm leading-6 text-muted-foreground">
-            The figures below use published ambulatory AI benchmarks—not ClinoveAI pilot results—to
+            The figures below use published ambulatory AI benchmarks, not Valtraq deployment results, to
             show how efficiency gains can translate into capacity and revenue when applied to a
             typical Indian outpatient practice.
           </p>
@@ -48,9 +48,9 @@ export function ClinicImpactModel() {
             />
           </div>
           <p className="mt-3 text-xs leading-5 text-muted-foreground">
-            <span className="font-medium text-foreground">Not ClinoveAI-validated.</span> Benchmarks
-            are from documentation-focused ambient AI; ClinoveAI impact will be measured in pilot
-            evaluation.
+            <span className="font-medium text-foreground">Independent benchmarks.</span> Benchmarks
+            are from documentation-focused ambient AI; Valtraq CDSS impact is measured per
+            deployment.
           </p>
         </div>
       </div>

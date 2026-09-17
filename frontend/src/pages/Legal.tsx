@@ -10,7 +10,7 @@ const privacy: Section[] = [
   {
     heading: "Privacy Policy",
     body:
-      'Valtraq Health Care Pvt. Ltd. ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect information when you visit our website.',
+      'Valtraq Healthcare ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect information when you visit our website.',
   },
   {
     heading: "Information we collect",
@@ -49,7 +49,7 @@ const terms: Section[] = [
   {
     heading: "Clinical decision support",
     body:
-      "ClinoveAI is a clinical decision-support system intended for use under direct physician supervision. It is not a substitute for professional medical judgment. All recommendations must be reviewed, accepted, modified, or discarded by a qualified physician before reaching a patient.",
+      "Valtraq CDSS is a clinical decision-support system intended for use under direct physician supervision. It is not a substitute for professional medical judgment. All recommendations must be reviewed, accepted, modified, or discarded by a qualified physician before reaching a patient.",
   },
   {
     heading: "No direct patient claims",
@@ -59,12 +59,12 @@ const terms: Section[] = [
   {
     heading: "Intellectual property",
     body:
-      "All content on this website, including text, graphics, logos, and software, is the property of Valtraq Health Care Pvt. Ltd. and protected by applicable intellectual property laws.",
+      "All content on this website, including text, graphics, logos, and software, is the property of Valtraq Healthcare and protected by applicable intellectual property laws.",
   },
   {
     heading: "Limitation of liability",
     body:
-      "To the fullest extent permitted by law, Valtraq Health Care Pvt. Ltd. shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of this website or reliance on its content.",
+      "To the fullest extent permitted by law, Valtraq Healthcare shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of this website or reliance on its content.",
   },
   {
     heading: "Changes to terms",
@@ -78,8 +78,8 @@ export function Legal() {
   const [tab, setTab] = useState<"privacy" | "terms">("privacy");
 
   useSEO({
-    title: "Legal - Valtraq",
-    description: "Privacy Policy and Terms of Use for Valtraq Health Care Pvt. Ltd. and ClinoveAI.",
+    title: "Legal | Valtraq Healthcare",
+    description: "Privacy Policy and Terms of Use for Valtraq Healthcare and Valtraq CDSS.",
   });
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export function Legal() {
       <PageHero
         label="Legal"
         title={<>Privacy Policy and Terms of Use</>}
-        subtitle="Corporate legal information for Valtraq Health Care Pvt. Ltd."
+        subtitle="Corporate legal information for Valtraq Healthcare"
       />
 
       <section className="section-block">

@@ -1,55 +1,93 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { company, contact, disclaimer } from "@/content/company";
 
-const footerLinks = [
-  { name: "Company", href: "/about" },
-  { name: "Vision", href: "/vision" },
-  { name: "Product", href: "/product" },
-  { name: "Clinical Validation", href: "/validation" },
-  { name: "Guideline basis", href: "/evidence" },
-  { name: "Team", href: "/team" },
-  { name: "Contact", href: "/contact" },
-];
-
-const legalLinks = [
-  { name: "Privacy", href: "/legal#privacy" },
-  { name: "Terms", href: "/legal#terms" },
+const columns = [
+  {
+    heading: "Company",
+    links: [
+      { name: "About", href: "/about" },
+      { name: "Vision & Mission", href: "/vision" },
+      { name: "Leadership", href: "/team" },
+      { name: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    heading: "Offering",
+    links: [
+      { name: "Services", href: "/services" },
+      { name: company.product, href: "/product" },
+      { name: "Clinical Governance", href: "/validation" },
+      { name: "Guideline Basis", href: "/evidence" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      { name: "Privacy Policy", href: "/legal#privacy" },
+      { name: "Terms of Use", href: "/legal#terms" },
+    ],
+  },
 ];
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.4fr_2fr]">
-          <div className="space-y-3">
-            <p className="font-display text-2xl text-foreground">Valtraq</p>
-            <p className="max-w-sm text-sm leading-6 text-muted-foreground">
-              Physician-centered clinical intelligence systems for guideline-based outpatient care.
-            </p>
+    <footer className="border-t border-border bg-card">
+      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-[1.3fr_2fr]">
+          <div className="space-y-4">
+            <p className="font-display text-2xl text-foreground">{company.name}</p>
+            <p className="max-w-sm text-sm leading-6 text-muted-foreground">{company.tagline}</p>
+            {(contact.email || contact.phone) && (
+              <div className="space-y-1 text-sm">
+                {contact.email && (
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="block text-foreground transition-colors hover:text-primary"
+                  >
+                    {contact.email}
+                  </a>
+                )}
+                {contact.phone && (
+                  <a
+                    href={`tel:${contact.phone.replace(/\s+/g, "")}`}
+                    className="block text-foreground transition-colors hover:text-primary"
+                  >
+                    {contact.phone}
+                  </a>
+                )}
+              </div>
+            )}
           </div>
 
-          <div className="space-y-4">
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
-              {footerLinks.map((link) => (
-                <Link key={link.name} to={link.href} className="transition-colors hover:text-foreground">
-                  {link.name}
-                </Link>
-              ))}
-              {legalLinks.map((link) => (
-                <Link key={link.name} to={link.href} className="transition-colors hover:text-foreground">
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-            <p className="text-xs leading-5 text-muted-foreground">
-              ClinoveAI is clinical decision support only—not medical advice. All outputs require
-              physician review.
-            </p>
-            <div className="flex flex-col gap-1 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-              <p>Valtraq Health Care Pvt. Ltd.</p>
-              <p>&copy; {new Date().getFullYear()} Valtraq. All rights reserved.</p>
-            </div>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            {columns.map((column) => (
+              <div key={column.heading}>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
+                  {column.heading}
+                </p>
+                <ul className="mt-4 space-y-2">
+                  {column.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        to={link.href}
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
+        </div>
+
+        <div className="mt-10 space-y-3 border-t border-border pt-6">
+          <p className="text-xs leading-5 text-muted-foreground">{disclaimer}</p>
+          <p className="text-xs text-muted-foreground">
+            &copy; {new Date().getFullYear()} {company.legalName}. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
