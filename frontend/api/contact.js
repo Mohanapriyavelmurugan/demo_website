@@ -33,7 +33,19 @@ function escapeHtml(value) {
   return value.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 }
 
+/* Falls back to the address published on the site, so only RESEND_API_KEY is required. */
+const DEFAULT_TO = "vinaykoushiktelukuntla@gmail.com";
+
 module.exports = async function handler(req, res) {
+  // Health check: confirms the function is deployed and whether its key is set.
+  if (req.method === "GET") {
+    return res.status(200).json({
+      ok: true,
+      configured: Boolean(process.env.RESEND_API_KEY),
+      to: process.env.CONTACT_TO_EMAIL || DEFAULT_TO,
+    });
+  }
+
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "method_not_allowed" });
@@ -76,10 +88,10 @@ module.exports = async function handler(req, res) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  if (!apiKey || !to) {
-    console.error("contact: RESEND_API_KEY or CONTACT_TO_EMAIL is not configured");
-    return res.status(503).json({ error: "not_configured" });
+  const to = process.env.CONTACT_TO_EMAIL || DEFAULT_TO;
+  if (!apiKey) {
+    console.error("contact: RESEND_API_KEY is not set on this deployment");
+    return res.status(503).json({ error: "not_configured", missing: "RESEND_API_KEY" });
   }
 
   const from = process.env.CONTACT_FROM_EMAIL || "Valtraq Website <onboarding@resend.dev>";
