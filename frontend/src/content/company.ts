@@ -13,13 +13,10 @@ export const company = {
   country: "India",
 };
 
-/*
- * Leave a value empty to hide it everywhere it is rendered.
- * Contact details are intentionally blank until confirmed.
- */
+/* Leave a value empty to hide it everywhere it is rendered. */
 export const contact = {
-  email: "",
-  phone: "",
+  email: "vinaykoushiktelukuntla@gmail.com",
+  phone: "+91 63014 32144",
 };
 
 export type Service = {
