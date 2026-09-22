@@ -4,9 +4,12 @@
  *
  * Required env (Vercel project settings):
  *   RESEND_API_KEY     Resend API key
- *   CONTACT_TO_EMAIL   inbox that receives inquiries
  * Optional:
- *   CONTACT_FROM_EMAIL verified sender, defaults to Resend's onboarding sender
+ *   CONTACT_TO_EMAIL   inbox that receives inquiries; defaults to DEFAULT_TO below
+ *   CONTACT_FROM_EMAIL verified sender, defaults to Resend's onboarding sender.
+ *                      NOTE: Resend's onboarding sender can only deliver to the address
+ *                      that owns the Resend account. To deliver to contact@valtraq.in,
+ *                      verify valtraq.in in Resend and set this to an address on it.
  */
 
 const LIMITS = { name: 120, email: 254, organization: 160, inquiryType: 60, message: 5000 };
@@ -34,7 +37,7 @@ function escapeHtml(value) {
 }
 
 /* Falls back to the address published on the site, so only RESEND_API_KEY is required. */
-const DEFAULT_TO = "vinaykoushiktelukuntla@gmail.com";
+const DEFAULT_TO = "contact@valtraq.in";
 
 module.exports = async function handler(req, res) {
   // Health check: confirms the function is deployed and whether its key is set.

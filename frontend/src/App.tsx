@@ -13,6 +13,7 @@ import { Product } from "./pages/Product";
 import { Validation } from "./pages/Validation";
 import { Evidence } from "./pages/Evidence";
 import { Team } from "./pages/Team";
+import { Newsroom } from "./pages/Newsroom";
 import { Contact } from "./pages/Contact";
 import { Legal } from "./pages/Legal";
 import { Toaster } from "./components/ui/sonner";
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/validation" element={<Validation />} />
                 <Route path="/evidence" element={<Evidence />} />
                 <Route path="/team" element={<Team />} />
+                <Route path="/newsroom" element={<Newsroom />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/legal" element={<Legal />} />
               </Routes>

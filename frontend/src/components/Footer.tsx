@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { company, contact, disclaimer } from "@/content/company";
+import { newsroomItems } from "@/content/newsroom";
 
 const columns = [
   {
@@ -9,6 +10,7 @@ const columns = [
       { name: "About", href: "/about" },
       { name: "Vision & Mission", href: "/vision" },
       { name: "Leadership", href: "/team" },
+      ...(newsroomItems.length > 0 ? [{ name: "Newsroom", href: "/newsroom" }] : []),
       { name: "Contact", href: "/contact" },
     ],
   },

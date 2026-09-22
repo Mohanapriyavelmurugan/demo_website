@@ -15,7 +15,7 @@ export const company = {
 
 /* Leave a value empty to hide it everywhere it is rendered. */
 export const contact = {
-  email: "vinaykoushiktelukuntla@gmail.com",
+  email: "contact@valtraq.in",
   phone: "+91 63014 32144",
 };
 

@@ -12,11 +12,19 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { cn } from "@/lib/utils";
+import { newsroomItems } from "@/content/newsroom";
 
 type NavItem = {
   title: string;
   description: string;
   href: string;
+};
+
+/* Newsroom is listed only once it has real content. */
+const newsroomItem: NavItem = {
+  title: "Newsroom",
+  description: "Events, summits, and clinical meetings",
+  href: "/newsroom",
 };
 
 const companyItems: NavItem[] = [
@@ -35,6 +43,7 @@ const companyItems: NavItem[] = [
     description: "Founders and executive team",
     href: "/team",
   },
+  ...(newsroomItems.length > 0 ? [newsroomItem] : []),
 ];
 
 const platformItems: NavItem[] = [
