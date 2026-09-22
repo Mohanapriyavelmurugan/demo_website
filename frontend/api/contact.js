@@ -38,6 +38,7 @@ function escapeHtml(value) {
 
 /* Falls back to the address published on the site, so only RESEND_API_KEY is required. */
 const DEFAULT_TO = "contact@valtraq.in";
+const DEFAULT_FROM = "Valtraq Website <onboarding@resend.dev>";
 
 module.exports = async function handler(req, res) {
   // Health check: confirms the function is deployed and whether its key is set.
@@ -46,6 +47,8 @@ module.exports = async function handler(req, res) {
       ok: true,
       configured: Boolean(process.env.RESEND_API_KEY),
       to: process.env.CONTACT_TO_EMAIL || DEFAULT_TO,
+      from: process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM,
+      usingTestSender: !process.env.CONTACT_FROM_EMAIL,
     });
   }
 
@@ -97,7 +100,7 @@ module.exports = async function handler(req, res) {
     return res.status(503).json({ error: "not_configured", missing: "RESEND_API_KEY" });
   }
 
-  const from = process.env.CONTACT_FROM_EMAIL || "Valtraq Website <onboarding@resend.dev>";
+  const from = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
   const rows = [
     ["Name", data.name],
     ["Email", data.email],
