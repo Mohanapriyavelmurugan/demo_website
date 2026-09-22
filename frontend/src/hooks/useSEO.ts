@@ -5,7 +5,7 @@ interface SEO {
   description?: string;
 }
 
-const SITE_URL = "https://valtraq.in";
+const SITE_URL = "https://www.valtraq.in";
 
 /* Per-page SEO: title, description, Open Graph, Twitter card, and canonical. */
 export function useSEO({ title, description }: SEO) {

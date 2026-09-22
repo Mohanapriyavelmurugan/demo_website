@@ -18,7 +18,7 @@ declare global {
   }
 }
 
-const GA_ID = process.env.REACT_APP_GA_ID;
+const GA_ID = process.env.REACT_APP_GA_ID || "G-MD9BRPD3LD";
 const isProduction = process.env.NODE_ENV === "production";
 
 function doNotTrack(): boolean {

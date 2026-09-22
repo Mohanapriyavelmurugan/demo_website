@@ -34,13 +34,13 @@ ADA, EASD, and IDF — applied in a fixed priority order.
 
 ## Pages
 
-- https://valtraq.in/ — overview and the clinical problem being addressed
-- https://valtraq.in/services — the services delivered
-- https://valtraq.in/product — Valtraq CDSS
-- https://valtraq.in/validation — clinical governance and physician review model
-- https://valtraq.in/evidence — the guideline basis
-- https://valtraq.in/about — company overview
-- https://valtraq.in/contact — contact@valtraq.in
+- https://www.valtraq.in/ — overview and the clinical problem being addressed
+- https://www.valtraq.in/services — the services delivered
+- https://www.valtraq.in/product — Valtraq CDSS
+- https://www.valtraq.in/validation — clinical governance and physician review model
+- https://www.valtraq.in/evidence — the guideline basis
+- https://www.valtraq.in/about — company overview
+- https://www.valtraq.in/contact — contact@valtraq.in
 
 ## Contact
 
