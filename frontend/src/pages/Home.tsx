@@ -7,10 +7,10 @@ import { ClinicImpactModel } from "@/components/home/ClinicImpactModel";
 import { HeroConsole } from "@/components/home/HeroConsole";
 import { HeroSection } from "@/components/site/HeroSection";
 import { ServiceCards } from "@/components/site/ServiceCards";
-import { LeadershipGrid } from "@/components/site/LeadershipGrid";
+import { RoleList } from "@/components/site/TeamList";
 import { CtaBand } from "@/components/site/CtaBand";
 import { Eyebrow, Reveal } from "@/components/site/primitives";
-import { company, contact, leadership, services } from "@/content/company";
+import { company, contact, founderRoles, services } from "@/content/company";
 import { useSEO } from "@/hooks/useSEO";
 
 const metrics = [
@@ -187,21 +187,21 @@ export function Home() {
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
-                <Eyebrow>Leadership</Eyebrow>
+                <Eyebrow>How we are run</Eyebrow>
                 <h2 className="mt-4 max-w-2xl font-display text-3xl text-foreground md:text-4xl">
-                  Clinical, scientific, and technology leadership.
+                  Clinical, scientific, and technology direction.
                 </h2>
               </div>
               <Link
                 to="/team"
                 className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
               >
-                Meet the team <ArrowRight className="h-4 w-4" />
+                Operations & technology <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </Reveal>
           <div className="mt-10">
-            <LeadershipGrid leaders={leadership} />
+            <RoleList roles={founderRoles} />
           </div>
         </div>
       </section>

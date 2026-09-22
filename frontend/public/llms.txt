@@ -1,0 +1,47 @@
+# Valtraq Healthcare
+
+> Valtraq Healthcare is an Indian clinical intelligence company that delivers
+> clinical decision support as a service. Its platform, Valtraq CDSS, gives
+> outpatient physicians guideline-grounded decision support inside the
+> consultation, with every output reviewed by the treating physician.
+
+## What Valtraq does
+
+Valtraq provides "intelligence as a service" for clinical care. Rather than
+selling software for providers to operate themselves, Valtraq delivers decision
+support, clinical guideline curation, clinical analytics, and integration as one
+managed service. Its initial clinical focus is outpatient diabetes and
+cardiometabolic care in India.
+
+## Valtraq CDSS
+
+Valtraq CDSS is a clinical decision support system for outpatient care. It
+surfaces guideline-grounded considerations, safety flags, and structured
+documentation during a consultation. It does not act autonomously: the treating
+physician accepts, modifies, or discards every output before it reaches a
+patient. Reasoning is constrained to established diabetes frameworks — RSSDI,
+ADA, EASD, and IDF — applied in a fixed priority order.
+
+## Important qualifications
+
+- Valtraq CDSS is clinical decision support for qualified physicians. It does
+  not provide medical advice and is not a substitute for clinical judgment.
+- Citation of clinical guidelines does not imply endorsement by those bodies or
+  regulatory approval of Valtraq CDSS.
+- Figures shown in the clinic economics model on the website are an illustrative
+  scenario built on published independent ambulatory-AI benchmarks. They are not
+  measured Valtraq deployment results.
+
+## Pages
+
+- https://valtraq.in/ — overview and the clinical problem being addressed
+- https://valtraq.in/services — the services delivered
+- https://valtraq.in/product — Valtraq CDSS
+- https://valtraq.in/validation — clinical governance and physician review model
+- https://valtraq.in/evidence — the guideline basis
+- https://valtraq.in/about — company overview
+- https://valtraq.in/contact — contact@valtraq.in
+
+## Contact
+
+contact@valtraq.in

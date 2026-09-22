@@ -32,7 +32,7 @@ export const newsroomItems: NewsroomItem[] = [
   // Example of the shape — delete this comment block when the first real entry lands.
   // {
   //   image: "/newsroom/doctors-ai-summit.jpg",
-  //   alt: "Vinay Koushik speaking at the Doctors AI Global Summit",
+  //   alt: "A Valtraq representative speaking at the Doctors AI Global Summit",
   //   event: "Doctors AI Global Summit",
   //   date: "September 2026",
   //   location: "Bengaluru",

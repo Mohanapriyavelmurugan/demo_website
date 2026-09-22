@@ -5,7 +5,7 @@ import { PageHero, Reveal, Eyebrow } from "@/components/site/primitives";
 import { useSEO } from "@/hooks/useSEO";
 
 const governanceFacts = [
-  ["Clinical oversight", "Dr. Aswin Mukundan, MBBS, MD (Internal Medicine), Co-Founder & Chief Medical Officer"],
+  ["Clinical oversight", "Held by the Chief Medical Officer, a practicing diabetologist (MBBS, MD Internal Medicine)"],
   ["Credentials", "PG Dip. Diabetes & Renal Management / PG Dip. Advanced Diabetes Care"],
   ["Review model", "Every output is accepted, modified, or discarded by the treating physician"],
   ["Traceability", "Considerations link to the guideline source they are grounded in"],

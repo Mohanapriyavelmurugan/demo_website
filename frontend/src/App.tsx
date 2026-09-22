@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/theme-provider";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { Analytics } from "./lib/analytics";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
@@ -25,6 +26,7 @@ function App() {
       <SmoothScroll>
         <BrowserRouter>
           <ScrollToTop />
+          <Analytics />
           <div className="App min-h-screen bg-background text-foreground">
             <Navbar />
             <main>

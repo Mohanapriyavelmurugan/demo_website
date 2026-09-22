@@ -39,8 +39,8 @@ const companyItems: NavItem[] = [
     href: "/vision",
   },
   {
-    title: "Leadership",
-    description: "Founders and executive team",
+    title: "Operations & Technology",
+    description: "How the company is run",
     href: "/team",
   },
   ...(newsroomItems.length > 0 ? [newsroomItem] : []),

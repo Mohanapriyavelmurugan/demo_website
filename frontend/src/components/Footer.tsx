@@ -9,7 +9,7 @@ const columns = [
     links: [
       { name: "About", href: "/about" },
       { name: "Vision & Mission", href: "/vision" },
-      { name: "Leadership", href: "/team" },
+      { name: "Operations & Technology", href: "/team" },
       ...(newsroomItems.length > 0 ? [{ name: "Newsroom", href: "/newsroom" }] : []),
       { name: "Contact", href: "/contact" },
     ],

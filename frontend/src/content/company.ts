@@ -16,7 +16,7 @@ export const company = {
 /* Leave a value empty to hide it everywhere it is rendered. */
 export const contact = {
   email: "contact@valtraq.in",
-  phone: "+91 63014 32144",
+  phone: "+91 81259 54423",
 };
 
 export type Service = {
@@ -52,54 +52,50 @@ export const services: Service[] = [
   },
 ];
 
-export type Leader = {
+/*
+ * Founders are represented by role only. Their names, photographs, and personal
+ * details are deliberately not published — this is a standing privacy decision,
+ * so do not reintroduce them without being asked.
+ */
+export type Role = {
+  title: string;
+  detail: string;
+};
+
+export const founderRoles: Role[] = [
+  {
+    title: "Co-Founder & Chief Executive Officer",
+    detail: "Sets company strategy and product direction, and led the platform architecture behind Valtraq CDSS.",
+  },
+  {
+    title: "Co-Founder & Chief Medical Officer",
+    detail: "A practicing diabetologist (MBBS, MD Internal Medicine) who sets clinical standards, physician review protocols, and clinical governance.",
+  },
+  {
+    title: "Co-Founder & Chief Scientific Officer",
+    detail: "Leads computational intelligence research and the scientific methods underpinning Valtraq's clinical reasoning.",
+  },
+];
+
+export type TeamMember = {
   name: string;
   title: string;
   bio: string;
   initials: string;
-  image?: string;
-  imagePosition?: string;
 };
 
-export const leadership: Leader[] = [
-  {
-    name: "Telukuntla Vinay Koushik",
-    title: "Co-Founder & Chief Executive Officer",
-    initials: "VK",
-    image: "/team/vinay-koushik.jpg",
-    imagePosition: "center 12%",
-    bio: "Leads company strategy and product direction, and built the platform architecture behind Valtraq CDSS.",
-  },
-  {
-    name: "Dr. Aswin Mukundan",
-    title: "Co-Founder & Chief Medical Officer",
-    initials: "AM",
-    image: "/team/aswin.jpg",
-    imagePosition: "center top",
-    bio: "Practicing diabetologist (MBBS, MD Internal Medicine). Sets clinical standards, physician review protocols, and clinical governance.",
-  },
-  {
-    name: "Dr. Udhendran",
-    title: "Co-Founder & Chief Scientific Officer",
-    initials: "U",
-    image: "/team/udhendran.jpg",
-    imagePosition: "center 8%",
-    bio: "Leads computational intelligence research and the scientific methods underpinning Valtraq's clinical reasoning.",
-  },
+/* Named executives. Photographs are intentionally not published. */
+export const team: TeamMember[] = [
   {
     name: "Ramabathina Yashaswini",
     title: "Chief Technology Officer",
     initials: "RY",
-    image: "/team/yashaswini.jpg",
-    imagePosition: "center 10%",
     bio: "Leads engineering, infrastructure, and the delivery of Valtraq CDSS as a secure, reliable service.",
   },
   {
     name: "Mohanapriya Velmurugan",
     title: "Chief Operating Officer",
     initials: "MV",
-    image: "/team/mohana-priya.jpg",
-    imagePosition: "center 18%",
     bio: "Leads operations, client delivery, and intellectual property strategy across the company.",
   },
 ];
