@@ -1,0 +1,96 @@
+/* Dot field · ui_ux_plan_v3.md §3.3 */
+
+.dotfield {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  contain: layout paint;
+  --gap: 22px; --r: 1.1px; --lr: 1.8px; --lens: 260px;
+  --base-c: hsl(var(--dot-base) / var(--dot-base-a));
+  --lit-c: hsl(var(--dot-lit) / var(--dot-lit-a));
+  --halo-c: transparent; --halo-r: 0px;
+}
+.dotfield[data-density="fine"]  { --gap: 18px; --r: .95px; --lr: 1.5px; }
+.dotfield[data-density="airy"]  { --gap: 28px; --r: 1.25px; --lr: 2.1px; }
+@media (max-width: 767px) {
+  .dotfield[data-density="fine"]    { --gap: 22px; --r: 1.1px; --lr: 1.8px; }
+  .dotfield[data-density="regular"] { --gap: 28px; --r: 1.25px; --lr: 2.1px; }
+  .dotfield[data-density="airy"]    { --gap: 32px; }
+}
+.dotfield[data-lens="sm"] { --lens: 180px; }
+.dotfield[data-lens="lg"] { --lens: 340px; }
+@media (max-width: 767px) {
+  .dotfield { --lens: 208px; }
+  .dotfield[data-lens="sm"] { --lens: 144px; }
+  .dotfield[data-lens="lg"] { --lens: 272px; }
+}
+
+.dotfield[data-variant="paper"]  { --dot-base: var(--ink); --dot-base-a: .14; --dot-lit: var(--teal); --dot-lit-a: .70; }
+.dotfield[data-variant="card"]   { --dot-base: var(--ink); --dot-base-a: .16; --dot-lit: var(--teal); --dot-lit-a: .75; }
+.dotfield[data-variant="mint"]   { --dot-base: var(--teal-700); --dot-base-a: .18; --dot-lit: var(--teal); --dot-lit-a: .80; }
+.dotfield[data-variant="saffron"]{ --dot-base: var(--saffron-700); --dot-base-a: .18; --dot-lit: var(--saffron-700); --dot-lit-a: .72; }
+.dotfield[data-variant="sand"]   { --dot-base: var(--ink); --dot-base-a: .12; --dot-lit: var(--teal); --dot-lit-a: .55; }
+.dotfield[data-variant="night"]  { --dot-base: var(--teal-200); --dot-base-a: .16; --dot-lit: var(--teal-200); --dot-lit-a: .90; --lr: 1.9px; --halo-c: hsl(var(--aurora) / .28); --halo-r: 4.5px; }
+.dotfield[data-variant="night2"] { --dot-base: var(--teal-200); --dot-base-a: .18; --dot-lit: var(--teal-200); --dot-lit-a: .90; --lr: 1.9px; --halo-c: hsl(var(--aurora) / .22); --halo-r: 4.2px; }
+
+.df-base, .df-lit, .df-ecg {
+  position: absolute; left: 0; top: 0; background-size: var(--gap) var(--gap);
+}
+.df-base {
+  inset: 0;
+  background-image: radial-gradient(circle, var(--base-c) 0 var(--r), transparent calc(var(--r) + .7px));
+}
+.dotfield[data-fade="edges"]  .df-base {
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 50%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(120% 90% at 50% 50%, #000 55%, transparent 100%);
+}
+.dotfield[data-fade="bottom"] .df-base {
+  -webkit-mask-image: linear-gradient(#000 60%, transparent);
+  mask-image: linear-gradient(#000 60%, transparent);
+}
+
+.df-lens {
+  position: absolute; left: 0; top: 0;
+  width: calc(var(--lens) * 2); height: calc(var(--lens) * 2);
+  overflow: hidden; will-change: transform;
+  transform: translate3d(-999px, -999px, 0);
+  -webkit-mask-image: radial-gradient(closest-side, #000 0%, rgb(0 0 0 / .6) 42%, rgb(0 0 0 / .18) 72%, transparent 100%);
+          mask-image: radial-gradient(closest-side, #000 0%, rgb(0 0 0 / .6) 42%, rgb(0 0 0 / .18) 72%, transparent 100%);
+}
+.df-lit {
+  width: var(--fw, 100vw); height: var(--fh, 100vh); will-change: transform;
+  background-image: radial-gradient(circle, var(--lit-c) 0 var(--lr), var(--halo-c) calc(var(--lr) + .6px), transparent calc(var(--lr) + var(--halo-r) + .8px));
+}
+
+@keyframes df-drift {
+  0%,100% { transform: translate3d(calc(var(--fw) * .70 - var(--lens)), calc(var(--fh) * .30 - var(--lens)), 0); }
+  33%     { transform: translate3d(calc(var(--fw) * .34 - var(--lens)), calc(var(--fh) * .58 - var(--lens)), 0); }
+  66%     { transform: translate3d(calc(var(--fw) * .56 - var(--lens)), calc(var(--fh) * .74 - var(--lens)), 0); }
+}
+@keyframes df-drift-inv {
+  0%,100% { transform: translate3d(calc(var(--lens) - var(--fw) * .70), calc(var(--lens) - var(--fh) * .30), 0); }
+  33%     { transform: translate3d(calc(var(--lens) - var(--fw) * .34), calc(var(--lens) - var(--fh) * .58), 0); }
+  66%     { transform: translate3d(calc(var(--lens) - var(--fw) * .56), calc(var(--lens) - var(--fh) * .74), 0); }
+}
+.dotfield[data-mode="ambient"] .df-lens { animation: df-drift 36s ease-in-out infinite; }
+.dotfield[data-mode="ambient"] .df-lit  { animation: df-drift-inv 36s ease-in-out infinite; }
+.dotfield[data-active="false"] .df-lens,
+.dotfield[data-active="false"] .df-lit { animation-play-state: paused; }
+
+.df-ecg {
+  inset: 0; width: auto; height: auto;
+  background-image: radial-gradient(circle, hsl(var(--aurora) / .55) 0 var(--lr), transparent calc(var(--lr) + .8px));
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.8s cubic-bezier(.22, 1, .36, 1);
+}
+.dotfield[data-seen="true"] .df-ecg { clip-path: inset(0 0 0 0); }
+
+.dot-hush { position: relative; isolation: isolate; }
+.dot-hush::before {
+  content: ""; position: absolute; inset: -18px -28px; z-index: -1; border-radius: 28px;
+  background: hsl(var(--ground) / .85); filter: blur(14px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dotfield .df-lens, .dotfield .df-lit { animation: none !important; }
+  .df-ecg { transition: none; clip-path: none; }
+}
+@media print { .dotfield { display: none; } }

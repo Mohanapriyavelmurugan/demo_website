@@ -66,7 +66,7 @@ function HeroBackdrop() {
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -right-20 bottom-[-20%] h-[26rem] w-[26rem] rounded-full bg-champagne/[0.07] blur-3xl"
+        className="absolute -right-20 bottom-[-20%] h-[26rem] w-[26rem] rounded-full bg-accent/40 blur-3xl"
         animate={reduceMotion ? undefined : { x: [0, -30, 0], y: [0, -24, 0] }}
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
       />

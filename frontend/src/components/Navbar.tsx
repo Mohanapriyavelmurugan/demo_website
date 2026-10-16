@@ -1,214 +1,70 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import { buttonVariants } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { cn } from "@/lib/utils";
-import { newsroomItems } from "@/content/newsroom";
-
-type NavItem = {
-  title: string;
-  description: string;
-  href: string;
-};
-
-/* Newsroom is listed only once it has real content. */
-const newsroomItem: NavItem = {
-  title: "Newsroom",
-  description: "Events, summits, and clinical meetings",
-  href: "/newsroom",
-};
-
-const companyItems: NavItem[] = [
-  {
-    title: "Company",
-    description: "Corporate profile and operating focus",
-    href: "/about",
-  },
-  {
-    title: "Vision & Mission",
-    description: "Principles and long-term direction",
-    href: "/vision",
-  },
-  {
-    title: "Operations & Technology",
-    description: "How the company is run",
-    href: "/team",
-  },
-  ...(newsroomItems.length > 0 ? [newsroomItem] : []),
-];
-
-const platformItems: NavItem[] = [
-  {
-    title: "Valtraq CDSS",
-    description: "Clinical decision support for outpatient care",
-    href: "/product",
-  },
-  {
-    title: "Clinical Governance",
-    description: "Physician review, safety, and audit",
-    href: "/validation",
-  },
-  {
-    title: "Guideline Basis",
-    description: "Guideline-grounded clinical frameworks",
-    href: "/evidence",
-  },
-];
+import { company, navLinks, primaryCta } from "@/content/site";
 
 const mobileNav = [
   {
-    name: "Home",
-    items: [{ label: "Home", href: "/" }],
-  },
-  {
-    name: "Company",
-    items: companyItems.map((item) => ({ label: item.title, href: item.href })),
-  },
-  {
-    name: "Services",
-    items: [{ label: "Services", href: "/services" }],
-  },
-  {
-    name: "Platform",
-    items: platformItems.map((item) => ({ label: item.title, href: item.href })),
-  },
-  {
-    name: "Contact",
+    name: "Menu",
     items: [
+      { label: "Home", href: "/" },
+      ...navLinks.map((item) => ({ label: item.label, href: item.href })),
       { label: "Contact", href: "/contact" },
     ],
   },
 ];
 
-function NavListItem({ title, description, href }: NavItem) {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          to={href}
-          data-testid={`nav-link-${title.toLowerCase().replace(/[^a-z]+/g, "-")}`}
-          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-secondary hover:text-foreground focus:bg-secondary"
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">{description}</p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  );
-}
-
 export const Navbar: React.FC = () => {
   const location = useLocation();
-  const homeActive = location.pathname === "/";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-md">
-      <nav className="relative mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
+      <nav className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <MobileNav nav={mobileNav} />
           <Link
             to="/"
-            className="font-display text-xl font-medium tracking-tight text-foreground"
+            className="font-display text-xl font-medium tracking-tight text-foreground transition-colors hover:text-primary"
             data-testid="nav-logo"
           >
-            Valtraq
+            {company.name}
           </Link>
         </div>
 
-        <NavigationMenu
-          delayDuration={200}
-          skipDelayDuration={350}
-          className="hidden max-w-none flex-1 justify-center lg:flex"
-        >
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
+        <ul className="hidden items-center gap-1 lg:flex">
+          {navLinks.map((item) => {
+            const active =
+              location.pathname === item.href ||
+              location.pathname.startsWith(`${item.href}/`);
+            return (
+              <li key={item.href}>
                 <Link
-                  to="/"
-                  data-testid="nav-link-home"
+                  to={item.href}
+                  data-testid={`nav-link-${item.label.toLowerCase()}`}
                   className={cn(
-                    navigationMenuTriggerStyle(),
-                    homeActive && "bg-secondary text-foreground"
+                    "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    active && "bg-secondary text-foreground"
                   )}
                 >
-                  Home
+                  {item.label}
                 </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="h-9 bg-transparent px-3">
-                Company
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[320px] gap-1 p-2">
-                  {companyItems.map((item) => (
-                    <NavListItem key={item.href} {...item} />
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link
-                  to="/services"
-                  data-testid="nav-link-services"
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    location.pathname === "/services" && "bg-secondary text-foreground"
-                  )}
-                >
-                  Services
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="h-9 bg-transparent px-3">
-                Platform
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[340px] gap-1 p-2">
-                  {platformItems.map((item) => (
-                    <NavListItem key={item.href} {...item} />
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link
-                  to="/contact"
-                  data-testid="nav-link-contact"
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    location.pathname === "/contact" && "bg-secondary text-foreground"
-                  )}
-                >
-                  Contact
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+              </li>
+            );
+          })}
+        </ul>
 
         <div className="flex shrink-0 items-center justify-end">
           <Link
-            to="/contact"
-            className={cn(buttonVariants({ size: "sm" }), "hidden rounded-full sm:inline-flex")}
+            to={primaryCta.href}
+            className={cn(
+              buttonVariants({ size: "sm" }),
+              "hidden cursor-pointer rounded-full sm:inline-flex"
+            )}
+            data-testid="nav-cta-demo"
           >
-            Get in touch
+            {primaryCta.label}
           </Link>
         </div>
       </nav>

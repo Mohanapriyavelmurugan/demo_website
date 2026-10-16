@@ -1,94 +1,102 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { company, contact, disclaimer } from "@/content/company";
-import { newsroomItems } from "@/content/newsroom";
-
-const columns = [
-  {
-    heading: "Company",
-    links: [
-      { name: "About", href: "/about" },
-      { name: "Vision & Mission", href: "/vision" },
-      { name: "Operations & Technology", href: "/team" },
-      ...(newsroomItems.length > 0 ? [{ name: "Newsroom", href: "/newsroom" }] : []),
-      { name: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    heading: "Offering",
-    links: [
-      { name: "Services", href: "/services" },
-      { name: company.product, href: "/product" },
-      { name: "Clinical Governance", href: "/validation" },
-      { name: "Guideline Basis", href: "/evidence" },
-    ],
-  },
-  {
-    heading: "Legal",
-    links: [
-      { name: "Privacy Policy", href: "/legal#privacy" },
-      { name: "Terms of Use", href: "/legal#terms" },
-    ],
-  },
-];
+import { company, contact, disclaimer, footer } from "@/content/site";
 
 export const Footer: React.FC = () => {
   return (
     <footer className="border-t border-border bg-card">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.3fr_2fr]">
+      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-[1.4fr_2fr]">
           <div className="space-y-4">
             <p className="font-display text-2xl text-foreground">{company.name}</p>
-            <p className="max-w-sm text-sm leading-6 text-muted-foreground">{company.tagline}</p>
-            {(contact.email || contact.phone) && (
-              <div className="space-y-1 text-sm">
-                {contact.email && (
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="block text-foreground transition-colors hover:text-primary"
-                  >
-                    {contact.email}
-                  </a>
-                )}
-                {contact.phone && (
-                  <a
-                    href={`tel:${contact.phone.replace(/\s+/g, "")}`}
-                    className="block text-foreground transition-colors hover:text-primary"
-                  >
-                    {contact.phone}
-                  </a>
-                )}
-              </div>
-            )}
+            <p className="max-w-sm text-base leading-7 text-muted-foreground">{company.tagline}</p>
+            <div className="space-y-1 text-sm">
+              <a
+                href={`mailto:${contact.email}`}
+                className="block cursor-pointer text-foreground transition-colors hover:text-primary"
+              >
+                {contact.email}
+              </a>
+              <a
+                href={`tel:${contact.phone.replace(/\s+/g, "")}`}
+                className="block cursor-pointer text-foreground transition-colors hover:text-primary"
+              >
+                {contact.phone}
+              </a>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            {columns.map((column) => (
-              <div key={column.heading}>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
-                  {column.heading}
-                </p>
-                <ul className="mt-4 space-y-2">
-                  {column.links.map((link) => (
-                    <li key={link.href}>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
+                Company
+              </p>
+              <ul className="mt-4 space-y-2">
+                {footer.companyLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      to={link.href}
+                      className="cursor-pointer text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
+                Products
+              </p>
+              <ul className="mt-4 space-y-2">
+                {footer.productLinks.map((link) => (
+                  <li key={link.name}>
+                    {link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="cursor-pointer text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {link.name} ↗
+                      </a>
+                    ) : (
                       <Link
                         to={link.href}
-                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        className="cursor-pointer text-sm text-muted-foreground transition-colors hover:text-foreground"
                       >
                         {link.name}
                       </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
+                Legal
+              </p>
+              <ul className="mt-4 space-y-2">
+                {footer.legalLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      to={link.href}
+                      className="cursor-pointer text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-10 space-y-3 border-t border-border pt-6">
+        <div className="mt-12 space-y-3 border-t border-border pt-6">
           <p className="text-xs leading-5 text-muted-foreground">{disclaimer}</p>
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} {company.legalName}. All rights reserved.
+            © {new Date().getFullYear()} {company.legalName}
+            {company.incorporated ? ` · Incorporated ${company.incorporated}` : ""}
           </p>
         </div>
       </div>

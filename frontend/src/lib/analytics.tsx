@@ -1,14 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { getCookieConsent, type CookieConsent } from "@/components/CookieBanner";
 
 /*
- * Analytics loader.
- *
- * Google Analytics 4 loads only when REACT_APP_GA_ID is set at build time, so
- * local development and preview builds stay clean. Vercel Web Analytics loads
- * from Vercel's own first-party path, which means no third-party cookies.
- *
- * Both are skipped outside production and when the visitor has Do Not Track on.
+ * GA4 loads only after the visitor Accepts cookies (or if they previously accepted).
+ * Vercel Web Analytics is first-party and loads in production regardless of GA consent.
+ * Both skip when Do Not Track is on.
  */
 
 declare global {
@@ -39,17 +36,18 @@ function addScript(src: string, attrs: Record<string, string> = {}) {
   document.head.appendChild(el);
 }
 
-let initialised = false;
+let vercelReady = false;
+let gaReady = false;
 
-function init() {
-  if (initialised) return;
-  initialised = true;
-
-  // Vercel Web Analytics — served first-party from /_vercel/insights.
+function initVercel() {
+  if (vercelReady) return;
+  vercelReady = true;
   addScript("/_vercel/insights/script.js");
+}
 
-  if (!GA_ID) return;
-
+function initGa() {
+  if (gaReady || !GA_ID) return;
+  gaReady = true;
   addScript(`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`);
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag() {
@@ -57,21 +55,33 @@ function init() {
     window.dataLayer!.push(arguments);
   };
   window.gtag("js", new Date());
-  // Page views are sent manually per route below, so the SPA reports correctly.
   window.gtag("config", GA_ID, { send_page_view: false, anonymize_ip: true });
 }
 
-/** Mount once, inside the router. Sends a page view on every route change. */
 export function Analytics() {
   const location = useLocation();
 
   useEffect(() => {
     if (!isProduction || doNotTrack()) return;
-    init();
+    initVercel();
+
+    const applyConsent = (consent: CookieConsent | null) => {
+      if (consent === "accepted") initGa();
+    };
+
+    applyConsent(getCookieConsent());
+
+    const onConsent = (event: Event) => {
+      const detail = (event as CustomEvent<CookieConsent>).detail;
+      applyConsent(detail);
+    };
+    window.addEventListener("valtraq-cookie-consent", onConsent);
+    return () => window.removeEventListener("valtraq-cookie-consent", onConsent);
   }, []);
 
   useEffect(() => {
     if (!isProduction || doNotTrack() || !GA_ID || !window.gtag) return;
+    if (getCookieConsent() !== "accepted") return;
     window.gtag("event", "page_view", {
       page_path: location.pathname + location.search,
       page_location: window.location.href,
