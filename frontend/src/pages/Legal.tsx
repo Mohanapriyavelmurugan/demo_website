@@ -1,148 +1,217 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { PageHero } from "@/components/site/primitives";
+import { PageHero, Section } from "@/components/site/primitives";
+import { company, contact } from "@/content/site";
+import { setCookieConsent, getCookieConsent } from "@/components/CookieBanner";
 import { useSEO } from "@/hooks/useSEO";
 
-type Section = { heading: string; body?: string; list?: string[] };
+type SectionBlock = { heading: string; body?: string; list?: string[] };
 
-const privacy: Section[] = [
+const privacy: SectionBlock[] = [
   {
     heading: "Privacy Policy",
-    body:
-      'Valtraq Healthcare ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect information when you visit our website.',
+    body: `${company.shortLegalName} ("we," "us," or "our") explains how we collect, use, and protect information when you visit valtraq.in.`,
   },
   {
-    heading: "Information we collect",
+    heading: "What the contact form collects",
     list: [
-      "Contact form data (name, email, organization, message)",
-      "Analytics cookies to understand website usage",
-      "Technical information (browser type, IP address, device information)",
+      "Inquiry type, name, work email, optional organisation and role, and your message",
+      "Consent that we may use these details to reply to you",
     ],
   },
   {
-    heading: "How we use your information",
-    body:
-      "We use collected information solely for responding to your inquiries, improving our website, and understanding institutional engagement needs. We do not sell, rent, or share your personal information with third parties except as required by law.",
+    heading: "Why we collect it",
+    body: "We use form submissions only to reply to your inquiry (demo, quote, partnership, careers, investor, or other). We do not sell this data.",
   },
   {
-    heading: "Data handling principles",
+    heading: "How long we keep it",
+    body: "We delete form emails after 12 months unless they became a customer or hire relationship that requires longer retention.",
+  },
+  {
+    heading: "Processors",
     list: [
-      "Purpose limitation: data used only for stated purposes",
-      "Consent: we collect data with your explicit consent",
-      "Data localization: intent to store data within India",
-      "Security: implementation of appropriate safeguards",
+      "Resend — delivers inquiry emails",
+      "Google Analytics (GA4) — only if you Accept analytics cookies",
+      "Vercel — hosts this website",
     ],
   },
   {
-    heading: "Your rights",
-    body:
-      "You have the right to access, correct, or delete your personal data. For privacy-related requests, please contact us through the contact form.",
+    heading: "Contact",
+    body: `Privacy questions: ${contact.email} until privacy@valtraq.in is live.`,
   },
 ];
 
-const terms: Section[] = [
+const terms: SectionBlock[] = [
   {
     heading: "Terms of Use",
-    body: "By accessing and using this website, you agree to be bound by these Terms of Use.",
+    body: "By accessing and using this website, you agree to these Terms of Use.",
   },
   {
     heading: "Clinical decision support",
-    body:
-      "Valtraq CDSS is a clinical decision-support system intended for use under direct physician supervision. It is not a substitute for professional medical judgment. All recommendations must be reviewed, accepted, modified, or discarded by a qualified physician before reaching a patient.",
+    body: "Clinoveai is clinical decision support for use under physician supervision. It does not replace professional medical judgment. The doctor approves, edits, or rejects every suggestion.",
   },
   {
-    heading: "No direct patient claims",
-    body:
-      "This website makes no diagnostic or treatment claims to end patients. If you are a patient seeking medical advice, please consult a qualified healthcare provider.",
+    heading: "No patient medical advice",
+    body: "This website does not provide medical advice to patients. If you need care, consult a qualified clinician.",
   },
   {
     heading: "Intellectual property",
-    body:
-      "All content on this website, including text, graphics, logos, and software, is the property of Valtraq Healthcare and protected by applicable intellectual property laws.",
+    body: `Site content is the property of ${company.legalName} unless otherwise noted.`,
   },
   {
     heading: "Limitation of liability",
-    body:
-      "To the fullest extent permitted by law, Valtraq Healthcare shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of this website or reliance on its content.",
-  },
-  {
-    heading: "Changes to terms",
-    body:
-      "We reserve the right to modify these Terms of Use at any time. Changes will be posted on this page with an updated effective date.",
+    body: `To the fullest extent permitted by law, ${company.shortLegalName} is not liable for indirect or consequential damages arising from use of this website.`,
   },
 ];
 
+const cookies: SectionBlock[] = [
+  {
+    heading: "Cookie settings",
+    body: "We use analytics cookies (GA4) only after you Accept. Reject is as easy as Accept. You can change your choice below.",
+  },
+  {
+    heading: "What we use",
+    list: [
+      "Essential cookies needed to run the site",
+      "Optional analytics cookies (GA4) after Accept",
+      "Vercel Web Analytics is first-party hosting analytics",
+    ],
+  },
+];
+
+function Blocks({ items }: { items: SectionBlock[] }) {
+  return (
+    <div className="space-y-10">
+      {items.map((item) => (
+        <div key={item.heading}>
+          <h2 className="font-display text-2xl text-foreground">{item.heading}</h2>
+          {item.body && (
+            <p className="mt-4 text-base leading-7 text-muted-foreground">{item.body}</p>
+          )}
+          {item.list && (
+            <ul className="mt-4 list-disc space-y-2.5 pl-5 text-base leading-7 text-muted-foreground">
+              {item.list.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function Legal() {
   const location = useLocation();
-  const [tab, setTab] = useState<"privacy" | "terms">("privacy");
+  const [tab, setTab] = useState<"privacy" | "terms" | "cookies">("privacy");
+  const [consent, setConsent] = useState<string | null>(null);
 
   useSEO({
-    title: "Legal | Valtraq Healthcare",
-    description: "Privacy Policy and Terms of Use for Valtraq Healthcare and Valtraq CDSS.",
+    title: "Legal | Valtraq",
+    description: "Privacy policy, terms of use, and cookie settings for Valtraq.",
   });
 
   useEffect(() => {
     const hash = location.hash.replace("#", "");
-    if (hash === "privacy" || hash === "terms") setTab(hash);
-  }, [location]);
+    if (hash === "terms") setTab("terms");
+    else if (hash === "cookies") setTab("cookies");
+    else setTab("privacy");
+    setConsent(getCookieConsent());
+  }, [location.hash]);
 
-  const sections = tab === "privacy" ? privacy : terms;
+  const tabs = [
+    { id: "privacy" as const, label: "Privacy" },
+    { id: "terms" as const, label: "Terms" },
+    { id: "cookies" as const, label: "Cookies" },
+  ];
 
   return (
     <div>
       <PageHero
         label="Legal"
-        title={<>Privacy Policy and Terms of Use</>}
-        subtitle="Corporate legal information for Valtraq Healthcare"
+        title="Policies that keep trust clear."
+        subtitle="How we handle website data, cookies, and use of this site."
       />
 
-      <section className="section-block">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[240px_1fr] lg:px-8">
-          <aside>
-            <div className="surface p-3 lg:sticky lg:top-24">
-              {(["privacy", "terms"] as const).map((item) => (
+      <Section>
+        <div className="glass-card-float overflow-hidden rounded-[1.35rem]">
+          <div className="sticky top-[4.5rem] z-10 border-b border-border/80 bg-[hsl(var(--card)/0.92)] px-4 py-4 backdrop-blur-md sm:px-6">
+            <div
+              className="inline-flex flex-wrap gap-1 rounded-full border border-border/80 bg-[hsl(var(--sand)/0.5)] p-1"
+              role="tablist"
+              aria-label="Legal sections"
+            >
+              {tabs.map((item) => (
                 <button
-                  key={item}
-                  onClick={() => setTab(item)}
-                  data-testid={`legal-tab-${item}`}
+                  key={item.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={tab === item.id}
+                  onClick={() => {
+                    setTab(item.id);
+                    window.history.replaceState(null, "", `#${item.id}`);
+                  }}
                   className={cn(
-                    "w-full rounded-xl px-3 py-3 text-left text-sm transition-colors",
-                    tab === item
-                      ? "bg-secondary text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                    "cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    tab === item.id
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-foreground hover:bg-card"
                   )}
                 >
-                  {item === "privacy" ? "Privacy Policy" : "Terms of Use"}
+                  {item.label}
                 </button>
               ))}
             </div>
-          </aside>
+          </div>
 
-          <div className="space-y-8">
-            {sections.map((section, index) => (
-              <div key={section.heading} className={cn(index > 0 && "section-block !py-8")}>
-                <h2
-                  className={cn(
-                    "font-display text-foreground",
-                    index === 0 ? "text-3xl" : "text-2xl"
-                  )}
-                >
-                  {section.heading}
-                </h2>
-                {section.body && <p className="copy-compact mt-4">{section.body}</p>}
-                {section.list && (
-                  <ul className="mt-4 space-y-2 text-sm leading-6 text-muted-foreground">
-                    {section.list.map((item) => (
-                      <li key={item}>- {item}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
+          <div className="px-6 py-10 md:px-10 md:py-12">
+            <div className="max-w-[68ch]">
+              {tab === "privacy" && <Blocks items={privacy} />}
+              {tab === "terms" && <Blocks items={terms} />}
+              {tab === "cookies" && (
+                <div className="space-y-10">
+                  <Blocks items={cookies} />
+                  <div className="rounded-2xl border border-border bg-[hsl(var(--sand)/0.35)] p-6">
+                    <p className="text-sm text-muted-foreground">
+                      Current choice:{" "}
+                      <span className="font-semibold text-foreground">
+                        {consent === "accepted"
+                          ? "Accepted"
+                          : consent === "rejected"
+                            ? "Rejected"
+                            : "Not set"}
+                      </span>
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        className="cursor-pointer rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+                        onClick={() => {
+                          setCookieConsent("accepted");
+                          setConsent("accepted");
+                        }}
+                      >
+                        Accept analytics
+                      </button>
+                      <button
+                        type="button"
+                        className="cursor-pointer rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground"
+                        onClick={() => {
+                          setCookieConsent("rejected");
+                          setConsent("rejected");
+                        }}
+                      >
+                        Reject analytics
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </section>
+      </Section>
     </div>
   );
 }

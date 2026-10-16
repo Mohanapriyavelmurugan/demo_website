@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["Fraunces", "serif"],
-        sans: ["Inter", "sans-serif"],
+        display: ["Fraunces", "Georgia", "serif"],
+        sans: ["Source Sans 3", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -26,13 +26,22 @@ module.exports = {
           light: '#111A35',
         },
         teal: {
-          glow: '#14B8A6',
+          glow: '#195843',
         },
         champagne: {
-          DEFAULT: 'hsl(var(--warm))',
-          glow: '#F0DFB5',
+          DEFAULT: 'hsl(var(--champagne))',
+          glow: '#E9C46A',
         },
+        warm: 'hsl(var(--warm))',
+        mist: 'hsl(var(--mist))',
+        sand: 'hsl(var(--sand))',
+        band: 'hsl(var(--band))',
         ivory: 'hsl(var(--foreground))',
+        forest: {
+          DEFAULT: '#195843',
+          cream: '#FAF9F6',
+          accent: '#E9C46A',
+        },
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'

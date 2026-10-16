@@ -12,7 +12,14 @@
  *                      verify valtraq.in in Resend and set this to an address on it.
  */
 
-const LIMITS = { name: 120, email: 254, organization: 160, inquiryType: 60, message: 5000 };
+const LIMITS = {
+  name: 120,
+  email: 254,
+  organization: 160,
+  inquiryType: 60,
+  role: 80,
+  message: 5000,
+};
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const RATE_MAX = 5;
@@ -77,13 +84,16 @@ module.exports = async function handler(req, res) {
     email: clean(body.email, LIMITS.email),
     organization: clean(body.organization, LIMITS.organization),
     inquiryType: clean(body.inquiryType, LIMITS.inquiryType),
+    role: clean(body.role, LIMITS.role),
     message: clean(body.message, LIMITS.message),
+    consent: Boolean(body.consent),
   };
 
   const fields = {};
   if (!data.name) fields.name = "Please enter your name.";
   if (!EMAIL_RE.test(data.email)) fields.email = "Please enter a valid email address.";
   if (data.message.length < 10) fields.message = "Please include a short message (at least 10 characters).";
+  if (!data.consent) fields.consent = "Please agree so we can reply to you.";
   if (Object.keys(fields).length) {
     return res.status(422).json({ error: "validation_failed", fields });
   }
@@ -106,6 +116,8 @@ module.exports = async function handler(req, res) {
     ["Email", data.email],
     ["Organization", data.organization || "-"],
     ["Inquiry type", data.inquiryType || "-"],
+    ["I am a", data.role || "-"],
+    ["Consent", data.consent ? "yes" : "no"],
   ];
   const html =
     `<h2>New website inquiry</h2><table>` +

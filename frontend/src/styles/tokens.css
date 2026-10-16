@@ -1,0 +1,83 @@
+/* Palette v3 · Dot field + ECG (ui_ux_plan_v3.md §1.4) */
+
+:root {
+  /* grounds */
+  --paper: 40 39.1% 95.5%;        /* #F8F5EF */
+  --card: 40 100% 98.8%;          /* #FFFDF9 */
+  --sand: 38.6 31.8% 91.4%;       /* #F0EBE2 */
+  --mint: 156 31.3% 93.7%;        /* #EAF4F0 */
+  --saffron-tint: 39.4 84.2% 92.5%; /* #FCF1DC */
+  --night: 173.1 54.2% 9.4%;      /* #0B2522 */
+  --night-2: 174 52.6% 14.9%;     /* #123A36 */
+  /* text */
+  --ink: 172.5 29.6% 10.6%;       /* #132321 */
+  --slate: 165 6.5% 36.1%;        /* #56625F */
+  /* teal core */
+  --teal: 174.2 76.9% 23.7%;      /* #0E6B62 */
+  --teal-700: 174.2 78.3% 18%;    /* #0A524B */
+  --teal-400: 170.7 35.6% 53.7%;  /* #5FB3A6 decorative only on light */
+  --teal-200: 170.1 39.9% 64.1%;  /* #7FC8BC text/dots on night */
+  --teal-wash: 162.9 30.4% 91%;   /* #E1EFEB */
+  --aurora: 170.8 59.3% 45.3%;    /* #2FB8A3 glow on night */
+  /* saffron secondary (needs Vinay's okay) */
+  --saffron: 39.1 87.4% 59.4%;    /* #F2B33D */
+  --saffron-700: 34.1 92.5% 31.4%;/* #9A5A06 text-safe */
+  --saffron-edge: 38.9 71.6% 69.6%; /* #E9C27A */
+  /* lines & states */
+  --hairline: 37.9 26% 85.7%;     /* #E4DDD1 */
+  --field-edge: 40 8.4% 50.8%;    /* #8C8577 (3:1 on paper) */
+  --danger: 4.2 76.5% 40%;        /* #B42318 */
+
+  /* shadcn mapping */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card-foreground: var(--ink);
+  --popover: var(--card);
+  --popover-foreground: var(--ink);
+  --primary: var(--teal);
+  --primary-foreground: var(--paper);
+  --primary-hover: var(--teal-700);
+  --secondary: var(--teal-wash);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sand);
+  --muted-foreground: var(--slate);
+  --accent: var(--teal-700);
+  --accent-foreground: var(--paper);
+  --accent-on-dark: var(--teal-200);
+  --destructive: var(--danger);
+  --destructive-foreground: 0 0% 100%;
+  --border: var(--hairline);
+  --input: var(--field-edge);
+  --ring: var(--teal);
+  --inverse: var(--night);
+  --inverse-foreground: var(--paper);
+  --status-progress: var(--saffron-700);
+  --radius: 1rem;
+
+  /* legacy aliases, to be removed in Prompt 13 */
+  --mist: var(--mint);
+  --band: var(--night);
+  --champagne: var(--saffron);
+  --warm: var(--saffron-700);
+  --teal-glow: var(--teal-wash);
+  --hero-glow: var(--saffron-tint);
+
+  /* dot field defaults (overridden per ground) */
+  --ground: var(--paper);
+  --dot-base: var(--ink);
+  --dot-base-a: .14;
+  --dot-lit: var(--teal);
+  --dot-lit-a: .70;
+  --dot-gap: 22px;
+  --dot-r: 1.1px;
+  --dot-lit-r: 1.8px;
+  --lens: 260px;
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-trace: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-instant: 120ms;
+  --dur-quick: 180ms;
+  --dur-base: 320ms;
+}

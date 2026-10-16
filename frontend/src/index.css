@@ -1,44 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Forest & Cream — WCAG AA clinical palette
+ * Primary #195843 · Background #FAF9F6 · Surface #FFFFFF
+ * Text #1A1A1A · Text secondary #6B6B6B · Accent #E9C46A
+ * Light mode only.
+ */
+
 body {
     margin: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 @layer base {
     :root {
-        --background: 210 18% 97%;
-        --foreground: 220 26% 10%;
-        --card: 0 0% 100%;
-        --card-foreground: 220 26% 10%;
+        --background: 45 29% 97%;       /* #FAF9F6 */
+        --foreground: 0 0% 10%;         /* #1A1A1A */
+        --card: 0 0% 100%;              /* #FFFFFF */
+        --card-foreground: 0 0% 10%;
         --popover: 0 0% 100%;
-        --popover-foreground: 220 26% 10%;
-        --primary: 173 49% 24%;
+        --popover-foreground: 0 0% 10%;
+        --primary: 160 56% 22%;         /* #195843 */
         --primary-foreground: 0 0% 100%;
-        --secondary: 210 20% 95%;
-        --secondary-foreground: 220 26% 10%;
-        --muted: 210 20% 95%;
-        --muted-foreground: 220 10% 38%;
-        --accent: 173 49% 24%;
-        --accent-foreground: 0 0% 100%;
-        --destructive: 0 72% 51%;
+        --secondary: 150 18% 92%;
+        --secondary-foreground: 0 0% 10%;
+        --muted: 45 16% 93%;
+        --muted-foreground: 0 0% 42%;   /* #6B6B6B */
+        --accent: 43 74% 66%;           /* #E9C46A */
+        --accent-foreground: 0 0% 10%;
+        --destructive: 0 72% 48%;
         --destructive-foreground: 0 0% 100%;
-        --border: 220 14% 89%;
-        --input: 220 14% 89%;
-        --ring: 173 49% 24%;
-        --warm: 33 35% 33%;
-        --chart-1: 173 49% 24%;
-        --chart-2: 201 54% 33%;
-        --chart-3: 33 35% 33%;
-        --chart-4: 177 32% 30%;
-        --chart-5: 210 18% 45%;
-        --radius: 0.875rem;
+        --border: 40 12% 86%;
+        --input: 40 12% 86%;
+        --ring: 160 56% 22%;
+        /* Legacy token names → Forest & Cream */
+        --warm: 43 48% 36%;             /* readable gold text on cream */
+        --champagne: 43 74% 66%;        /* #E9C46A */
+        --ink: 0 0% 10%;
+        --mist: 150 22% 94%;
+        --sand: 42 28% 95%;
+        --band: 160 56% 18%;
+        --chart-1: 160 56% 22%;
+        --chart-2: 43 74% 66%;
+        --chart-3: 160 35% 32%;
+        --chart-4: 45 20% 55%;
+        --chart-5: 0 0% 42%;
+        --radius: 0.85rem;
+        --hero-glow: 43 55% 92%;
+        --teal-glow: 150 28% 90%;
     }
 }
 
@@ -51,51 +67,119 @@ body {
     body {
         @apply bg-background text-foreground;
         background-color: hsl(var(--background));
-        line-height: 1.5;
+        line-height: 1.6;
     }
     a { color: inherit; }
-    ::selection { background: hsl(var(--warm) / 0.18); color: hsl(var(--foreground)); }
+    ::selection { background: hsl(var(--champagne) / 0.28); color: hsl(var(--foreground)); }
+    h1, h2, h3, .font-display {
+        color: hsl(var(--ink));
+    }
 }
 
 @layer components {
     .surface {
         @apply rounded-2xl border bg-card;
     }
-    .table-shell {
-        @apply overflow-hidden rounded-2xl border bg-card;
-    }
-    .table-shell table {
-        @apply w-full border-collapse;
-    }
-    .table-shell tr {
-        @apply border-b border-border last:border-b-0;
-    }
-    .table-shell th,
-    .table-shell td {
-        @apply px-4 py-3 text-left align-top text-sm;
-    }
-    .table-shell th {
-        @apply w-[42%] font-medium text-foreground;
-    }
-    .table-shell td {
-        @apply text-muted-foreground;
-    }
-    .font-display { font-family: 'Fraunces', serif; }
+    .font-display { font-family: "Fraunces", Georgia, serif; }
     .eyebrow {
-        @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary md:text-base;
-    }
-    .heading-accent {
-        @apply text-base font-semibold text-primary md:text-lg;
+        @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] md:text-sm;
+        color: hsl(var(--warm));
     }
     .hairline { @apply border-t border-border; }
-    .pill-badge {
-        @apply inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em];
-    }
     .section-block {
-        @apply border-t border-border py-10 md:py-14;
+        @apply py-16 md:py-24;
     }
-    .copy-compact {
-        @apply max-w-3xl text-sm leading-6 text-muted-foreground md:text-[15px];
+    .copy-measure {
+        @apply max-w-[42rem] text-base leading-7 text-muted-foreground;
+    }
+    .band-heading {
+        @apply max-w-3xl font-display text-3xl font-normal leading-tight tracking-tight text-foreground md:text-4xl lg:text-[2.85rem];
+    }
+    .status-pill {
+        @apply inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em];
+        border-color: hsl(var(--champagne) / 0.35);
+        background: hsl(var(--champagne));
+        color: hsl(var(--ink));
+    }
+
+    /* Section ground rhythm */
+    .ground-paper {
+        background-color: hsl(var(--background));
+    }
+    .ground-mist {
+        background:
+            linear-gradient(180deg, hsl(var(--mist)) 0%, hsl(var(--background)) 100%);
+    }
+    .ground-sand {
+        background:
+            linear-gradient(180deg, hsl(var(--sand)) 0%, hsl(var(--background)) 100%);
+    }
+    .ground-band {
+        background:
+            radial-gradient(900px 420px at 10% 0%, hsl(160 45% 28%), transparent 55%),
+            linear-gradient(135deg, hsl(var(--band)) 0%, hsl(var(--primary)) 55%, hsl(160 40% 16%) 100%);
+        color: hsl(var(--primary-foreground));
+    }
+    .ground-hero {
+        background:
+            radial-gradient(1000px 520px at 8% -10%, hsl(var(--hero-glow)), transparent 58%),
+            radial-gradient(800px 480px at 95% 0%, hsl(var(--teal-glow) / 0.95), transparent 52%),
+            hsl(var(--background));
+    }
+
+    .gold-rule {
+        height: 2px;
+        width: 3rem;
+        background: linear-gradient(90deg, hsl(var(--champagne)), hsl(var(--warm)));
+        border-radius: 999px;
+    }
+
+    /* Clinical Ledger — chart-note link */
+    .link-ledger {
+        @apply inline-flex items-center gap-2 text-sm font-semibold text-primary;
+        background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+        transition: background-size 200ms ease, color 120ms ease, gap 200ms ease;
+    }
+    .link-ledger:hover, .link-ledger:focus-visible {
+        background-size: 100% 1px;
+        gap: 0.625rem;
+    }
+    .link-ledger svg {
+        transition: transform 200ms ease;
+    }
+    .link-ledger:hover svg {
+        transform: translateX(2px);
+    }
+
+    .hover-glow {
+        @apply transition-all duration-300;
+    }
+    .hover-glow:hover {
+        border-color: hsl(var(--primary) / 0.35);
+        box-shadow: 0 18px 40px -28px hsl(var(--primary) / 0.45);
+        transform: translateY(-2px);
+    }
+
+    /* Light floating glass — uses current palette only */
+    .glass-card {
+        background:
+            linear-gradient(155deg, hsl(var(--card) / 0.72), hsl(var(--mist) / 0.45));
+        border: 1px solid hsl(var(--border) / 0.65);
+        backdrop-filter: blur(14px) saturate(1.15);
+        -webkit-backdrop-filter: blur(14px) saturate(1.15);
+        box-shadow:
+            0 18px 40px -28px hsl(var(--ink) / 0.28),
+            inset 0 1px 0 hsl(var(--card) / 0.85);
+    }
+    .glass-card-float {
+        @apply glass-card transition-all duration-300;
+    }
+    .glass-card-float:hover {
+        transform: translateY(-3px);
+        border-color: hsl(var(--primary) / 0.28);
+        box-shadow:
+            0 24px 48px -26px hsl(var(--primary) / 0.28),
+            inset 0 1px 0 hsl(var(--card) / 0.9);
     }
 }
 
@@ -104,27 +188,24 @@ body {
         -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
         mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
     }
+    .text-champagne { color: hsl(var(--champagne)); }
+    .text-warm { color: hsl(var(--warm)); }
+    .bg-mist { background-color: hsl(var(--mist)); }
+    .bg-sand { background-color: hsl(var(--sand)); }
 }
 
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: hsl(var(--background)); }
-::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.28); border-radius: 8px; border: 2px solid hsl(var(--background)); }
-::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.42); }
-
-@keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - 1.5rem)); }
-}
-
-@keyframes marquee-vertical {
-    from { transform: translateY(0); }
-    to { transform: translateY(calc(-100% - 1.5rem)); }
-}
+::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.32); border-radius: 8px; border: 2px solid hsl(var(--background)); }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.48); }
 
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+    .hover-glow:hover {
+        transform: none;
     }
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { primaryCta } from "@/content/site";
 
 export type MobileNavGroup = {
   name: string;
@@ -66,7 +68,7 @@ export function MobileNav({ nav }: MobileNavProps) {
                         key={item.href}
                         to={item.href}
                         data-testid={`mobile-nav-link-${item.label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
-                        className="rounded-lg px-2 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary"
+                        className="min-h-[52px] rounded-lg px-2 py-3 text-base font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary"
                         onClick={() => setOpen(false)}
                       >
                         {item.label}
@@ -75,6 +77,14 @@ export function MobileNav({ nav }: MobileNavProps) {
                   </div>
                 </div>
               ))}
+              <Link
+                to={primaryCta.href}
+                className={cn(buttonVariants({ size: "lg" }), "w-full")}
+                onClick={() => setOpen(false)}
+                data-testid="mobile-nav-cta-demo"
+              >
+                {primaryCta.label}
+              </Link>
             </div>
           </div>
         </>
